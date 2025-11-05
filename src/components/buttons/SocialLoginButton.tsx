@@ -14,12 +14,11 @@ export const SocialLoginButton = ({name}: SocialLoginButtonProps) => {
   return (
     <a
       href={url}
-      className={`flex h-[60px] items-center justify-center gap-[15px] rounded-md font-medium`}
+      className='flex h-[60px] items-center justify-center gap-[15px] rounded-md font-medium no-underline'
       style={{
         backgroundColor: bgColor,
         border: borderColor ? `1px solid ${borderColor}` : 'none',
         color: textColor ?? '#ffffff',
-        textDecoration: 'none',
       }}>
       <Icon width={24} height={24} />
       <span className='text-[18px] sm:text-xl'>{name}로 시작하기</span>
