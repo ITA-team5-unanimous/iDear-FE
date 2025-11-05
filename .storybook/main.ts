@@ -12,12 +12,7 @@ const config: StorybookConfig = {
     name: '@storybook/nextjs',
     options: {},
   },
-  staticDirs: [
-    {
-      from: '../src/app/fonts',
-      to: '../src/app/fonts',
-    },
-  ],
+  staticDirs: [{from: '../src/app/fonts', to: '/fonts'}],
   webpackFinal: async (config) => {
     if (!config.module || !config.module.rules) {
       return config;
