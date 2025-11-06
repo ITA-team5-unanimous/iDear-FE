@@ -7,7 +7,7 @@ import IdearBear from '@/assets/onboarding/idear-bear.svg';
 
 export default function LoginPage() {
   return (
-    <div className='flex h-screen flex-col xl:flex-row'>
+    <div className='flex min-h-screen flex-col xl:flex-row'>
       <section className='flex items-center justify-center sm:flex-[17]'>
         <div className='absolute top-9 left-9'>
           <Logo />
