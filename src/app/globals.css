@@ -76,8 +76,11 @@
   --color-gray: #575757;
 
   /* 브레이크 포인트 */
-  --breakpoint-lg: 1440px;
-  --breakpoint-xl: 1920px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1440px;
+  --breakpoint-2xl: 1920px;
 }
 
 @layer base {
