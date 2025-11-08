@@ -14,7 +14,9 @@ export const NavBar = () => {
 
   return (
     <header className='border-b-primary sticky top-0 z-50 flex flex-row items-center justify-between border-b-2 bg-white py-[11px] sm:px-5 xl:px-[164px]'>
-      <Logo />
+      <Link href='/main'>
+        <Logo className='cursor-pointer' />
+      </Link>
       <nav className='flex items-center gap-12'>
         <Link href=''>
           <span className='hover:border-b-primary hover:border-b-2 sm:text-xl md:text-2xl'>
