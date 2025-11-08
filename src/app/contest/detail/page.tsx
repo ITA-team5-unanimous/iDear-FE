@@ -56,7 +56,7 @@ export default function ContestDetailPage() {
 
           <div className='flex flex-col gap-4'>
             <h2 className='text-2xl font-bold'>접수 기간</h2>
-            <div className='flex flex-row items-center gap-[90px]'>
+            <div className='flex flex-row items-center gap-[75px]'>
               <DayBadge date={'12'} />
               <h3 className='text-xl font-normal'>
                 {contest.startPeriod} ~ {contest.endPeriod}
@@ -100,7 +100,7 @@ export default function ContestDetailPage() {
         </section>
       </div>
 
-      <section className='border-gray mt-12 w-full rounded-[8px] border p-9'>
+      <section className='border-gray mt-12 w-full rounded-[8px] border px-9'>
         <div className='text-base whitespace-pre-wrap'>
           {contest.description}
         </div>
