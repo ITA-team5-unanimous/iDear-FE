@@ -5,16 +5,21 @@ import DefaultImage from '@/assets/default/default-image.svg';
 import ChevronLeft from '@/assets/chevrons/chevron-left.svg';
 import Share from '@/assets/contest/share.svg';
 import LikeIcon from '@/assets/main/like-icon.svg';
+import FilledLikeIcon from '@/assets/main/filled-like.svg';
 import {DayBadge} from '@/components/contest/DayBadge';
 import GlobalButton from '@/components/buttons/GlobalButton';
+import {useState} from 'react';
 
 export default function ContestDetailPage() {
   const contest = mockContestDetail[0];
+
+  const [isLiked, setIsLiked] = useState<boolean>(false);
 
   const handleShareClick = () => {
     console.log('공유 버튼 클릭');
   };
   const handleLikeClick = () => {
+    setIsLiked(!isLiked);
     console.log('좋아요 클릭');
   };
   const handleGoSiteClick = () => {
@@ -40,12 +45,12 @@ export default function ContestDetailPage() {
         </div>
 
         <section className='flex w-full flex-col gap-9'>
-          <div className='absolute top-6 right-0 flex flex-row items-center gap-3'>
+          <div className='absolute top-6 right-9 flex flex-row items-center gap-6'>
             <button onClick={handleShareClick} aria-label='공유 버튼'>
               <Share />
             </button>
             <button onClick={handleLikeClick} aria-label='좋아요 버튼'>
-              <LikeIcon />
+              {isLiked ? <FilledLikeIcon /> : <LikeIcon />}
             </button>
           </div>
 
