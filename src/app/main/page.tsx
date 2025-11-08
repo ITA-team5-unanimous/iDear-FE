@@ -2,6 +2,7 @@
 
 import IdearBear from '@/assets/onboarding/idear-bear.svg';
 import {MainActionButton} from '@/components/buttons/MainActionButton';
+import {MARQUEE_TEXT} from '@/constants/marquee-text';
 import {motion} from 'framer-motion';
 
 export default function MainPage() {
@@ -35,18 +36,9 @@ export default function MainPage() {
       <div className='bg-primary sticky bottom-0 overflow-hidden py-2.5 text-xl text-white'>
         <div className='marquee-container'>
           <div className='marquee-track'>
-            <span>
-              생각이 스쳤다면 지금 바로 기록하세요. - iDear와 함께. 당신의
-              아이디어, 지금도 안전하게 기록 중...
-            </span>
-            <span>
-              생각이 스쳤다면 지금 바로 기록하세요. - iDear와 함께. 당신의
-              아이디어, 지금도 안전하게 기록 중...
-            </span>
-            <span>
-              생각이 스쳤다면 지금 바로 기록하세요. - iDear와 함께. 당신의
-              아이디어, 지금도 안전하게 기록 중...
-            </span>
+            {Array.from({length: 3}).map((_, index) => (
+              <span key={index}>{MARQUEE_TEXT}</span>
+            ))}
           </div>
         </div>
       </div>
