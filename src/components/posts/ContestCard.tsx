@@ -2,7 +2,7 @@ import type Contest from '@/types/Contest';
 import defaultContestCard from '@/assets/main/default-contest-card.svg';
 import Image from 'next/image';
 import IdeaRegisterButton from '@/components/buttons/IdeaRegisterButton';
-import LikeIcon from '@/assets/main/like.svg';
+import LikeIcon from '@/assets/main/like-icon.svg';
 
 export default function ContestCard({name, organizer, d_day, image}: Contest) {
   const onLikeClick = () => {
