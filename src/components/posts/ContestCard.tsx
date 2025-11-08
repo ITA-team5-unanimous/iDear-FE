@@ -1,10 +1,10 @@
 import type Contest from '@/types/Contest';
-import defaultContestCard from '@/assets/main/defaultContestCard.svg';
+import defaultContestCard from '@/assets/main/default-contest-card.svg';
 import Image from 'next/image';
 import IdeaRegisterButton from '@/components/buttons/IdeaRegisterButton';
-import LikeIcon from '@/assets/main/Like.svg';
+import LikeIcon from '@/assets/main/like.svg';
 
-export default function ContestPost({name, organizer, d_day, image}: Contest) {
+export default function ContestCard({name, organizer, d_day, image}: Contest) {
   const onLikeClick = () => {
     alert(`${name} 보관함 추가`);
   };
@@ -16,8 +16,8 @@ export default function ContestPost({name, organizer, d_day, image}: Contest) {
         <p className='mt-6 text-xl font-bold text-[#0062DD]'>D-{d_day}</p>
         <div className='mt-9 flex'>
           <IdeaRegisterButton onClickRegister={() => alert('아이디어 등록!')} />
-          <button className='ml-5'>
-            <LikeIcon onClick={onLikeClick} />
+          <button aria-label='좋아요' className='onClick={onLikeClick} ml-5'>
+            <LikeIcon />
           </button>
         </div>
       </div>
