@@ -1,4 +1,4 @@
-import {ContestDetail} from '@/types/contest/contestDetaill';
+import {ContestDetail} from '@/types/contest/contestDetail';
 
 export const mockContestDetail: ContestDetail[] = [
   {
