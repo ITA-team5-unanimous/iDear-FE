@@ -1,10 +1,9 @@
-import React from 'react';
 import {Meta, StoryObj} from '@storybook/nextjs';
-import ContestPost from '@/components/posts/ContestCard';
+import ContestPost from '@/components/contest/ContestCard';
 
 // 컴포넌트에 대한 메타데이터 정의
 const meta: Meta<typeof ContestPost> = {
-  title: 'Components/ContestCard',
+  title: 'Components/Contest/Contest Card',
   component: ContestPost,
   tags: ['autodocs'],
   argTypes: {},
