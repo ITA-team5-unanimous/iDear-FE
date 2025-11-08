@@ -7,7 +7,7 @@ import {motion} from 'framer-motion';
 
 export default function MainPage() {
   return (
-    <div>
+<div className='relative'>
       <div className='flex flex-col items-center gap-13 py-[130px]'>
         <motion.h2
           initial={{opacity: 0.4, filter: 'blur(2px)'}}
