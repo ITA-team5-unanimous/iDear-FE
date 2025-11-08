@@ -93,3 +93,27 @@
     cursor: pointer;
   }
 }
+.marquee-container {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: inline-flex;
+  gap: 90px;
+  animation: scrollMarquee 17s linear infinite;
+}
+
+.marquee-track span {
+  flex-shrink: 0;
+}
+
+@keyframes scrollMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
