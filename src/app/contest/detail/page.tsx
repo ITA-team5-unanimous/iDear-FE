@@ -75,7 +75,7 @@ export default function ContestDetailPage() {
             <h2 className='text-2xl font-bold'>시상</h2>
             <div className='flex flex-row gap-[90px] text-xl font-normal'>
               <p>1등시상금</p>
-              <p>{contest.firstPrize}</p>
+              <p>{contest.firstPrize.toLocaleString('ko-KR')}원</p>
             </div>
             <div className='flex flex-row gap-[103px] text-xl font-normal'>
               <p>총시상금</p>
