@@ -11,6 +11,7 @@ export const NavBar = () => {
   const handleUserClick = () => {
     console.log('유저 클릭');
   };
+
   return (
     <header className='border-b-primary sticky top-0 flex flex-row items-center justify-between border-b-2 py-[11px] sm:px-5 xl:px-[164px]'>
       <Logo />
@@ -25,8 +26,20 @@ export const NavBar = () => {
             나의 아이디어
           </span>
         </Link>
-        <Alarm onClick={handleClickAlarm} className='cursor-pointer' />
-        <User onClick={handleUserClick} className='cursor-pointer' />
+        <button
+          type='button'
+          onClick={handleClickAlarm}
+          className='cursor-pointer'
+          aria-label='알림'>
+          <Alarm />
+        </button>
+        <button
+          type='button'
+          onClick={handleUserClick}
+          className='cursor-pointer'
+          aria-label='사용자 메뉴'>
+          <User />
+        </button>
       </nav>
     </header>
   );
