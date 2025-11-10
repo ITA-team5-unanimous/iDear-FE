@@ -6,7 +6,10 @@ interface MainActionButtonProps {
 
 export const MainActionButton = ({text}: MainActionButtonProps) => {
   return (
-    <button className='border-primary flex flex-col items-start rounded-sm border-2 p-3'>
+    <button
+      type='button'
+      aria-label={text}
+      className='border-primary flex flex-col items-start rounded-sm border-2 p-3'>
       <span className='text-primary font-medium sm:text-[16px] xl:text-xl'>
         {text}
       </span>
