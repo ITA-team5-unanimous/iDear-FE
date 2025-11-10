@@ -26,7 +26,11 @@ export const DeleteAlertModal = () => {
           text='계속 작성하기'
           onClick={handleClickContinueButton}
         />
-        <GlobalSmallButton text='확인' onClick={handleClickConfirmButton} />
+        <GlobalSmallButton
+          text='확인'
+          onClick={handleClickConfirmButton}
+          variant='wide'
+        />
       </div>
     </div>
   );

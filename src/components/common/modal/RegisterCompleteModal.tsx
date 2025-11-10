@@ -17,7 +17,11 @@ export const RegisterCompleteModal = () => {
         <span className='text-2xl font-medium'>잠시만 기다려 주세요.</span>
       </div>
 
-      <GlobalSmallButton text='확인' onClick={handleClickConfirmButton} />
+      <GlobalSmallButton
+        text='확인'
+        onClick={handleClickConfirmButton}
+        variant='wide'
+      />
     </div>
   );
 };
