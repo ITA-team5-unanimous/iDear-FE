@@ -2,7 +2,7 @@ import {DayBadge} from '@/components/contest/DayBadge';
 import {Meta, StoryObj} from '@storybook/nextjs';
 
 const meta: Meta<typeof DayBadge> = {
-  title: 'Components/Contest/DayBadge',
+  title: 'Components/Contest/Day Badge',
   component: DayBadge,
   tags: ['autodocs'],
   argTypes: {
