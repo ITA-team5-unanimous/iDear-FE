@@ -12,7 +12,7 @@ const meta: Meta<typeof GlobalButton> = {
   parameters: {
     docs: {
       description: {
-        component: `사이트 전반에서 쓰이는 글로벌 버튼 컴포넌트입니다. text를 props로 받아서 렌더링합니다.`,
+        component: `사이트 전반에서 쓰이는 글로벌 버튼 컴포넌트입니다. 버튼이 클릭되었을 때 실행할 함수와 text를 props로 받아서 렌더링합니다.`,
       },
     },
   },
