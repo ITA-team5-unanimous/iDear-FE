@@ -8,6 +8,7 @@ export default function GlobalButton({onClick, text}: GlobalButtonProps) {
     <button
       aria-label={text}
       onClick={onClick}
+      type='button'
       className='bg-primary rounded-sm pt-3 pr-6 pb-3 pl-6 text-lg text-white'>
       {text}
     </button>
