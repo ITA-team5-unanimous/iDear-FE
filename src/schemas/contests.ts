@@ -9,7 +9,7 @@ export const contestSchema = z.object({
   id: z.number(),
   title: z.string(),
   hostingOrganization: z.string(),
-  imageUrl: z.string(),
+  imageUrl: z.string().nullish(),
   d_day: z.number(),
 });
 
