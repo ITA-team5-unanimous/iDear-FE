@@ -1,6 +1,6 @@
-import {ContestDetail} from '@/types/contest/contestDetail';
+import {contestDetailSchema} from '@/schemas/contests';
 
-export const mockContestDetail: ContestDetail[] = [
+export const mockContestDetail = [
   {
     id: 0,
     title: '2025년 [부산시민 모두를 위한 디지털 금융포용 정책 아이디어]',
@@ -24,3 +24,4 @@ export const mockContestDetail: ContestDetail[] = [
     `,
   },
 ];
+contestDetailSchema.array().parse(mockContestDetail);
