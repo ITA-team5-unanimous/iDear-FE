@@ -23,10 +23,10 @@ type Story = StoryObj<typeof ContestPost>;
 export const DefaultPost: Story = {
   args: {
     id: 1,
-    name: '2025년 [부산시민 모두를 위한 디지털 금융포용 정책 아이디어] 공모전',
-    organizer: '국립부경대학교',
+    title: '2025년 [부산시민 모두를 위한 디지털 금융포용 정책 아이디어] 공모전',
+    hostingOrganization: '국립부경대학교',
     d_day: 10,
-    image:
+    imageUrl:
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMKRY63t_07oVVNkww1iMbnsyiJcr5qzWhhg&s',
   },
 };
