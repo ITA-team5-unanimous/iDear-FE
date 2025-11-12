@@ -29,12 +29,13 @@ export const AttachmentList = ({
           <FileIcon />
           <span className='flex-1 text-xl font-medium'>{file.name}</span>
 
-          <button
+          <a
+            href={file.url}
+            download={file.name}
             className='flex flex-row items-center gap-4'
-            aria-label='아이디어 첨부파일 다운로드'
-            onClick={() => window.open(file.url, '_blank')}>
+            aria-label='아이디어 첨부파일 다운로드'>
             다운로드 <ChevronRight />
-          </button>
+          </a>
           <button
             className='flex flex-row items-center gap-4'
             aria-label='아이디어 첨부파일 확인'
