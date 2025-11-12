@@ -1,8 +1,8 @@
-import {DayBadge} from '@/components/contest/DayBadge';
+import {DayBadge} from '@/components/badge/DayBadge';
 import {Meta, StoryObj} from '@storybook/nextjs';
 
 const meta: Meta<typeof DayBadge> = {
-  title: 'Components/Contest/Day Badge',
+  title: 'Components/Common/Day Badge',
   component: DayBadge,
   tags: ['autodocs'],
   argTypes: {
@@ -23,18 +23,18 @@ type Story = StoryObj<typeof DayBadge>;
 
 export const Default: Story = {
   args: {
-    date: '10',
+    date: 10,
   },
 };
 
 export const Today: Story = {
   args: {
-    date: '0',
+    date: 0,
   },
 };
 
 export const Future: Story = {
   args: {
-    date: '5',
+    date: 5,
   },
 };
