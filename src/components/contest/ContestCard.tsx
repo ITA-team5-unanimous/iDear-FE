@@ -1,5 +1,5 @@
 import type Contest from '@/types/Contest';
-import defaultContestCard from '@/assets/main/default-contest-card.svg';
+import defaultContestCard from '@/assets/main/default-contest-card.svg?url';
 import Image from 'next/image';
 import LikeIcon from '@/assets/main/like-icon.svg';
 import GlobalButton from '@/components/buttons/GlobalButton';
@@ -8,11 +8,12 @@ export default function ContestCard({name, organizer, d_day, image}: Contest) {
   const handleLikeClick = () => {
     alert(`${name} 보관함 추가`);
   };
+  const imageSource = image || defaultContestCard;
   return (
     <div className='flex max-h-[363px] w-[680px] rounded-md border-[1px] border-gray-400 p-12 shadow-md'>
       <div className='mr-9 flex-1'>
         <h1 className='h-[83px] max-w-[333px] text-2xl font-bold'>{name}</h1>
-        <p className='mt-6 text-xl text-black'>{organizer}</p>
+        <p className='mt-6 text-xl font-medium text-black'>{organizer}</p>
         <p className='text-blue mt-6 text-xl font-bold'>D-{d_day}</p>
         <div className='mt-9 flex'>
           <GlobalButton
@@ -22,14 +23,14 @@ export default function ContestCard({name, organizer, d_day, image}: Contest) {
           <button
             aria-label='좋아요'
             onClick={handleLikeClick}
-            className='ml-5'>
+            className='ml-6'>
             <LikeIcon />
           </button>
         </div>
       </div>
       <div>
         <Image
-          src={image || defaultContestCard}
+          src={imageSource}
           alt={name}
           height={270}
           width={215}
