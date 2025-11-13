@@ -21,26 +21,6 @@ export const ModalWrapper = ({
   isOpen,
   handleClose,
 }: ModalWrapperProps) => {
-  const previouslyFocusedElement = useRef<HTMLElement | null>(null);
-
-  useEffect(() => {
-    if (isOpen) {
-      previouslyFocusedElement.current = document.activeElement as HTMLElement;
-    } else if (previouslyFocusedElement.current) {
-      previouslyFocusedElement.current.focus();
-    }
-  }, [isOpen]);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && handleClose) handleClose();
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handleClose]);
-
   useEffect(() => {
     if (isOpen) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = '';
@@ -59,7 +39,6 @@ export const ModalWrapper = ({
           initial={{opacity: 0}}
           animate={{opacity: 1}}
           exit={{opacity: 0}}
-          onClick={handleClose}
           aria-modal='true'
           role='dialog'
           aria-labelledby='modal-header'
