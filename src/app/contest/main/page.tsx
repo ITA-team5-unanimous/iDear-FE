@@ -50,7 +50,7 @@ export default function ContestMainPage() {
         </div>
       </div>
       {/*드롭다운*/}
-      <div className='flex-rowjustify-start flex w-[1400px] pt-9'>
+      <div className='flex w-[1400px] flex-row justify-start pt-9'>
         <SortDropdownContainer />
         {/* 저장 버튼*/}
         <div className='ml-5.5'>
