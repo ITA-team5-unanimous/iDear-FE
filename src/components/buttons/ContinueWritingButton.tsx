@@ -6,12 +6,14 @@ interface ContinueWritingButtonProps {
 export const ContinueWritingButton = ({
   text,
   onClick,
+  ...rest
 }: ContinueWritingButtonProps) => {
   return (
     <button
       onClick={onClick}
       aria-label={text}
       type='button'
+      {...rest}
       className='bg-gray rounded-[4px] px-3 py-[9px] text-xl text-white'>
       {text}
     </button>

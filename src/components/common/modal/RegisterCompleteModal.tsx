@@ -5,6 +5,10 @@ export const RegisterCompleteModal = () => {
     alert('아이디어 등록 완료 클릭!');
   };
 
+  /**
+   * 아이디어 저장 중 로딩 표시 필요
+   * 저장 중에는 확인 버튼 disabled
+   */
   return (
     <div
       className='flex h-[260px] w-[450px] flex-col items-center justify-center gap-6 rounded-[8px] bg-white'
@@ -13,8 +17,12 @@ export const RegisterCompleteModal = () => {
       }}>
       <span className='text-2xl font-bold'>등록 완료!</span>
       <div className='flex flex-col text-center'>
-        <span className='text-2xl font-medium'>아이디어 저장 중입니다.</span>
-        <span className='text-2xl font-medium'>잠시만 기다려 주세요.</span>
+        <span className='text-2xl font-medium' id='modal-header'>
+          아이디어 저장 중입니다.
+        </span>
+        <span className='text-2xl font-medium' id='modal-description'>
+          잠시만 기다려 주세요.
+        </span>
       </div>
 
       <GlobalSmallButton
