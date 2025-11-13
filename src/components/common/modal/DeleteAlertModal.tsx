@@ -25,6 +25,7 @@ export const DeleteAlertModal = () => {
         <ContinueWritingButton
           text='계속 작성하기'
           onClick={handleClickContinueButton}
+          data-auto-focus
         />
         <GlobalSmallButton
           text='확인'

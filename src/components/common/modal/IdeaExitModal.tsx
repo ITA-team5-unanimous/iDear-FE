@@ -27,6 +27,7 @@ export const IdeaExitModal = () => {
         <ContinueWritingButton
           text='계속 작성하기'
           onClick={handleClickContinueButton}
+          data-auto-focus
         />
         <GlobalSmallButton text='나가기' onClick={handleClickExitButton} />
       </div>

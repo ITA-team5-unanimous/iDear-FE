@@ -5,6 +5,10 @@ export const RegisterCompleteModal = () => {
     alert('아이디어 등록 완료 클릭!');
   };
 
+  /**
+   * 아이디어 저장 중 로딩 표시 필요
+   * 저장 중에는 확인 버튼 disabled
+   */
   return (
     <div
       className='flex h-[260px] w-[450px] flex-col items-center justify-center gap-6 rounded-[8px] bg-white'
