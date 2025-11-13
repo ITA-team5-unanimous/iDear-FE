@@ -6,7 +6,7 @@ import ChevronLeft from '@/assets/chevrons/chevron-left.svg';
 import Share from '@/assets/contest/share.svg';
 import LikeIcon from '@/assets/main/like-icon.svg';
 import FilledLikeIcon from '@/assets/main/filled-like.svg';
-import {DayBadge} from '@/components/contest/DayBadge';
+import {DayBadge} from '@/components/badge/DayBadge';
 import GlobalButton from '@/components/buttons/GlobalButton';
 import {useState} from 'react';
 
@@ -57,7 +57,7 @@ export default function ContestDetailPage() {
           <div className='flex flex-col gap-4'>
             <h2 className='text-2xl font-bold'>접수 기간</h2>
             <div className='flex flex-row items-center gap-[75px]'>
-              <DayBadge date={'12'} />
+              <DayBadge date={12} />
               <h3 className='text-xl font-normal'>
                 {contest.startPeriod} ~ {contest.endPeriod}
               </h3>

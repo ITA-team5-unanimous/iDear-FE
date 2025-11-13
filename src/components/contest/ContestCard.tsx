@@ -1,4 +1,4 @@
-import defaultContestCard from '@/assets/main/default-contest-card.svg';
+import DefaultContestCard from '@/assets/default/default-contest-card.svg';
 import Image from 'next/image';
 import LikeIcon from '@/assets/main/like-icon.svg';
 import GlobalButton from '@/components/buttons/GlobalButton';
@@ -34,7 +34,7 @@ export default function ContestCard({
       </div>
       <div>
         <Image
-          src={imageUrl || defaultContestCard}
+          src={imageUrl || DefaultContestCard}
           alt={title}
           height={270}
           width={215}
