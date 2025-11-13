@@ -62,7 +62,8 @@ export const ModalWrapper = ({
           onClick={handleClose}
           aria-modal='true'
           role='dialog'
-          aria-labelledby='modal-header'>
+          aria-labelledby='modal-header'
+          aria-describedby='modal-description'>
           <FocusTrap
             focusTrapOptions={{
               onActivate: () => {

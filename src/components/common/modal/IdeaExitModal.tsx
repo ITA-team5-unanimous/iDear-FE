@@ -18,10 +18,12 @@ export const IdeaExitModal = () => {
         boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.25)',
       }}>
       <div className='flex flex-col text-center'>
-        <span className='text-2xl font-medium'>
+        <span className='text-2xl font-medium' id='modal-header'>
           지금까지의 아이디어가 사라질 수 있어요.
         </span>
-        <span className='text-2xl font-medium'>그래도 나가시겠어요?</span>
+        <span className='text-2xl font-medium' id='modal-description'>
+          그래도 나가시겠어요?
+        </span>
       </div>
       <div className='flex gap-4'>
         <ContinueWritingButton
