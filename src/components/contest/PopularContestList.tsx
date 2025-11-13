@@ -10,8 +10,8 @@ export default function PopularContestList() {
       {contests.map((contest) => (
         <PopularContest
           key={contest.id}
-          name={contest.name}
-          image={contest.image}
+          title={contest.title}
+          imageUrl={contest.imageUrl}
         />
       ))}
     </div>
