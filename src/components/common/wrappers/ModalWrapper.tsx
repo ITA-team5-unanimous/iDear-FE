@@ -1,13 +1,14 @@
 'use client';
 
-import {ReactNode, useEffect} from 'react';
+import {ReactNode, useEffect, useRef} from 'react';
 import {createPortal} from 'react-dom';
 import {motion, AnimatePresence} from 'framer-motion';
+import {FocusTrap} from 'focus-trap-react';
 
 interface ModalWrapperProps {
   children: ReactNode;
   isOpen?: boolean;
-  onClose?: () => void;
+  handleClose?: () => void;
 }
 
 /**
@@ -18,15 +19,27 @@ interface ModalWrapperProps {
 export const ModalWrapper = ({
   children,
   isOpen,
-  onClose,
+  handleClose,
 }: ModalWrapperProps) => {
+  const previouslyFocusedElement = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      previouslyFocusedElement.current = document.activeElement as HTMLElement;
+    } else if (previouslyFocusedElement.current) {
+      previouslyFocusedElement.current.focus();
+    }
+  }, [isOpen]);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && onClose) onClose();
+      if (e.key === 'Escape' && handleClose) handleClose();
     };
+
     window.addEventListener('keydown', handleKeyDown);
+
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onClose]);
+  }, [handleClose]);
 
   useEffect(() => {
     if (isOpen) document.body.style.overflow = 'hidden';
@@ -46,15 +59,29 @@ export const ModalWrapper = ({
           initial={{opacity: 0}}
           animate={{opacity: 1}}
           exit={{opacity: 0}}
-          onClick={onClose}>
-          <motion.div
-            onClick={(e) => e.stopPropagation()}
-            initial={{scale: 0.95, opacity: 0}}
-            animate={{scale: 1, opacity: 1}}
-            exit={{scale: 0.95, opacity: 0}}
-            transition={{duration: 0.2}}>
-            {children}
-          </motion.div>
+          onClick={handleClose}
+          aria-modal='true'
+          role='dialog'
+          aria-labelledby='modal-header'>
+          <FocusTrap
+            focusTrapOptions={{
+              onActivate: () => {
+                const focusable = document.querySelector('[data-auto-focus]');
+                if (focusable instanceof HTMLElement) focusable.focus();
+              },
+              onDeactivate: handleClose,
+              escapeDeactivates: true,
+              clickOutsideDeactivates: true,
+            }}>
+            <motion.div
+              onClick={(e) => e.stopPropagation()}
+              initial={{scale: 0.95, opacity: 0}}
+              animate={{scale: 1, opacity: 1}}
+              exit={{scale: 0.95, opacity: 0}}
+              transition={{duration: 0.2}}>
+              {children}
+            </motion.div>
+          </FocusTrap>
         </motion.div>
       )}
     </AnimatePresence>,
