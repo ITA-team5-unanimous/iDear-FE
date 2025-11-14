@@ -1,3 +1,4 @@
+import {ROUTES} from '@/constants/routes';
 import {NextResponse} from 'next/server';
 import type {NextRequest} from 'next/server';
 
@@ -6,7 +7,7 @@ export function middleware(request: NextRequest) {
   const {pathname} = request.nextUrl;
 
   if (pathname === '/') {
-    return NextResponse.redirect(new URL('/auth/login', request.url));
+    return NextResponse.redirect(new URL(ROUTES.AUTH, request.url));
   }
 
   // 이미 로그인한 사용자가 /auth/login 접근 시 홈으로
