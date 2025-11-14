@@ -18,12 +18,12 @@ export const NavBar = () => {
         <Logo className='cursor-pointer' />
       </Link>
       <nav className='flex items-center gap-12'>
-        <Link href=''>
+        <Link href='/contest'>
           <span className='hover:border-b-primary px-2 py-1 hover:border-b-2 sm:text-xl md:text-2xl'>
             공모전
           </span>
         </Link>
-        <Link href=''>
+        <Link href='/idea'>
           <span className='hover:border-b-primary px-2 py-1 hover:border-b-2 sm:text-xl md:text-2xl'>
             나의 아이디어
           </span>
