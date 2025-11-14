@@ -1,8 +1,8 @@
 import type {Meta, StoryObj} from '@storybook/nextjs';
-import UpButton from '@/components/buttons/UpButton';
+import UpButton from '@/components/buttons/UpFloatingButton';
 
 const meta: Meta<typeof UpButton> = {
-  title: 'Components/Buttons/UpButton',
+  title: 'Components/Buttons/Up Floating Button',
   component: UpButton,
   tags: ['autodocs'],
   parameters: {
