@@ -23,7 +23,9 @@ export const IdeaItem = ({
   return (
     <div
       className='border-primary flex w-[1400px] cursor-pointer flex-row items-center gap-[72px] border-b bg-white px-9 py-4'
-      onClick={handleClickIdeaList}>
+      onClick={handleClickIdeaList}
+      role='button'
+      tabIndex={0}>
       <div className='mt-12 mb-[19px] flex w-[1041px] flex-col gap-6'>
         <strong
           title={title}
