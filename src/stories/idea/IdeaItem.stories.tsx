@@ -1,15 +1,14 @@
-import {IdeaList} from '@/components/idea/IdeaList';
+import {IdeaItem} from '@/components/idea/IdeaItem';
 import {Meta, StoryObj} from '@storybook/nextjs';
-
-const meta: Meta<typeof IdeaList> = {
-  title: 'Components/Idea/Idea List',
+const meta: Meta<typeof IdeaItem> = {
+  title: 'Components/Idea/Idea Item',
   tags: ['autodocs'],
   argTypes: {
     registerDate: {
       control: 'text',
     },
   },
-  component: IdeaList,
+  component: IdeaItem,
   parameters: {
     layout: 'padded',
     docs: {
@@ -21,7 +20,7 @@ const meta: Meta<typeof IdeaList> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof IdeaList>;
+type Story = StoryObj<typeof IdeaItem>;
 
 export const Default: Story = {
   args: {
