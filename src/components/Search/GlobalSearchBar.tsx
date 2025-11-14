@@ -2,16 +2,16 @@ import {useState} from 'react';
 import SearchIcon from '@/assets/main/search-icon.svg';
 import ClearIcon from '@/assets/main/clear-icon.svg';
 
-interface ContestSearchBarProps {
+interface GlobalSearchBarProps {
   onSearch: (keyword: string) => void;
   placeholder: string;
 }
 
-export default function ContestSearchBar({
+export const GlobalSearchBar = ({
   onSearch,
   placeholder,
-}: ContestSearchBarProps) {
-  const [value, setValue] = useState('');
+}: GlobalSearchBarProps) => {
+  const [value, setValue] = useState<string>('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,4 +52,4 @@ export default function ContestSearchBar({
       </button>
     </form>
   );
-}
+};

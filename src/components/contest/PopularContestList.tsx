@@ -1,7 +1,7 @@
 import {mockPopularContestList} from '@/mocks/data/mockPopularContestList';
 import {PopularContest} from '@/components/contest/PopularContest';
 
-export default function PopularContestList() {
+export const PopularContestList = () => {
   const contests = mockPopularContestList;
 
   return (
@@ -15,4 +15,4 @@ export default function PopularContestList() {
       ))}
     </div>
   );
-}
+};

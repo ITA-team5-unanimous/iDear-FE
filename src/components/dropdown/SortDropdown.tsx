@@ -7,11 +7,11 @@ interface SortDropdownProps {
   currentLabel: string;
 }
 
-export default function SortDropdown({
+export const SortDropdown = ({
   isOpen,
   onClick,
   currentLabel,
-}: SortDropdownProps) {
+}: SortDropdownProps) => {
   return (
     <button
       onClick={onClick}
@@ -30,4 +30,4 @@ export default function SortDropdown({
       </div>
     </button>
   );
-}
+};

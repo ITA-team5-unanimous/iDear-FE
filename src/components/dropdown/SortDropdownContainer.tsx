@@ -1,11 +1,11 @@
 import {useState} from 'react';
-import SortDropdown from '@/components/dropdown/SortDropdown';
-import DropdownOption from '@/components/dropdown/DropdownOption';
+import {SortDropdown} from '@/components/dropdown/SortDropdown';
+import {DropdownOption} from '@/components/dropdown/DropdownOption';
 import {SORT_OPTIONS} from '@/constants/sortOptions';
 
-export default function SortDropdownContainer() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedKey, setSelectedKey] = useState('latest');
+export const SortDropdownContainer = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [selectedKey, setSelectedKey] = useState<string>('latest');
 
   const currentOption = SORT_OPTIONS.find((opt) => opt.key === selectedKey);
   const currentLabel = currentOption ? currentOption.label : '정렬 선택';
@@ -43,4 +43,4 @@ export default function SortDropdownContainer() {
       )}
     </div>
   );
-}
+};

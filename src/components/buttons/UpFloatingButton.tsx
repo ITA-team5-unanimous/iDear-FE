@@ -4,7 +4,7 @@ interface UpFloatingButtonProps {
   onClick?: () => void;
 }
 
-export default function UpFloatingButton({onClick}: UpFloatingButtonProps) {
+export const UpFloatingButton = ({onClick}: UpFloatingButtonProps) => {
   return (
     <button
       type='button'
@@ -14,4 +14,4 @@ export default function UpFloatingButton({onClick}: UpFloatingButtonProps) {
       <ChevronUpIcon />
     </button>
   );
-}
+};

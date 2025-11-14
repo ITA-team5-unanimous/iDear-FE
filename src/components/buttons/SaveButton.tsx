@@ -6,7 +6,7 @@ interface SaveButtonProps {
   onClick: () => void;
 }
 
-export default function SaveButton({isOpen, onClick}: SaveButtonProps) {
+export const SaveButton = ({isOpen, onClick}: SaveButtonProps) => {
   const buttonClasses = clsx(
     'flex h-[70px] w-[180px] cursor-pointer items-center justify-center rounded-sm border-3 transition-colors duration-100',
     {
@@ -26,4 +26,4 @@ export default function SaveButton({isOpen, onClick}: SaveButtonProps) {
       </div>
     </button>
   );
-}
+};

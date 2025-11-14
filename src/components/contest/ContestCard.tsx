@@ -4,12 +4,12 @@ import LikeIcon from '@/assets/main/like-icon.svg';
 import GlobalButton from '@/components/buttons/GlobalButton';
 import {Contest} from '@/schemas/contests';
 
-export default function ContestCard({
+export const ContestCard = ({
   title,
   hostingOrganization,
   d_day,
   imageUrl,
-}: Contest) {
+}: Contest) => {
   const handleLikeClick = () => {
     alert(`${title} 보관함 추가`);
   };
@@ -45,4 +45,4 @@ export default function ContestCard({
       </div>
     </div>
   );
-}
+};
