@@ -16,7 +16,7 @@ export const PopularContest = ({title, imageUrl}: PopularContestProps) => {
         height={270}
         className='h-[270px] w-full rounded-sm'
       />
-      <p className='mt-3 line-clamp-2 max-h-[48px] max-w-[210px] text-xl leading-none font-medium text-[#1A1A1A]'>
+      <p className='mt-3 line-clamp-2 max-h-[48px] max-w-[210px] text-xl leading-none font-medium text-black'>
         {title}
       </p>
     </div>
