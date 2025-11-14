@@ -1,4 +1,4 @@
-import ChevronUpIcon from '@/assets/chevrons/chevron-up-icon.svg';
+import clsx from 'clsx';
 import ChevronDownIcon from '@/assets/chevrons/chevron-down-icon.svg';
 
 interface SortDropdownProps {
@@ -12,8 +12,6 @@ export default function SortDropdown({
   onClick,
   currentLabel,
 }: SortDropdownProps) {
-  const ChevronIcon = isOpen ? ChevronUpIcon : ChevronDownIcon;
-
   return (
     <button
       onClick={onClick}
@@ -22,9 +20,12 @@ export default function SortDropdown({
         <span className='line-clamp-1 max-w-[64px] text-2xl font-bold text-black'>
           {currentLabel}
         </span>
-        <ChevronIcon
+        <ChevronDownIcon
           alt={isOpen ? '드롭다운 열림' : '드롭다운 닫힘'}
-          className='mt-0.5 ml-4'
+          className={clsx('mt-0.5 ml-4 transition-transform duration-300', {
+            'rotate-180': isOpen,
+            'rotate-0': !isOpen,
+          })}
         />
       </div>
     </button>
