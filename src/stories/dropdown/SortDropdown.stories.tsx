@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/nextjs';
-import SortDropdown from '@/components/dropdown/SortDropdown';
+import {SortDropdown} from '@/components/dropdown/SortDropdown';
 
 const meta: Meta<typeof SortDropdown> = {
   title: 'Components/Dropdown/Sort Dropdown',
@@ -7,6 +7,11 @@ const meta: Meta<typeof SortDropdown> = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `사용자가 정렬 기준을 선택할 수 있는 드롭다운 컴포넌트입니다.`,
+      },
+    },
   },
   argTypes: {
     isOpen: {

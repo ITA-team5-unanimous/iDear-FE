@@ -7,6 +7,11 @@ const meta: Meta<typeof PopularContest> = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `인기 공모전 카드를 열마다 5개씩 보여주는 컴포넌트입니다.`,
+      },
+    },
   },
   argTypes: {
     title: {

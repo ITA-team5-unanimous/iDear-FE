@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/nextjs';
-import DropdownOption from '@/components/dropdown/DropdownOption';
+import {DropdownOption} from '@/components/dropdown/DropdownOption';
 
 const meta: Meta<typeof DropdownOption> = {
   title: 'Components/Dropdown/Dropdown Option',
@@ -7,6 +7,11 @@ const meta: Meta<typeof DropdownOption> = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `드롭다운 메뉴 내에서 선택 가능한 옵션을 나타내는 컴포넌트입니다.`,
+      },
+    },
   },
   argTypes: {
     label: {control: 'text', description: '버튼에 표시될 텍스트'},
