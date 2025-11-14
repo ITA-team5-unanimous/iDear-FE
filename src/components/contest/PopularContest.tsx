@@ -4,7 +4,7 @@ import DefaultContestCard from '@/assets/default/default-contest-card.svg?url';
 
 type PopularContestProps = Pick<Contest, 'title' | 'imageUrl'>;
 
-export default function PopularContest({title, imageUrl}: PopularContestProps) {
+export const PopularContest = ({title, imageUrl}: PopularContestProps) => {
   const imageSource = imageUrl || DefaultContestCard;
 
   return (
@@ -21,4 +21,4 @@ export default function PopularContest({title, imageUrl}: PopularContestProps) {
       </p>
     </div>
   );
-}
+};
