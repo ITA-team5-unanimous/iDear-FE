@@ -1,19 +1,19 @@
 'use client';
 import {useState} from 'react';
-import ContestSearchBar from '@/components/Search/GlobalSearchBar';
-import PopularContestList from '@/components/contest/PopularContestList';
-import SortDropdownContainer from '@/components/dropdown/SortDropdownContainer';
-import SaveButton from '@/components/buttons/SaveButton';
-import ContestCard from '@/components/contest/ContestCard';
+import {GlobalSearchBar} from '@/components/Search/GlobalSearchBar';
+import {PopularContestList} from '@/components/contest/PopularContestList';
+import {SortDropdownContainer} from '@/components/dropdown/SortDropdownContainer';
+import {SaveButton} from '@/components/buttons/SaveButton';
+import {ContestCard} from '@/components/contest/ContestCard';
 import {mockContestCard} from '@/mocks/data/mockContestCard';
-import UpFloatingButton from '@/components/buttons/UpFloatingButton';
+import {UpFloatingButton} from '@/components/buttons/UpFloatingButton';
 
 export default function ContestMainPage() {
   const handleSearchClick = (keyword: string) => {
     console.log('검색어:', keyword);
   };
 
-  const [isSaved, setIsSaved] = useState(false);
+  const [isSaved, setIsSaved] = useState<boolean>(false);
 
   const handleSaveClick = () => setIsSaved((prev) => !prev);
 
@@ -30,7 +30,7 @@ export default function ContestMainPage() {
     <div className='relative mb-20 flex flex-col items-center'>
       {/* 검색바 */}
       <div className='mt-9 flex'>
-        <ContestSearchBar
+        <GlobalSearchBar
           onSearch={handleSearchClick}
           placeholder='다양한 공모전을 검색해보세요!'
         />
