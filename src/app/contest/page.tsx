@@ -1,6 +1,6 @@
 'use client';
 import {useState} from 'react';
-import ContestSearchBar from '@/components/contest/ContestSearchBar';
+import ContestSearchBar from '@/components/Search/GlobalSearchBar';
 import PopularContestList from '@/components/contest/PopularContestList';
 import SortDropdownContainer from '@/components/dropdown/SortDropdownContainer';
 import SaveButton from '@/components/buttons/SaveButton';
@@ -30,7 +30,10 @@ export default function ContestMainPage() {
     <div className='relative mb-20 flex flex-col items-center'>
       {/* 검색바 */}
       <div className='mt-9 flex'>
-        <ContestSearchBar onSearch={handleSearchClick} />
+        <ContestSearchBar
+          onSearch={handleSearchClick}
+          placeholder='다양한 공모전을 검색해보세요!'
+        />
       </div>
       {/* 인기 공모전*/}
       <div className='border-primary mt-9 flex h-auto w-[1400px] flex-col rounded-[4px] border-2 p-12'>

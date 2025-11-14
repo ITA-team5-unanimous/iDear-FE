@@ -1,5 +1,5 @@
 import {Meta, StoryObj} from '@storybook/nextjs';
-import PopularContest from '@/components/contest/PopularContest';
+import {PopularContest} from '@/components/contest/PopularContest';
 
 const meta: Meta<typeof PopularContest> = {
   title: 'Components/Contest/Popular Contest',
