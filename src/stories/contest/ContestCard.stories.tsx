@@ -1,10 +1,10 @@
 import {Meta, StoryObj} from '@storybook/nextjs';
-import ContestPost from '@/components/contest/ContestCard';
+import {ContestCard} from '@/components/contest/ContestCard';
 
 // 컴포넌트에 대한 메타데이터 정의
-const meta: Meta<typeof ContestPost> = {
+const meta: Meta<typeof ContestCard> = {
   title: 'Components/Contest/Contest Card',
-  component: ContestPost,
+  component: ContestCard,
   tags: ['autodocs'],
   argTypes: {},
   parameters: {
@@ -17,7 +17,7 @@ const meta: Meta<typeof ContestPost> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof ContestPost>;
+type Story = StoryObj<typeof ContestCard>;
 
 // 기본 스토리
 export const DefaultPost: Story = {
