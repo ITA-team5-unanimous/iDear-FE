@@ -1,9 +1,7 @@
-import {z} from 'zod';
-import {contestSchema} from '@/schemas/contests';
+import {Contest} from '@/schemas/contests';
 import Image from 'next/image';
 import DefaultContestCard from '@/assets/default/default-contest-card.svg?url';
 
-type Contest = z.infer<typeof contestSchema>;
 type PopularContestProps = Pick<Contest, 'title' | 'imageUrl'>;
 
 export default function PopularContest({title, imageUrl}: PopularContestProps) {

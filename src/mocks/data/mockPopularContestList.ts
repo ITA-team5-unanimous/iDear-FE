@@ -1,7 +1,4 @@
-import {z} from 'zod';
-import {contestSchema} from '@/schemas/contests';
-
-type Contest = z.infer<typeof contestSchema>;
+import {Contest} from '@/schemas/contests';
 
 export const mockPopularContestList: Contest[] = [
   {

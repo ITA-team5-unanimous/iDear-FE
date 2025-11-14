@@ -1,8 +1,6 @@
-import {z} from 'zod';
-import {contestSchema} from '@/schemas/contests';
+import {Contest} from '@/schemas/contests';
 
-type Contest = z.infer<typeof contestSchema>;
-const mockContestCard: Contest[] = [
+export const mockContestCard: Contest[] = [
   {
     id: 0,
     title: '2025년 [부산시민 모두를 위한 디지털 금융포용 정책 아이디어]',
@@ -88,5 +86,3 @@ const mockContestCard: Contest[] = [
     imageUrl: undefined,
   },
 ];
-
-export default mockContestCard;
