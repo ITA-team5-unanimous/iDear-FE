@@ -1,6 +1,5 @@
-import React from 'react';
 import {mockPopularContestList} from '@/mocks/data/mockPopularContestList';
-import PopularContest from './PopularContest';
+import PopularContest from '@/components/contest/PopularContest';
 
 export default function PopularContestList() {
   const contests = mockPopularContestList;

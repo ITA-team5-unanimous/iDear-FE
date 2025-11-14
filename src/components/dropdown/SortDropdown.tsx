@@ -1,4 +1,3 @@
-import React from 'react';
 import ChevronUpIcon from '@/assets/chevrons/chevron-up-icon.svg';
 import ChevronDownIcon from '@/assets/chevrons/chevron-down-icon.svg';
 

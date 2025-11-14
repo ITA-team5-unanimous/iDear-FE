@@ -1,12 +1,7 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import SortDropdown from '@/components/dropdown/SortDropdown';
 import DropdownOption from '@/components/dropdown/DropdownOption';
-
-const SORT_OPTIONS = [
-  {key: 'latest', label: '최신순'},
-  {key: 'deadline', label: '마감임박순'},
-  {key: 'popular', label: '인기순'},
-];
+import {SORT_OPTIONS} from '@/constants/sortOptions';
 
 export default function SortDropdownContainer() {
   const [isOpen, setIsOpen] = useState(false);

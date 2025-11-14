@@ -1,4 +1,4 @@
-import React from 'react';
+import {useState} from 'react';
 import SearchIcon from '@/assets/main/search-icon.svg';
 import ClearIcon from '@/assets/main/clear-icon.svg';
 
@@ -7,7 +7,7 @@ interface ContestSearchBarProps {
 }
 
 export default function ContestSearchBar({onSearch}: ContestSearchBarProps) {
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,7 +36,7 @@ export default function ContestSearchBar({onSearch}: ContestSearchBarProps) {
         placeholder='다양한 공모전을 검색해보세요!'
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        className='ml-2 flex-grow bg-transparent text-lg font-medium text-[#1A1A1A] placeholder:text-[#1A1A1A] focus:outline-none'
+        className='ml-2 flex-grow bg-transparent text-lg font-medium text-black placeholder:text-black focus:outline-none'
       />
 
       <button
