@@ -7,27 +7,36 @@ import {FocusTrap} from 'focus-trap-react';
 
 interface ModalWrapperProps {
   children: ReactNode;
-  isOpen?: boolean;
-  handleClose?: () => void;
+  isOpen: boolean;
+  onClose?: () => void;
 }
 
 /**
  * ModalWrapper
  * - 배경(overlay), 애니메이션, 포털 렌더링을 담당하는 공통 모달 래퍼입니다.
  * - 내부에 어떤 모달 컴포넌트든 children으로 전달해 사용할 수 있습니다.
+ * - esc 키, overlay 클릭 시 모달이 닫힙니다.
  */
 export const ModalWrapper = ({
   children,
   isOpen,
-  handleClose,
+  onClose,
 }: ModalWrapperProps) => {
   useEffect(() => {
-    if (isOpen) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = '';
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose?.();
+      }
+    };
+    if (isOpen) {
+      window.addEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'hidden';
+    }
     return () => {
+      window.removeEventListener('keydown', handleEsc);
       document.body.style.overflow = '';
     };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   if (typeof window === 'undefined') return null;
 
@@ -42,14 +51,14 @@ export const ModalWrapper = ({
           aria-modal='true'
           role='dialog'
           aria-labelledby='modal-header'
-          aria-describedby='modal-description'>
+          aria-describedby='modal-description'
+          onClick={onClose}>
           <FocusTrap
             focusTrapOptions={{
               onActivate: () => {
                 const focusable = document.querySelector('[data-auto-focus]');
                 if (focusable instanceof HTMLElement) focusable.focus();
               },
-              onDeactivate: handleClose,
               escapeDeactivates: true,
               clickOutsideDeactivates: true,
             }}>
