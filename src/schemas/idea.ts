@@ -15,7 +15,9 @@ export const attachmentSchema = z.object({
 export const ideaSchema = z.object({
   id: z.number(),
   title: z.string(),
-  subtitle: z.string(),
+  ideaTitle: z.string(),
+  ideaShortDescription: z.string(),
+  timeStamp: z.string(),
   hostingOrganization: z.string(),
   d_day: z.number(),
   startPeriod: z.string(),
