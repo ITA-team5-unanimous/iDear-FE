@@ -21,7 +21,11 @@ type Story = StoryObj<typeof RegisterCompleteModal>;
 export const Default: Story = {
   render: () => (
     <ModalWrapper isOpen={true}>
-      <RegisterCompleteModal />
+      <RegisterCompleteModal
+        onClose={() => {
+          alert('확인 클릭');
+        }}
+      />
     </ModalWrapper>
   ),
 };
