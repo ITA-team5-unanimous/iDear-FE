@@ -34,7 +34,7 @@ export default function ContestMainPage() {
         />
       </div>
 
-      <div className='border-primary mt-9 flex h-auto w-[1400px] flex-col rounded-[4px] border-2 p-12'>
+      <div className='border-primary mt-9 flex h-auto w-full max-w-[1400px] flex-col rounded-[4px] border-2 p-12'>
         <div className='flex flex-row items-baseline'>
           <p className='text-2xl leading-normal font-extrabold text-black'>
             인기 공모전
@@ -49,7 +49,7 @@ export default function ContestMainPage() {
         </div>
       </div>
 
-      <div className='flex w-[1400px] flex-row justify-start pt-9'>
+      <div className='flex w-full max-w-[1400px] flex-row justify-start pt-9'>
         <SortDropdownContainer />
 
         <div className='ml-5.5'>
@@ -57,7 +57,7 @@ export default function ContestMainPage() {
         </div>
       </div>
 
-      <div className='mt-9 w-[1400px]'>
+      <div className='mt-9 w-full max-w-[1400px]'>
         <div className='grid grid-cols-2 gap-x-[40px] gap-y-9'>
           {contests.map((contest) => (
             <ContestCard key={contest.id} {...contest} />

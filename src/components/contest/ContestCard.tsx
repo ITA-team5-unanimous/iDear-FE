@@ -15,7 +15,7 @@ export const ContestCard = ({
   };
 
   return (
-    <div className='flex max-h-[363px] w-[680px] rounded-md border-[1px] border-gray-400 p-12 shadow-md'>
+    <div className='border-gray flex max-h-[363px] w-[680px] rounded-md border-[1px] p-12 shadow-md'>
       <div className='mr-9 flex-1'>
         <h1 className='h-[83px] max-w-[333px] text-2xl font-bold'>{title}</h1>
         <p className='mt-6 text-xl text-black'>{hostingOrganization}</p>
