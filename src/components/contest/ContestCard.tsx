@@ -13,7 +13,7 @@ export const ContestCard = ({
   const handleLikeClick = () => {
     alert(`${title} 보관함 추가`);
   };
-  const imageSource = imageUrl || DefaultContestCard;
+
   return (
     <div className='flex max-h-[363px] w-[680px] rounded-md border-[1px] border-gray-400 p-12 shadow-md'>
       <div className='mr-9 flex-1'>

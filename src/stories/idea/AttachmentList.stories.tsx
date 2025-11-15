@@ -25,7 +25,7 @@ type Story = StoryObj<typeof AttachmentList>;
 
 export const Default: Story = {
   args: {
-    attachments: mockIdeaData.attachments,
+    attachments: mockIdeaData[0].attachments,
     isEditable: true,
   },
   render: (args) => <AttachmentList {...args} />,
