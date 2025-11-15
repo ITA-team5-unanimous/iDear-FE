@@ -1,0 +1,47 @@
+import {Meta} from '@storybook/addon-docs/blocks';
+
+<Meta title='Getting started/Introduction' />
+
+# iDear Storybook Guide
+
+이 문서는 **iDear 프로젝트에서 Storybook을 사용하는 규칙과 권장 사항**을 안내합니다.
+
+---
+
+<br />
+
+### Getting started
+
+```bash
+npm run storybook
+```
+
+### 1. 파일/폴더 규칙
+
+- **스토리 파일명**: `컴포넌트명.stories.tsx`
+  - 예: `Button.stories.tsx`, `Modal.stories.tsx`
+- **스토리 위치**: `src/stories/` 하위, 기능별 폴더 가능
+  - 예: `src/stories/buttons/Button.stories.tsx`
+- **MDX 파일**: `.mdx` 확장자는 문서용 스토리에만 사용
+- **폴더 구조와 스토리북 탭 구조 일치**
+
+---
+
+### 2. 스토리 작성 규칙
+
+- **CSF (Component Story Format) 사용**
+- **스토리명**: 명확하게 상태/변형 표시
+  - 예: `Primary`, `Disabled`, `WithIcon`
+- **MDX 문서**: Markdown + `<Meta>` + `<Story>` 활용
+- **Controls 활성화**: 가능한 prop은 모두 controls에 노출
+- **Docs**: API 문서 작성
+
+---
+
+### 3. 코드 품질
+
+- **자동화 lint 적용**: ESLint, Prettier
+- **PR 시 코드 리뷰 필수**: 스토리북에서도 동작 확인 후 merge
+- **스토리 최소 테스트**: 각 스토리는 최소 한 가지 상태 렌더링 확인
+
+---

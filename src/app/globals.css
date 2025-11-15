@@ -1,1 +1,119 @@
 @import 'tailwindcss';
+
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('../fonts/Paperlogy-1Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('../fonts/Paperlogy-2ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('../fonts/Paperlogy-3Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('../fonts/Paperlogy-4Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('../fonts/Paperlogy-5Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('../fonts/Paperlogy-6SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('../fonts/Paperlogy-7Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('../fonts/Paperlogy-8ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('../fonts/Paperlogy-9Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@theme {
+  /* 메인 컬러 */
+  --color-primary: #db0001;
+  --color-primary-2: #ffa2a2;
+
+  /* 서브 포인트 컬러 */
+  --color-black: #1a1a1a;
+  --color-blue: #0062dd;
+
+  /* 그레이 스케일 */
+  --color-gray: #575757;
+
+  /* 브레이크 포인트 */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1440px;
+  --breakpoint-2xl: 1920px;
+}
+
+@layer base {
+  body {
+    font-family: 'Paperlogy', sans-serif;
+    width: 100%;
+    height: 100%;
+  }
+  button {
+    cursor: pointer;
+  }
+}
+.marquee-container {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: inline-flex;
+  gap: 90px;
+  animation: scrollMarquee 17s linear infinite;
+}
+
+.marquee-track span {
+  flex-shrink: 0;
+}
+
+@keyframes scrollMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
