@@ -19,6 +19,7 @@ export const IdeaList = ({ideas, totalItems}: IdeaListProps) => {
       {ideas.map((idea) => (
         <IdeaItem
           key={idea.id}
+          id={idea.id}
           title={idea.title}
           hostingOrganization={idea.hostingOrganization}
           d_day={idea.d_day}

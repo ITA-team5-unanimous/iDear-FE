@@ -2,8 +2,11 @@
 
 import {DayBadge} from '@/components/badge/DayBadge';
 import DefaultContestCard from '@/assets/default/default-contest-card.svg';
+import {useRouter} from 'next/navigation';
+import {ROUTES} from '@/constants/routes';
 
 interface IdeaItemProps {
+  id: number;
   title: string;
   hostingOrganization: string;
   d_day: number;
@@ -11,13 +14,16 @@ interface IdeaItemProps {
 }
 
 export const IdeaItem = ({
+  id,
   title,
   hostingOrganization,
   d_day,
   registerDate,
 }: IdeaItemProps) => {
+  const router = useRouter();
+
   const handleClickIdeaList = () => {
-    alert('아이디어 상세 페이지로 이동!');
+    router.push(`${ROUTES.IDEA}/${id}`);
   };
 
   return (
