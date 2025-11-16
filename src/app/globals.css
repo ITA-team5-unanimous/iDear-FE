@@ -117,3 +117,11 @@
     transform: translateX(-33.333%);
   }
 }
+.scrollable {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scrollable::-webkit-scrollbar {
+  display: none;
+}
