@@ -5,13 +5,20 @@ import Link from 'next/link';
 import Alarm from '@/assets/alarm/alarm.svg';
 import User from '@/assets/user/user.svg';
 import {ROUTES} from '@/constants/routes';
+import {useState} from 'react';
+import {AlarmContainer} from '@/components/alarm/AlarmContainer';
+import {UserContainer} from '@/components/user/UserContainer';
 
 export const NavBar = () => {
+  const [isAlarmOpen, setIsAlarmOpen] = useState<boolean>(false);
+  const [isUserOpen, setIsUserOpen] = useState<boolean>(false);
+
   const handleClickAlarm = () => {
-    console.log('알람 클릭');
+    setIsAlarmOpen((prev) => !prev);
   };
+
   const handleUserClick = () => {
-    console.log('유저 클릭');
+    setIsUserOpen((prev) => !prev);
   };
 
   return (
@@ -37,6 +44,7 @@ export const NavBar = () => {
           aria-label='알림'>
           <Alarm />
         </button>
+
         <button
           type='button'
           onClick={handleUserClick}
@@ -45,6 +53,16 @@ export const NavBar = () => {
           <User />
         </button>
       </nav>
+      {isAlarmOpen && (
+        <div className='absolute top-full right-[150px]'>
+          <AlarmContainer />
+        </div>
+      )}
+      {isUserOpen && (
+        <div className='absolute top-full right-[150px]'>
+          <UserContainer />
+        </div>
+      )}
     </header>
   );
 };
