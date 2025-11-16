@@ -1,6 +1,6 @@
 'use client';
 import {useState} from 'react';
-import {GlobalSearchBar} from '@/components/Search/GlobalSearchBar';
+import {GlobalSearchBar} from '@/components/common/search/GlobalSearchBar';
 import {PopularContestList} from '@/components/contest/PopularContestList';
 import {SortDropdownContainer} from '@/components/dropdown/SortDropdownContainer';
 import {SaveButton} from '@/components/buttons/SaveButton';

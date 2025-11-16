@@ -4,7 +4,7 @@ import ChevronLeft from '@/assets/chevrons/chevron-left.svg';
 import {IdeaList} from '@/components/idea/IdeaList';
 import {mockIdeaData} from '@/mocks/data/mockIdeaData';
 import {Pagination} from '@/components/idea/Pagination';
-import {GlobalSearchBar} from '@/components/Search/GlobalSearchBar';
+import {GlobalSearchBar} from '@/components/common/search/GlobalSearchBar';
 import {useRouter} from 'next/navigation';
 
 export default function IdeaPage() {

@@ -21,7 +21,12 @@ type Story = StoryObj<typeof DeleteAlertModal>;
 export const Default: Story = {
   render: () => (
     <ModalWrapper isOpen={true}>
-      <DeleteAlertModal />
+      <DeleteAlertModal
+        onContinue={() => {
+          alert('계속 작성하기 클릭');
+        }}
+        onClose={() => alert('확인 클릭')}
+      />
     </ModalWrapper>
   ),
 };

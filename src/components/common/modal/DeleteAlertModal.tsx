@@ -1,14 +1,15 @@
 import {ContinueWritingButton} from '@/components/buttons/ContinueWritingButton';
 import {GlobalSmallButton} from '@/components/buttons/GlobalSmallButton';
 
-export const DeleteAlertModal = () => {
-  const handleClickContinueButton = () => {
-    alert('계속 작성하기 클릭!');
-  };
-  const handleClickConfirmButton = () => {
-    alert('확인 클릭!');
-  };
+interface DeleteAlertModalProps {
+  onClose: () => void;
+  onContinue: () => void;
+}
 
+export const DeleteAlertModal = ({
+  onClose,
+  onContinue,
+}: DeleteAlertModalProps) => {
   return (
     <div
       className='flex h-[260px] w-[450px] flex-col items-center justify-center gap-6 rounded-[8px] bg-white'
@@ -24,14 +25,10 @@ export const DeleteAlertModal = () => {
       <div className='mt-3 flex flex-row gap-6'>
         <ContinueWritingButton
           text='계속 작성하기'
-          onClick={handleClickContinueButton}
+          onClick={onContinue}
           data-auto-focus
         />
-        <GlobalSmallButton
-          text='확인'
-          onClick={handleClickConfirmButton}
-          variant='wide'
-        />
+        <GlobalSmallButton text='확인' onClick={onClose} variant='wide' />
       </div>
     </div>
   );

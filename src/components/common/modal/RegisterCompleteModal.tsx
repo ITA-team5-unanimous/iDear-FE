@@ -1,14 +1,26 @@
 import {GlobalSmallButton} from '@/components/buttons/GlobalSmallButton';
+import {useEffect, useState} from 'react';
 
-export const RegisterCompleteModal = () => {
-  const handleClickConfirmButton = () => {
-    alert('아이디어 등록 완료 클릭!');
-  };
+interface RegisterCompleteModalProps {
+  onClose: () => void;
+}
 
+export const RegisterCompleteModal = ({
+  onClose,
+}: RegisterCompleteModalProps) => {
+  const [isSaving, setIsSaving] = useState<boolean>(true);
   /**
    * 아이디어 저장 중 로딩 표시 필요
+   * (블록체인 저장 로딩 시간 체크 필요)
    * 저장 중에는 확인 버튼 disabled
    */
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsSaving(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <div
       className='flex h-[260px] w-[450px] flex-col items-center justify-center gap-6 rounded-[8px] bg-white'
@@ -25,10 +37,13 @@ export const RegisterCompleteModal = () => {
         </span>
       </div>
 
+      <button className='sr-only' tabIndex={0} aria-hidden='true' />
+
       <GlobalSmallButton
         text='확인'
-        onClick={handleClickConfirmButton}
+        onClick={onClose}
         variant='wide'
+        disabled={isSaving}
       />
     </div>
   );

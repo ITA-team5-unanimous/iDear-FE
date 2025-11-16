@@ -16,6 +16,7 @@ const meta: Meta<typeof IdeaItem> = {
         component: `나의 아이디어에서 리스트 프리뷰를 보여주는 컴포넌트입니다.`,
       },
     },
+    nextjs: {appDirectory: true},
   },
 };
 
