@@ -5,20 +5,28 @@ import Link from 'next/link';
 import Alarm from '@/assets/alarm/alarm.svg';
 import User from '@/assets/user/user.svg';
 import {ROUTES} from '@/constants/routes';
-import {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {AlarmContainer} from '@/components/alarm/AlarmContainer';
 import {UserContainer} from '@/components/user/UserContainer';
+import {useClickOutside} from '@/hooks/ui/useClickOutside';
 
 export const NavBar = () => {
-  const [isAlarmOpen, setIsAlarmOpen] = useState<boolean>(false);
-  const [isUserOpen, setIsUserOpen] = useState<boolean>(false);
+  const [openMenu, setOpenMenu] = useState<'alarm' | 'user' | null>(null);
 
-  const handleClickAlarm = () => {
-    setIsAlarmOpen((prev) => !prev);
+  const alarmRef = useRef<HTMLDivElement>(null);
+  const userRef = useRef<HTMLDivElement>(null);
+
+  useClickOutside(alarmRef, () => openMenu === 'alarm' && setOpenMenu(null));
+  useClickOutside(userRef, () => openMenu === 'user' && setOpenMenu(null));
+
+  const handleClickAlarm = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setOpenMenu((prev) => (prev === 'alarm' ? null : 'alarm'));
   };
 
-  const handleUserClick = () => {
-    setIsUserOpen((prev) => !prev);
+  const handleClickUser = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setOpenMenu((prev) => (prev === 'user' ? null : 'user'));
   };
 
   return (
@@ -37,32 +45,31 @@ export const NavBar = () => {
             나의 아이디어
           </span>
         </Link>
-        <button
-          type='button'
-          onClick={handleClickAlarm}
-          className='cursor-pointer'
-          aria-label='알림'>
-          <Alarm />
-        </button>
+        <div ref={alarmRef}>
+          <button type='button' onClick={handleClickAlarm} aria-label='알림'>
+            <Alarm />
+          </button>
+          {openMenu === 'alarm' && (
+            <div className='absolute top-full right-[150px]'>
+              <AlarmContainer />
+            </div>
+          )}
+        </div>
 
-        <button
-          type='button'
-          onClick={handleUserClick}
-          className='cursor-pointer'
-          aria-label='사용자 메뉴'>
-          <User />
-        </button>
+        <div ref={userRef}>
+          <button
+            type='button'
+            onClick={handleClickUser}
+            aria-label='사용자 메뉴'>
+            <User />
+          </button>
+          {openMenu === 'user' && (
+            <div className='absolute top-full right-[150px]'>
+              <UserContainer />
+            </div>
+          )}
+        </div>
       </nav>
-      {isAlarmOpen && (
-        <div className='absolute top-full right-[150px]'>
-          <AlarmContainer />
-        </div>
-      )}
-      {isUserOpen && (
-        <div className='absolute top-full right-[150px]'>
-          <UserContainer />
-        </div>
-      )}
     </header>
   );
 };
