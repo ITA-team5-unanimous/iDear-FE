@@ -9,6 +9,7 @@ import React, {useRef, useState} from 'react';
 import {AlarmContainer} from '@/components/alarm/AlarmContainer';
 import {UserContainer} from '@/components/user/UserContainer';
 import {useClickOutside} from '@/hooks/ui/useClickOutside';
+import {NavItem} from '@/components/layout/NavItem';
 
 export const NavBar = () => {
   const [openMenu, setOpenMenu] = useState<'alarm' | 'user' | null>(null);
@@ -35,16 +36,8 @@ export const NavBar = () => {
         <Logo className='cursor-pointer' />
       </Link>
       <nav className='flex items-center gap-12'>
-        <Link href={ROUTES.CONTEST}>
-          <span className='hover:border-b-primary px-2 py-1 hover:border-b-2 sm:text-xl md:text-2xl'>
-            공모전
-          </span>
-        </Link>
-        <Link href={ROUTES.IDEA}>
-          <span className='hover:border-b-primary px-2 py-1 hover:border-b-2 sm:text-xl md:text-2xl'>
-            나의 아이디어
-          </span>
-        </Link>
+        <NavItem href={ROUTES.CONTEST} label='공모전' />
+        <NavItem href={ROUTES.IDEA} label='나의 아이디어' />
         <div ref={alarmRef}>
           <button type='button' onClick={handleClickAlarm} aria-label='알림'>
             <Alarm />
