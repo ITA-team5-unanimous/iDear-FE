@@ -2,7 +2,7 @@ import {NavBar} from '@/components/layout/NavBar';
 import {NavItem} from '@/components/layout/NavItem';
 import {Meta, StoryObj} from '@storybook/nextjs';
 
-const meta: Meta<typeof NavBar> = {
+const meta: Meta<typeof NavItem> = {
   title: 'Components/Layout/Nav Item',
   component: NavItem,
   tags: ['autodocs'],
