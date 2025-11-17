@@ -16,7 +16,7 @@ export const AlarmContainer = () => {
         transition={{duration: 0.2}}
         className='bg-gray flex w-[421px] flex-col gap-6 p-9 shadow-lg'>
         <strong className='text-2xl font-bold text-white'>알림</strong>
-        <ul className='scrollable flex max-h-[60vh] flex-col gap-3 overflow-y-auto'>
+        <ul className='scrollable flex max-h-[60vh] flex-col gap-3'>
           {mockAlarmData.map((alarm) => (
             <AlarmItem
               key={alarm.id}
