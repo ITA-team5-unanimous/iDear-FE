@@ -1,4 +1,3 @@
-import {NavBar} from '@/components/layout/NavBar';
 import {NavItem} from '@/components/layout/NavItem';
 import {Meta, StoryObj} from '@storybook/nextjs';
 
