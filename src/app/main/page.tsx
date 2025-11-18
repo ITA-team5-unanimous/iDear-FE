@@ -16,8 +16,7 @@ const animationProps = {
 export default function MainPage() {
   const router = useRouter();
 
-  const [isMounted, setIsMounted] = useState<boolean>(false);
-  const [isFirstVisit, setIsFirstVisit] = useState<boolean>(false);
+  const [isFirstVisit, setIsFirstVisit] = useState<boolean | null>(null);
 
   useEffect(() => {
     const visited = sessionStorage.getItem('isVisitedMain');
@@ -25,14 +24,10 @@ export default function MainPage() {
     if (!visited) {
       setIsFirstVisit(true);
       sessionStorage.setItem('isVisitedMain', 'true');
-    }
-
-    setIsMounted(true);
+    } else setIsFirstVisit(false);
   }, []);
 
-  if (!isMounted) {
-    return null;
-  }
+  if (isFirstVisit === null) return null;
 
   const conditionalProps = isFirstVisit ? animationProps : {};
 
