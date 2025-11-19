@@ -14,7 +14,7 @@ export default function NotFound() {
   return (
     <section className='flex min-h-screen min-w-full flex-col items-center justify-center gap-9'>
       <h1 className='text-primary text-[32px] font-bold'>404 ERROR</h1>
-      <div className='text-center'>
+      <div className='text-center leading-snug'>
         <p className='text-[32px] font-medium text-black'>
           페이지를 찾을 수 없습니다.
         </p>
