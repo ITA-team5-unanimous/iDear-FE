@@ -4,6 +4,7 @@ import IdearBear from '@/assets/onboarding/idear-bear.svg';
 import {MainActionButton} from '@/components/buttons/MainActionButton';
 import {ROUTES} from '@/constants/routes';
 import {motion} from 'framer-motion';
+import Link from 'next/link';
 import {useRouter} from 'next/navigation';
 import {useEffect, useState} from 'react';
 
@@ -14,8 +15,6 @@ const animationProps = {
 };
 
 export default function MainPage() {
-  const router = useRouter();
-
   const [isFirstVisit, setIsFirstVisit] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -50,14 +49,12 @@ export default function MainPage() {
         <IdearBear />
 
         <div className='absolute right-[40px] bottom-[20px] flex flex-col gap-4'>
-          <MainActionButton
-            text='공모전 보러가기'
-            onClick={() => router.push(ROUTES.CONTEST)}
-          />
-          <MainActionButton
-            text='아이디어 보러가기'
-            onClick={() => router.push(ROUTES.IDEA)}
-          />
+          <Link href={ROUTES.CONTEST}>
+            <MainActionButton text='공모전 보러가기' />
+          </Link>
+          <Link href={ROUTES.IDEA}>
+            <MainActionButton text='아이디어 보러가기' />
+          </Link>
         </div>
       </main>
     </div>
