@@ -22,7 +22,7 @@ export const ContestCard = ({
 
   const handleLikeClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    alert(`${title} 보관함 추가`);
+    alert(`ID: ${id}, 제목: ${title}을(를) 보관함에 추가합니다.`);
   };
 
   return (
