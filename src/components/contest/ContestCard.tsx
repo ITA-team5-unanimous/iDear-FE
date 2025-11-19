@@ -1,6 +1,6 @@
 import DefaultContestCard from '@/assets/default/default-contest-card.svg?url';
 import Image from 'next/image';
-import LikeIcon from '@/assets/main/like-icon.svg';
+import LikeIcon from '@/assets/contest/like-icon.svg';
 import GlobalButton from '@/components/buttons/GlobalButton';
 import {Contest} from '@/schemas/contests';
 import {useRouter} from 'next/navigation';
