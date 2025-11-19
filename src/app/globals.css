@@ -125,3 +125,7 @@
 .scrollable::-webkit-scrollbar {
   display: none;
 }
+
+.hide-placeholder-on-focus:focus::placeholder {
+  color: transparent;
+}
