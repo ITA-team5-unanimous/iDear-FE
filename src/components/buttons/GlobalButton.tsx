@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface GlobalButtonProps {
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   text: string;
   icon?: React.ReactNode;
 }
