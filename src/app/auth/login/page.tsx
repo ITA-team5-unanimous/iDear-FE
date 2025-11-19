@@ -8,7 +8,7 @@ import IdearBear from '@/assets/onboarding/idear-bear.svg';
 export default function LoginPage() {
   return (
     <div className='flex min-h-screen flex-col xl:flex-row'>
-      <section className='flex items-center justify-center sm:flex-[17]'>
+      <section className='flex items-center justify-center sm:flex-[12]'>
         <div className='absolute top-9 left-9'>
           <Logo />
         </div>
@@ -16,7 +16,7 @@ export default function LoginPage() {
           <IdearBear />
         </div>
       </section>
-      <section className='xl:border-l-primary flex flex-col items-center justify-center gap-[67px] sm:px-[110px] md:px-[50px] xl:border-l-2'>
+      <section className='xl:border-l-primary flex flex-col items-center justify-center gap-[67px] sm:px-[110px] xl:border-l-2'>
         <h1 className='text-center text-2xl leading-11 font-medium sm:text-4xl'>
           반가워요!
           <br /> 로그인/가입 방법을 선택해 주세요.
