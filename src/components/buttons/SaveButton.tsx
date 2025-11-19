@@ -18,7 +18,7 @@ export const SaveButton = ({isOpen, onClick}: SaveButtonProps) => {
 
   return (
     <button
-      aria-label='저장된 공모전 확인 버튼'
+      aria-label={isOpen ? '저장함 닫기' : '저장함 열기'} aria-pressed={isOpen}
       onClick={onClick}
       className={buttonClasses}>
       <div className='flex flex-row items-center'>
