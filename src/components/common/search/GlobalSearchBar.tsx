@@ -1,6 +1,6 @@
 import {useState} from 'react';
-import SearchIcon from '@/assets/main/search-icon.svg';
-import ClearIcon from '@/assets/main/clear-icon.svg';
+import SearchIcon from '@/assets/contest/search-icon.svg';
+import ClearIcon from '@/assets/contest/clear-icon.svg';
 
 interface GlobalSearchBarProps {
   onSearch: (keyword: string) => void;
