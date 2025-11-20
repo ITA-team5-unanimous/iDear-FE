@@ -1,9 +1,8 @@
-// NoSearchResult.stories.tsx
 import {Meta, StoryObj} from '@storybook/nextjs';
 import {NoSearchResult} from '@/components/common/search/NoSearchResult';
 
 const meta: Meta<typeof NoSearchResult> = {
-  title: 'Components/Common/NoSearchResult',
+  title: 'Components/Common/Search/No Search Result',
   component: NoSearchResult,
   tags: ['autodocs'],
   parameters: {
