@@ -7,21 +7,14 @@ import {SaveButton} from '@/components/buttons/SaveButton';
 import {ContestCard} from '@/components/contest/ContestCard';
 import {mockContestCard} from '@/mocks/data/mockContestCard';
 import {UpFloatingButton} from '@/components/buttons/UpFloatingButton';
-import {useRouter} from 'next/navigation';
 import {ROUTES} from '@/constants/routes';
+import {useSearch} from '@/hooks/navigation/useSearch';
 
 export default function ContestMainPage() {
-  const router = useRouter();
   const contests = mockContestCard;
   const [isSaved, setIsSaved] = useState<boolean>(false);
 
-  const handleSearchClick = (keyword: string) => {
-    if (keyword.trim()) {
-      router.push(
-        `${ROUTES.CONTEST_SEARCH}?q=${encodeURIComponent(keyword.trim())}`
-      );
-    }
-  };
+  const handleSearchClick = useSearch(ROUTES.CONTEST_SEARCH);
 
   const handleSaveClick = () => setIsSaved((prev) => !prev);
 
