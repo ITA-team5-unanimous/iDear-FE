@@ -11,6 +11,7 @@ const meta: Meta<typeof PopularContest> = {
       description: {
         component: `인기 공모전 카드를 열마다 5개씩 보여주는 컴포넌트입니다.`,
       },
+      nextjs: {appDirectory: true},
     },
   },
   argTypes: {
