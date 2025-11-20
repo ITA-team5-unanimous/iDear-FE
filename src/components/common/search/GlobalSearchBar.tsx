@@ -48,7 +48,7 @@ export const GlobalSearchBar = ({
         type='button'
         onClick={handleClear}
         aria-label='검색어 삭제'
-        className='-mt-1 mr-3 flex cursor-pointer items-center justify-center'>
+        className='-mt-1 mr-3 flex items-center justify-center'>
         <ClearIcon alt='검색어 삭제' width={20} height={20} />
       </button>
     </form>

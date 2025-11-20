@@ -5,6 +5,7 @@ import {GlobalSearchBar} from '@/components/common/search/GlobalSearchBar';
 const meta: Meta<typeof GlobalSearchBar> = {
   title: 'Components/Common/Global SearchBar',
   component: GlobalSearchBar,
+  tags: ['autodocs'],
   parameters: {
     layout: 'centered',
     docs: {
