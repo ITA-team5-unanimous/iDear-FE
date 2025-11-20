@@ -9,11 +9,16 @@ import FilledLikeIcon from '@/assets/contest/filled-like.svg';
 import {DayBadge} from '@/components/badge/DayBadge';
 import GlobalButton from '@/components/buttons/GlobalButton';
 import {useState} from 'react';
+import {useParams} from 'next/navigation';
+import NotFound from '@/app/not-found';
 
 export default function ContestDetailPage() {
-  const contest = mockContestDetail[0];
+  const {id} = useParams();
+  const contest = mockContestDetail.find((c) => c.id === Number(id));
 
   const [isLiked, setIsLiked] = useState<boolean>(false);
+
+  if (!contest) return <NotFound />;
 
   const handleShareClick = () => {
     console.log('공유 버튼 클릭');

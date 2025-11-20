@@ -4,5 +4,4 @@ export const ROUTES = {
   CONTEST: '/contest',
   IDEA: '/idea',
   CONTEST_SEARCH: '/contest/search',
-  CONTEST_DETAIL: '/contest/detail',
 };

@@ -16,8 +16,13 @@ export const ContestCard = ({
   const router = useRouter();
 
   const handleCardClick = () => {
-    router.push(`${ROUTES.CONTEST_DETAIL}`);
+    router.push(`${ROUTES.CONTEST}/${id}`);
     //id 추후에 추가
+  };
+
+  const handleRegisterClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    alert('아이디어 등록!');
   };
 
   const handleLikeClick = (e: React.MouseEvent) => {
@@ -38,10 +43,7 @@ export const ContestCard = ({
         <p className='text-blue mt-6 text-xl font-bold'>D-{d_day}</p>
         <div className='mt-9 flex'>
           <GlobalButton
-            onClick={(e: React.MouseEvent) => {
-              e.stopPropagation();
-              alert('아이디어 등록!');
-            }}
+            onClick={handleRegisterClick}
             text='아이디어 등록하기'
           />
           <button
