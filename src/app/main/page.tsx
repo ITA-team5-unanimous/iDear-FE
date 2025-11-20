@@ -5,7 +5,6 @@ import {MainActionButton} from '@/components/buttons/MainActionButton';
 import {ROUTES} from '@/constants/routes';
 import {motion} from 'framer-motion';
 import Link from 'next/link';
-import {useRouter} from 'next/navigation';
 import {useEffect, useState} from 'react';
 
 const animationProps = {
