@@ -1,5 +1,3 @@
-'use client';
-
 import {SocialLoginButton} from '@/components/buttons/SocialLoginButton';
 import {OAUTH_SERVICES} from '@/constants/oauth';
 import IdearBear from '@/assets/onboarding/idear-bear.svg';
