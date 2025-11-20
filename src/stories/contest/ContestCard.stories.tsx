@@ -13,6 +13,7 @@ const meta: Meta<typeof ContestCard> = {
         component: `공모전 정보를 표시하는 카드 컴포넌트입니다.`,
       },
     },
+    nextjs: {appDirectory: true},
   },
 };
 
@@ -28,5 +29,14 @@ export const DefaultPost: Story = {
     d_day: 10,
     imageUrl:
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMKRY63t_07oVVNkww1iMbnsyiJcr5qzWhhg&s',
+  },
+  parameters: {
+    nextjs: {
+      navigation: {
+        pathname: '/',
+        query: {},
+        params: {},
+      },
+    },
   },
 };
