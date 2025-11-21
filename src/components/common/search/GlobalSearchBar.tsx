@@ -1,22 +1,23 @@
 import {useState} from 'react';
-import SearchIcon from '@/assets/contest/search-icon.svg';
-import ClearIcon from '@/assets/contest/clear-icon.svg';
+import SearchIcon from '@/assets/search/search-icon.svg';
+import ClearIcon from '@/assets/search/clear-icon.svg';
 
 interface GlobalSearchBarProps {
   onSearch: (keyword: string) => void;
   placeholder: string;
+  initialValue?: string;
 }
 
 export const GlobalSearchBar = ({
   onSearch,
   placeholder,
+  initialValue = '',
 }: GlobalSearchBarProps) => {
-  const [value, setValue] = useState<string>('');
+  const [value, setValue] = useState<string>(initialValue);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSearch(value);
-    setValue('');
   };
 
   const handleClear = () => {
@@ -40,14 +41,14 @@ export const GlobalSearchBar = ({
         placeholder={placeholder}
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        className='ml-2 flex-grow bg-transparent text-lg font-medium text-black placeholder:text-black focus:outline-none'
+        className='hide-placeholder-on-focus ml-2 flex-grow bg-transparent text-lg font-medium text-black placeholder:text-black focus:outline-none'
       />
 
       <button
         type='button'
         onClick={handleClear}
         aria-label='검색어 삭제'
-        className='-mt-1 mr-3 flex cursor-pointer items-center justify-center'>
+        className='-mt-1 mr-3 flex items-center justify-center'>
         <ClearIcon alt='검색어 삭제' width={20} height={20} />
       </button>
     </form>

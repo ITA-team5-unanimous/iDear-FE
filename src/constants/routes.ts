@@ -3,4 +3,5 @@ export const ROUTES = {
   AUTH: '/auth/login',
   CONTEST: '/contest',
   IDEA: '/idea',
+  CONTEST_SEARCH: '/contest/search',
 };

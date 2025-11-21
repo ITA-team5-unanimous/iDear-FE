@@ -9,6 +9,7 @@ export const PopularContestList = () => {
       {contests.map((contest) => (
         <PopularContest
           key={contest.id}
+          id={contest.id}
           title={contest.title}
           imageUrl={contest.imageUrl}
         />

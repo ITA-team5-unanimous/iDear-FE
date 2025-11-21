@@ -1,10 +1,10 @@
 import type {Meta, StoryObj} from '@storybook/nextjs';
 import {GlobalSearchBar} from '@/components/common/search/GlobalSearchBar';
 
-// --- Meta 정의 ---
 const meta: Meta<typeof GlobalSearchBar> = {
-  title: 'Components/Common/Global SearchBar',
+  title: 'Components/Common/Search/Global Search Bar',
   component: GlobalSearchBar,
+  tags: ['autodocs'],
   parameters: {
     layout: 'centered',
     docs: {
