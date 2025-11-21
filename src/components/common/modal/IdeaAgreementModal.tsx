@@ -41,11 +41,7 @@ export const IdeaAgreementModal = ({
   };
 
   return (
-    <div
-      className='relative flex max-w-[540px] flex-col items-center gap-6 rounded-[8px] bg-white px-12 py-16'
-      style={{
-        boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.25)',
-      }}>
+    <div className='relative flex max-w-[540px] flex-col items-center gap-6 rounded-[8px] bg-white px-12 py-16 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]'>
       <button
         onClick={onClose}
         aria-label='모달 창 닫기'
@@ -57,7 +53,7 @@ export const IdeaAgreementModal = ({
         {IDEA_UPLOAD_AGREEMENT}
       </p>
 
-      <div className='text-gray border-y-gray flex flex-col gap-6 border-y py-6 text-[16px]'>
+      <div className='text-gray border-gray flex flex-col gap-6 border-y py-6 text-[16px]'>
         <p className='font-bold'>{IDEA_UPLOAD_AGREEMENT_1}</p>
         <p className='font-medium'>{IDEA_UPLOAD_AGREEMENT_2}</p>
         <p className='font-medium'>
