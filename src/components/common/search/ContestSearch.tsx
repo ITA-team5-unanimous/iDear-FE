@@ -1,3 +1,5 @@
+'use client';
+
 import {useSearchParams} from 'next/navigation';
 import {ContestCard} from '@/components/contest/ContestCard';
 import {mockContestCard} from '@/mocks/data/mockContestCard';

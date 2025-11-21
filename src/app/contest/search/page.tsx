@@ -1,4 +1,3 @@
-'use client';
 import SuspenseWrapper from '@/components/common/wrappers/SuspenseWrapper';
 import {ContestSearch} from '@/components/common/search/ContestSearch';
 
