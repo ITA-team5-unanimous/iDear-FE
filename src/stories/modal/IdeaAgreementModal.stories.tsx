@@ -1,5 +1,4 @@
 import {IdeaAgreementModal} from '@/components/common/modal/IdeaAgreementModal';
-import {IdeaExitModal} from '@/components/common/modal/IdeaExitModal';
 import {ModalWrapper} from '@/components/common/wrappers/ModalWrapper';
 import {Meta, StoryObj} from '@storybook/nextjs';
 
@@ -19,7 +18,7 @@ const meta: Meta<typeof IdeaAgreementModal> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof IdeaExitModal>;
+type Story = StoryObj<typeof IdeaAgreementModal>;
 
 export const Default: Story = {
   render: () => (
