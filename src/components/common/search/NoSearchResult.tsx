@@ -1,4 +1,4 @@
-import NoResultImage from '@/assets/search/sad-image.svg';
+import NoResultImage from '@/assets/logo/sad-image.svg';
 
 export const NoSearchResult = () => {
   return (
