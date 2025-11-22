@@ -1,17 +1,8 @@
 'use client';
 
 import {
+  AGREEMENT_DETAILS,
   IDEA_UPLOAD_AGREEMENT,
-  IDEA_UPLOAD_AGREEMENT_1,
-  IDEA_UPLOAD_AGREEMENT_2,
-  IDEA_UPLOAD_AGREEMENT_3_HIGHLIGHT,
-  IDEA_UPLOAD_AGREEMENT_3_PREFIX,
-  IDEA_UPLOAD_AGREEMENT_3_SUFFIX,
-  IDEA_UPLOAD_AGREEMENT_4_HIGHLIGHT,
-  IDEA_UPLOAD_AGREEMENT_4_PREFIX,
-  IDEA_UPLOAD_AGREEMENT_4_SUFFIX,
-  IDEA_UPLOAD_AGREEMENT_5_HIGHLIGHT,
-  IDEA_UPLOAD_AGREEMENT_5_PREFIX,
   IDEA_UPLOAD_AGREEMENT_FINAL,
 } from '@/constants/idea-agreement';
 import GrayCheckBox from '@/assets/idea/checkbox-gray.svg';
@@ -53,23 +44,20 @@ export const IdeaAgreementModal = ({
         {IDEA_UPLOAD_AGREEMENT}
       </p>
 
-      <div className='text-gray border-gray flex flex-col gap-6 border-y py-6 text-[16px]'>
-        <p className='font-bold'>{IDEA_UPLOAD_AGREEMENT_1}</p>
-        <p className='font-medium'>{IDEA_UPLOAD_AGREEMENT_2}</p>
-        <p className='font-medium'>
-          {IDEA_UPLOAD_AGREEMENT_3_PREFIX}
-          <span className='font-bold'>{IDEA_UPLOAD_AGREEMENT_3_HIGHLIGHT}</span>
-          {IDEA_UPLOAD_AGREEMENT_3_SUFFIX}
-        </p>
-        <p className='font-medium'>
-          {IDEA_UPLOAD_AGREEMENT_4_PREFIX}
-          <span className='font-bold'>{IDEA_UPLOAD_AGREEMENT_4_HIGHLIGHT}</span>
-          {IDEA_UPLOAD_AGREEMENT_4_SUFFIX}
-        </p>
-        <p className='text-gray text-[16px] font-medium'>
-          {IDEA_UPLOAD_AGREEMENT_5_PREFIX}
-          <span className='font-bold'>{IDEA_UPLOAD_AGREEMENT_5_HIGHLIGHT}</span>
-        </p>
+      <div className='text-gray border-y-gray flex flex-col gap-6 border-y py-6 text-[16px]'>
+        {AGREEMENT_DETAILS.map((item, index) => (
+          <p key={index} className={clsx(item.isBold && 'font-bold')}>
+            {item.parts
+              ? item.parts.map((part, partIndex) => (
+                  <span
+                    key={partIndex}
+                    className={clsx(part.isBold && 'font-bold')}>
+                    {part.text}
+                  </span>
+                ))
+              : item.text}
+          </p>
+        ))}
       </div>
 
       <div className='mb-6 flex flex-row gap-4'>

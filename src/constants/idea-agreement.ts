@@ -1,24 +1,36 @@
 export const IDEA_UPLOAD_AGREEMENT = `사용자가 서비스에 업로드하는 모든 아이디어는 해당 사용자가 직접 창작한 결과물이며, 타인의 아이디어를 도용하거나 권리를 침해하지 않았음을 전제로 등록됩니다. 업로드 버튼을 누르는 즉시, 사용자는 다음 내용에 동의한 것으로 간주됩니다.`;
 
-export const IDEA_UPLOAD_AGREEMENT_1 = `1. 본인이 제출하는 아이디어는 직접 제작한 창작물이며, 타인의 지적 재산권을 침해하지 않았습니다.`;
-
-export const IDEA_UPLOAD_AGREEMENT_2 = `2. 제3자의 자료를 참고한 경우, 해당 자료는 허용된 방식으로 사용되었음을 확인합니다.`;
-
-export const IDEA_UPLOAD_AGREEMENT_3_PREFIX =
-  '3. 서비스는 제출된 아이디어의 무결성과 제출 시점을 블록체인에 기록하여 ';
-
-export const IDEA_UPLOAD_AGREEMENT_3_HIGHLIGHT = '본인의 아이디어 보호 목적';
-
-export const IDEA_UPLOAD_AGREEMENT_3_SUFFIX = '으로만 사용합니다.';
-
-export const IDEA_UPLOAD_AGREEMENT_4_PREFIX = `4. 제출된 아이디어가 타인의 권리를 침해한 경우 발생하는 법적 책임은`;
-
-export const IDEA_UPLOAD_AGREEMENT_4_HIGHLIGHT = `제출자 본인에게 있음`;
-
-export const IDEA_UPLOAD_AGREEMENT_4_SUFFIX = `을 이해합니다.`;
-
-export const IDEA_UPLOAD_AGREEMENT_5_PREFIX = `5. 서비스는 아이디어 내용 자체의 진위 여부를 판단하지 않으며 `;
-
-export const IDEA_UPLOAD_AGREEMENT_5_HIGHLIGHT = `기록·증명 기능만을 제공합니다.`;
-
+export const AGREEMENT_DETAILS = [
+  {
+    isBold: true,
+    text: '1. 본인이 제출하는 아이디어는 직접 제작한 창작물이며, 타인의 지적 재산권을 침해하지 않았습니다.',
+  },
+  {
+    text: '2. 제3자의 자료를 참고한 경우, 해당 자료는 허용된 방식으로 사용되었음을 확인합니다.',
+  },
+  {
+    parts: [
+      {
+        text: '3. 서비스는 제출된 아이디어의 무결성과 제출 시점을 블록체인에 기록하여 ',
+      },
+      {text: '본인의 아이디어 보호 목적', isBold: true},
+      {text: '으로만 사용합니다.'},
+    ],
+  },
+  {
+    parts: [
+      {
+        text: '4. 제출된 아이디어가 타인의 권리를 침해한 경우 발생하는 법적 책임은',
+      },
+      {text: '제출자 본인에게 있음', isBold: true},
+      {text: '을 이해합니다.'},
+    ],
+  },
+  {
+    parts: [
+      {text: '5. 서비스는 아이디어 내용 자체의 진위 여부를 판단하지 않으며 '},
+      {text: '기록·증명 기능만을 제공합니다.', isBold: true},
+    ],
+  },
+];
 export const IDEA_UPLOAD_AGREEMENT_FINAL = `위 내용을 모두 확인하였으며, 본 아이디어가 직접 제작한 창작물임에 동의합니다.`;
