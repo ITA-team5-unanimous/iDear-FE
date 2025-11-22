@@ -74,6 +74,7 @@
 
   /* 그레이 스케일 */
   --color-gray: #575757;
+  --color-gray-2: #b9b9b9;
 
   /* 브레이크 포인트 */
   --breakpoint-sm: 640px;

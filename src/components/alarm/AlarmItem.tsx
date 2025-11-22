@@ -1,5 +1,5 @@
 import {ALARM_TEXT} from '@/constants/gnb-option';
-import AlarmDelete from '@/assets/alarm/alarm-delete.svg';
+import Delete from '@/assets/common/delete.svg';
 
 // 알림 아이템 클릭시 해당 아이디어 기록함으로 이동
 
@@ -17,7 +17,7 @@ export const AlarmItem = ({date, onDelete}: AlarmItemProps) => {
         className='absolute top-3 right-3'
         aria-label='알림 삭제 버튼'
         onClick={onDelete}>
-        <AlarmDelete />
+        <Delete />
       </button>
     </li>
   );

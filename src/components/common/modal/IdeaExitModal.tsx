@@ -1,5 +1,3 @@
-'use client';
-
 import {ContinueWritingButton} from '@/components/buttons/ContinueWritingButton';
 import {GlobalSmallButton} from '@/components/buttons/GlobalSmallButton';
 
