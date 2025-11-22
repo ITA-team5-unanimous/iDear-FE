@@ -8,6 +8,7 @@ export const BackButton = () => {
 
   return (
     <button
+      aria-label='뒤로 가기'
       className='absolute top-[55px] left-9'
       onClick={() => router.back()}>
       <ChevronLeft />
