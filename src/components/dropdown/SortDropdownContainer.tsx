@@ -1,3 +1,5 @@
+'use client';
+
 import {useState} from 'react';
 import {SortDropdown} from '@/components/dropdown/SortDropdown';
 import {DropdownOption} from '@/components/dropdown/DropdownOption';
