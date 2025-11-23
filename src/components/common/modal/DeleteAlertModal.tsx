@@ -11,11 +11,7 @@ export const DeleteAlertModal = ({
   onContinue,
 }: DeleteAlertModalProps) => {
   return (
-    <div
-      className='flex h-[260px] w-[450px] flex-col items-center justify-center gap-6 rounded-[8px] bg-white'
-      style={{
-        boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.25)',
-      }}>
+    <div className='flex h-[260px] w-[450px] flex-col items-center justify-center gap-6 rounded-[8px] bg-white shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]'>
       <span id='modal-header' className='text-center text-2xl font-bold'>
         정말 삭제하시겠습니까?
       </span>

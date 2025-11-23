@@ -22,11 +22,7 @@ export const RegisterCompleteModal = ({
     return () => clearTimeout(timer);
   }, []);
   return (
-    <div
-      className='flex h-[260px] w-[450px] flex-col items-center justify-center gap-6 rounded-[8px] bg-white'
-      style={{
-        boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.25)',
-      }}>
+    <div className='flex h-[260px] w-[450px] flex-col items-center justify-center gap-6 rounded-[8px] bg-white shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]'>
       <span className='text-2xl font-bold'>등록 완료!</span>
       <div className='flex flex-col text-center'>
         <span className='text-2xl font-medium' id='modal-header'>
