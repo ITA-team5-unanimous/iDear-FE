@@ -1,3 +1,5 @@
+'use client';
+
 import DefaultContestCard from '@/assets/default/default-contest-card.svg?url';
 import Image from 'next/image';
 import LikeIcon from '@/assets/contest/like-icon.svg';

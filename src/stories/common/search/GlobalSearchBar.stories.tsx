@@ -15,9 +15,6 @@ const meta: Meta<typeof GlobalSearchBar> = {
   },
   args: {
     placeholder: '검색어를 입력하세요',
-    onSearch: (keyword: string) => {
-      console.log('검색 실행:', keyword);
-    },
   },
 };
 

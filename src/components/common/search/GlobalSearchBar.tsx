@@ -1,15 +1,15 @@
+'use client';
+
 import {useState} from 'react';
 import SearchIcon from '@/assets/search/search-icon.svg';
 import ClearIcon from '@/assets/search/clear-icon.svg';
 
 interface GlobalSearchBarProps {
-  onSearch: (keyword: string) => void;
   placeholder: string;
   initialValue?: string;
 }
 
 export const GlobalSearchBar = ({
-  onSearch,
   placeholder,
   initialValue = '',
 }: GlobalSearchBarProps) => {
@@ -17,12 +17,11 @@ export const GlobalSearchBar = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch(value);
+    // todo: api get
   };
 
   const handleClear = () => {
     setValue('');
-    onSearch('');
   };
 
   return (
