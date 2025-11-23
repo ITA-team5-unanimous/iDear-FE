@@ -3,7 +3,7 @@ import {ModalWrapper} from '@/components/common/wrappers/ModalWrapper';
 import {Meta, StoryObj} from '@storybook/nextjs';
 
 const meta: Meta<typeof IdeaAgreementModal> = {
-  title: 'Components/Modal/Idea Agreement Modal',
+  title: 'Components/Common/Modal/Idea Agreement Modal',
   tags: ['autodocs'],
   component: IdeaAgreementModal,
   parameters: {

@@ -3,7 +3,7 @@ import {ModalWrapper} from '@/components/common/wrappers/ModalWrapper';
 import {Meta, StoryObj} from '@storybook/nextjs';
 
 const meta: Meta<typeof IdeaExitModal> = {
-  title: 'Components/Modal/Idea Exit Modal',
+  title: 'Components/Common/Modal/Idea Exit Modal',
   tags: ['autodocs'],
   component: IdeaExitModal,
   parameters: {

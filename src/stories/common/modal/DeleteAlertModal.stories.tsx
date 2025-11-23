@@ -3,7 +3,7 @@ import {ModalWrapper} from '@/components/common/wrappers/ModalWrapper';
 import {Meta, StoryObj} from '@storybook/nextjs';
 
 const meta: Meta<typeof DeleteAlertModal> = {
-  title: 'Components/Modal/Delete Alert Modal',
+  title: 'Components/Common/Modal/Delete Alert Modal',
   tags: ['autodocs'],
   component: DeleteAlertModal,
   parameters: {
