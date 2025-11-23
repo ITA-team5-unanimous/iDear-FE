@@ -92,7 +92,7 @@ export default function SupportInquiryNewPage() {
               options={[
                 {label: 'Window PC', value: 'window'},
                 {label: 'Mac', value: 'mac'},
-                {label: 'Ipone', value: 'ipone'},
+                {label: 'Iphone', value: 'ipone'},
                 {label: 'Android Phone', value: 'android'},
               ]}
             />
