@@ -11,6 +11,12 @@ export const Radio = ({label, checked, onChange}: RadioProps) => {
     <label
       className='flex w-fit cursor-pointer items-center gap-3'
       onClick={onChange}>
+      <input
+        type='radio'
+        className='sr-only'
+        checked={checked}
+        onChange={onChange}
+      />
       <span
         className={clsx(
           'relative flex h-5 w-5 items-center justify-center rounded-full border',
