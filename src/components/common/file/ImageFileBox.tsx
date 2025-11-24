@@ -37,7 +37,6 @@ export const ImageFileBox = ({box, onFilesChange}: ImageFileBoxProps) => {
       onClick={handleClick}>
       <input
         type='file'
-        multiple
         accept='image/*'
         ref={fileInputRef}
         className='hidden'
