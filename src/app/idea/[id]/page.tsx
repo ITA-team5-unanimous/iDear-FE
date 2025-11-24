@@ -1,19 +1,18 @@
 'use client';
 
-import ChevronLeft from '@/assets/chevrons/chevron-left.svg';
 import GlobalButton from '@/components/buttons/GlobalButton';
 import {mockIdeaData} from '@/mocks/data/mockIdeaData';
 import Download from '@/assets/idea/download.svg';
-import {useParams, useRouter} from 'next/navigation';
+import {useParams} from 'next/navigation';
 import {GlobalSmallButton} from '@/components/buttons/GlobalSmallButton';
 import {AttachmentList} from '@/components/idea/AttachmentList';
 import {useState} from 'react';
 import {RegisterCompleteModal} from '@/components/common/modal/RegisterCompleteModal';
 import {DeleteAlertModal} from '@/components/common/modal/DeleteAlertModal';
 import {ModalWrapper} from '@/components/common/wrappers/ModalWrapper';
+import {BackButton} from '@/components/buttons/BackButton';
 
 export default function IdeaDetailPage() {
-  const router = useRouter();
   const params = useParams();
   const {id} = params;
 
@@ -59,14 +58,9 @@ export default function IdeaDetailPage() {
   };
 
   return (
-    <section className='flex flex-col gap-6 px-[164px] py-[47px]'>
-      <header className='mb-10 flex flex-row items-center gap-[77px]'>
-        <button
-          aria-label='뒤로 가기 버튼'
-          onClick={() => router.back()}
-          className='absolute top-[143px] left-9'>
-          <ChevronLeft />
-        </button>
+    <section className='relative flex flex-col gap-6 px-[164px] py-[54px]'>
+      <header className='mb-10 items-center'>
+        <BackButton />
         <h2 className='text-[32px] font-bold'>아이디어 기록함</h2>
       </header>
       <strong className='border-b-primary border-b pb-4 text-[32px] font-bold'>

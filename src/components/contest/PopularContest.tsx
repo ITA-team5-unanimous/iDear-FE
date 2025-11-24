@@ -1,3 +1,5 @@
+'use client';
+
 import {Contest} from '@/schemas/contests';
 import Image from 'next/image';
 import DefaultContestCard from '@/assets/default/default-contest-card.svg?url';

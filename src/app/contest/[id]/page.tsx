@@ -5,12 +5,12 @@ import {DayBadge} from '@/components/badge/DayBadge';
 import {useState} from 'react';
 import {useParams} from 'next/navigation';
 import DefaultImage from '@/assets/default/default-image.svg';
-import ChevronLeft from '@/assets/chevrons/chevron-left.svg';
 import Share from '@/assets/contest/share.svg';
 import LikeIcon from '@/assets/contest/like-icon.svg';
 import FilledLikeIcon from '@/assets/contest/filled-like.svg';
 import GlobalButton from '@/components/buttons/GlobalButton';
 import NotFound from '@/app/not-found';
+import {BackButton} from '@/components/buttons/BackButton';
 
 export default function ContestDetailPage() {
   const {id} = useParams();
@@ -36,9 +36,7 @@ export default function ContestDetailPage() {
 
   return (
     <div className='relative flex flex-col items-center px-40 py-[54px]'>
-      <button className='absolute top-[55px] left-9'>
-        <ChevronLeft />
-      </button>
+      <BackButton />
 
       <h1 className='border-b-primary w-full border-b pb-4 text-start text-[32px] font-bold'>
         {contest.title}
