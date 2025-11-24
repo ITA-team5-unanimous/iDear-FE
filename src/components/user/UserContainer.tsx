@@ -1,12 +1,19 @@
+'use client';
+
 import {UserItem} from '@/components/user/UserItem';
 import {USER_OPTIONS} from '@/constants/gnb-option';
-
+import {ROUTES} from '@/constants/routes';
 import {AnimatePresence, motion} from 'framer-motion';
+import {useRouter} from 'next/navigation';
 
 export const UserContainer = () => {
+  const router = useRouter();
+
   const handleClick = (item: string) => {
-    alert(`${item} 클릭`);
-    // 각 메뉴별 로직 처리 가능
+    if (item === '고객센터') {
+      router.push(`${ROUTES.SUPPORT}`);
+    }
+    // 공지사항, 로그아웃 추후 처리
   };
 
   return (

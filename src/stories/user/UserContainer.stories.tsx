@@ -12,6 +12,7 @@ const meta: Meta<typeof UserContainer> = {
       },
     },
     layout: 'centered',
+    nextjs: {appDirectory: true},
   },
 };
 

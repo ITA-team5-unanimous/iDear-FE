@@ -3,7 +3,7 @@ import {ModalWrapper} from '@/components/common/wrappers/ModalWrapper';
 import {Meta, StoryObj} from '@storybook/nextjs';
 
 const meta: Meta<typeof RegisterCompleteModal> = {
-  title: 'Components/Modal/Register Complete Modal',
+  title: 'Components/Common/Modal/Register Complete Modal',
   tags: ['autodocs'],
   component: RegisterCompleteModal,
   parameters: {

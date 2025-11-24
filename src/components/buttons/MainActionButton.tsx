@@ -9,7 +9,7 @@ export const MainActionButton = ({text}: MainActionButtonProps) => {
     <button
       type='button'
       aria-label={text}
-      className='border-primary flex flex-col items-start rounded-sm border-2 p-3'>
+      className='border-primary flex h-fit w-fit flex-col items-start rounded-sm border-2 p-3'>
       <span className='text-primary font-medium sm:text-[16px] xl:text-xl'>
         {text}
       </span>
