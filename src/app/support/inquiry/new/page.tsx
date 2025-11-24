@@ -105,10 +105,9 @@ export default function SupportInquiryNewPage() {
                 최대한 자세하게 작성해 주세요!
               </p>
             </div>
-            <input
-              type='text'
+            <textarea
               placeholder='ex) 확인증 다운로드가 안 됩니다.'
-              className='border-primary placeholder-gray rounded-[8px] border p-6 outline-none'
+              className='border-primary placeholder-gray h-[72px] resize-none rounded-[8px] border p-6 outline-none'
             />
           </div>
 
