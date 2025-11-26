@@ -1,6 +1,8 @@
 export const ROUTES = {
   MAIN: '/main',
   AUTH: '/auth/login',
+  AUTH_REDIRECT: '/oauth2/success',
+  COMPLETE: '/complete',
   CONTEST: '/contest',
   IDEA: '/idea',
   CONTEST_SEARCH: '/contest/search',
