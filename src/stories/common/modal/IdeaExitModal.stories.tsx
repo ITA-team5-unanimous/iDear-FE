@@ -21,7 +21,10 @@ type Story = StoryObj<typeof IdeaExitModal>;
 export const Default: Story = {
   render: () => (
     <ModalWrapper isOpen={true}>
-      <IdeaExitModal />
+      <IdeaExitModal
+        onExit={() => alert('나가기 클릭')}
+        onContinue={() => alert('계속 작성하기 클릭')}
+      />
     </ModalWrapper>
   ),
 };
