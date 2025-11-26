@@ -1,4 +1,4 @@
-import {API_BASE_URL} from '@/api/constants/api';
+import {API_BASE_URL} from '@/services/constant/endpoint';
 import axios from 'axios';
 
 export const axiosInstance = axios.create({

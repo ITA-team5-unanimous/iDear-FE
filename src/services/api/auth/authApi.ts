@@ -1,4 +1,4 @@
-import {API_ENDPOINTS} from '@/api/constants/api';
+import {API_ENDPOINTS} from '@/services/constant/endpoint';
 import axios from 'axios';
 
 export const reissueToken = async (refresh: string) => {

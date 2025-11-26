@@ -1,7 +1,7 @@
 'use client';
 
-import {reissueToken} from '@/api/auth/authApi';
 import {ROUTES} from '@/constants/routes';
+import {reissueToken} from '@/services/api/auth/authApi';
 import {useRouter, useSearchParams} from 'next/navigation';
 import {useEffect} from 'react';
 
