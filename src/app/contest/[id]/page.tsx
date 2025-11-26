@@ -5,6 +5,7 @@ import {DayBadge} from '@/components/badge/DayBadge';
 import {useState} from 'react';
 import {useParams, useRouter} from 'next/navigation';
 import {BackButton} from '@/components/buttons/BackButton';
+import {ROUTES} from '@/constants/routes';
 import DefaultImage from '@/assets/default/default-image.svg';
 import Share from '@/assets/contest/share.svg';
 import LikeIcon from '@/assets/contest/like-icon.svg';
@@ -31,7 +32,7 @@ export default function ContestDetailPage() {
     console.log('웹사이트 보러 가기 클릭');
   };
   const handleRegisterClick = () => {
-    router.push(`/register/${id}`);
+    router.push(`${ROUTES.REGISTER}/${id}`);
     console.log('아이디어 등록하기 클릭: 공모전 ID ${id}의 등록 페이지로 이동');
   };
 

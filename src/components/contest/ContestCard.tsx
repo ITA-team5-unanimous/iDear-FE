@@ -24,7 +24,7 @@ export const ContestCard = ({
 
   const handleRegisterClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    router.push(`/register/${id}`);
+    router.push(`${ROUTES.REGISTER}/${id}`);
     console.log('아이디어 등록하기 클릭: 공모전 ID ${id}의 등록 페이지로 이동');
   };
 
