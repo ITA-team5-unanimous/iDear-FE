@@ -1,5 +1,4 @@
 import {OAUTH_SERVICES} from '@/constants/oauth';
-import Link from 'next/link';
 
 interface SocialLoginButtonProps {
   name: string;
@@ -13,7 +12,7 @@ export const SocialLoginButton = ({name}: SocialLoginButtonProps) => {
   const {icon: Icon, url, bgColor, textColor, borderColor} = service;
 
   return (
-    <Link
+    <a
       href={url}
       className='flex h-[60px] items-center justify-center gap-[15px] rounded-md font-medium no-underline'
       style={{
@@ -23,6 +22,6 @@ export const SocialLoginButton = ({name}: SocialLoginButtonProps) => {
       }}>
       <Icon width={24} height={24} />
       <span className='text-[18px] sm:text-xl'>{name}로 시작하기</span>
-    </Link>
+    </a>
   );
 };
