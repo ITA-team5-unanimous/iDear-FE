@@ -1,6 +1,5 @@
 import {FileBoxType} from '@/schemas/support';
 import {useRef} from 'react';
-import Image from 'next/image';
 
 interface SingleFileBoxProps {
   box: FileBoxType;

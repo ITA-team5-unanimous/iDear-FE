@@ -66,7 +66,7 @@ export default function IdeaRegisterPage() {
     );
   };
 
-  const handleSingleFilesChange = (id: number, newFiles: File | null) => {
+  const handleSingleFilesChange = (_id: number, newFiles: File | null) => {
     setSingleFileBox((prev) => ({
       ...prev,
       files: newFiles ? [newFiles] : [],
@@ -128,9 +128,7 @@ export default function IdeaRegisterPage() {
                   onFilesChange={handleFilesChange}
                 />
               ))}
-              {fileBoxes.length < 4 && (
-                <PlusButton onClick={handleAddBox} />
-              )}{' '}
+              {fileBoxes.length < 4 && <PlusButton onClick={handleAddBox} />}
             </div>
           </div>
 
