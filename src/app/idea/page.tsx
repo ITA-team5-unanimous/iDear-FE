@@ -1,3 +1,9 @@
+/**
+ * 개발 세미나용 주석 추가
+ * 나의 아이디어 메인 페이지
+ * (아이디어 리스트 프리뷰 페이지네이션)
+ */
+
 import {IdeaList} from '@/components/idea/IdeaList';
 import {mockIdeaData} from '@/mocks/data/mockIdeaData';
 import {Pagination} from '@/components/idea/Pagination';

@@ -1,5 +1,10 @@
 'use client';
 
+/**
+ * 개발 세미나용 주석 추가
+ * 아이디어 상세/수정 페이지
+ */
+
 import GlobalButton from '@/components/buttons/GlobalButton';
 import {mockIdeaData} from '@/mocks/data/mockIdeaData';
 import Download from '@/assets/idea/download.svg';
