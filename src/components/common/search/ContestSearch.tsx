@@ -1,5 +1,10 @@
 'use client';
 
+/**
+ * 개발 세미나용 주석 추가
+ * 공모전 검색 컴포넌트
+ */
+
 import {useSearchParams} from 'next/navigation';
 import {ContestCard} from '@/components/contest/ContestCard';
 import {mockContestCard} from '@/mocks/data/mockContestCard';
