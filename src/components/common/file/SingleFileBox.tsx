@@ -3,7 +3,7 @@ import {useRef} from 'react';
 
 interface SingleFileBoxProps {
   box: FileBoxType;
-  onFilesChange: (id: number, file: File | null) => void;
+  onFilesChange: (id: string, file: File | null) => void;
 }
 
 export const SingleFileBox = ({box, onFilesChange}: SingleFileBoxProps) => {

@@ -1,4 +1,5 @@
 'use client';
+
 import clsx from 'clsx';
 import GlobalButton from '@/components/buttons/GlobalButton';
 import {useState} from 'react';
@@ -13,6 +14,7 @@ import {IdeaExitModal} from '@/components/common/modal/IdeaExitModal';
 import {IdeaAgreementModal} from '@/components/common/modal/IdeaAgreementModal';
 import {ModalWrapper} from '@/components/common/wrappers/ModalWrapper';
 import {useParams, useRouter} from 'next/navigation';
+import {v4 as uuidv4} from 'uuid';
 
 export default function IdeaRegisterPage() {
   const params = useParams();
@@ -28,10 +30,10 @@ export default function IdeaRegisterPage() {
     useState<boolean>(false);
   const [isExitModalOpen, setIsExitModalOpen] = useState<boolean>(false);
   const [fileBoxes, setFileBoxes] = useState<FileBoxType[]>([
-    {id: Date.now(), files: []},
+    {id: uuidv4(), files: []},
   ]);
   const [singleFileBox, setSingleFileBox] = useState<FileBoxType>({
-    id: Date.now() + 1,
+    id: uuidv4(),
     files: [],
   });
   const isSingleImage = fileBoxes.length === 1;
@@ -55,10 +57,10 @@ export default function IdeaRegisterPage() {
   const handleAddBox = () => {
     if (fileBoxes.length >= 4) return;
 
-    setFileBoxes((prev) => [...prev, {id: Date.now(), files: []}]);
+    setFileBoxes((prev) => [...prev, {id: uuidv4(), files: []}]);
   };
 
-  const handleFilesChange = (id: number, newFiles: File[]) => {
+  const handleFilesChange = (id: string, newFiles: File[]) => {
     if (newFiles.length === 0) return;
 
     setFileBoxes((prev) =>
@@ -66,7 +68,7 @@ export default function IdeaRegisterPage() {
     );
   };
 
-  const handleSingleFilesChange = (_id: number, newFiles: File | null) => {
+  const handleSingleFilesChange = (_id: string, newFiles: File | null) => {
     setSingleFileBox((prev) => ({
       ...prev,
       files: newFiles ? [newFiles] : [],
@@ -93,10 +95,10 @@ export default function IdeaRegisterPage() {
   };
 
   return (
-    <div className='relative flex'>
+    <div className='relative flex pt-14 pb-14 pl-41'>
       <BackButton />
-      <div className='border-gray mt-14 mb-14 ml-41 flex h-full w-[1400px] flex-col rounded-[4px] border p-12'>
-        <p className='flex flex-col text-[32px] font-bold'>아이디어 등록</p>
+      <div className='border-gray flex h-full max-w-full flex-col rounded-[4px] border p-12'>
+        <h1 className='flex flex-col text-[32px] font-bold'>아이디어 등록</h1>
         <div className='mt-9 flex'>
           <div>
             <IdeaFormInput

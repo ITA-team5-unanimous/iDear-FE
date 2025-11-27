@@ -22,11 +22,11 @@ type Story = StoryObj<typeof SingleFileBox>;
 export const Default: Story = {
   render: () => {
     const [box, setBox] = useState<FileBoxType>({
-      id: 1,
+      id: '1',
       files: [],
     });
 
-    const handleFilesChange = (id: number, file: File | null) => {
+    const handleFilesChange = (id: string, file: File | null) => {
       setBox((prev) => ({...prev, files: file ? [file] : []}));
     };
 
