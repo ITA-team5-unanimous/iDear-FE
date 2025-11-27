@@ -11,12 +11,13 @@ import {ROUTES} from '@/constants/routes';
 import {FileBoxType} from '@/schemas/support';
 import {useRouter} from 'next/navigation';
 import {useState} from 'react';
+import {v4 as uuidv4} from 'uuid';
 
 export default function SupportInquiryNewPage() {
   const [browser, setBrowser] = useState<string>('');
   const [device, setDevice] = useState<string>('');
   const [fileBoxes, setFileBoxes] = useState<FileBoxType[]>([
-    {id: Date.now(), files: []},
+    {id: uuidv4(), files: []},
   ]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -25,10 +26,10 @@ export default function SupportInquiryNewPage() {
   const handleAddBox = () => {
     if (fileBoxes.length >= 4) return;
 
-    setFileBoxes((prev) => [...prev, {id: Date.now(), files: []}]);
+    setFileBoxes((prev) => [...prev, {id: uuidv4(), files: []}]);
   };
 
-  const handleFilesChange = (id: number, newFiles: File[]) => {
+  const handleFilesChange = (id: string, newFiles: File[]) => {
     if (newFiles.length === 0) return;
 
     setFileBoxes((prev) =>

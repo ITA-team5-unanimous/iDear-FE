@@ -4,7 +4,7 @@ import {useRef} from 'react';
 
 interface ImageFileBoxProps {
   box: FileBoxType;
-  onFilesChange: (id: number, files: File[]) => void;
+  onFilesChange: (id: string, files: File[]) => void;
 }
 
 export const ImageFileBox = ({box, onFilesChange}: ImageFileBoxProps) => {

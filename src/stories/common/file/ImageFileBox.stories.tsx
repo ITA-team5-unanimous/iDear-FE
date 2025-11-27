@@ -24,11 +24,11 @@ type Story = StoryObj<typeof ImageFileBox>;
 export const Default: Story = {
   render: () => {
     const [box, setBox] = useState<FileBoxType>({
-      id: 1,
+      id: '1',
       files: [],
     });
 
-    const handleFilesChange = (id: number, files: File[]) => {
+    const handleFilesChange = (id: string, files: File[]) => {
       setBox((prev) => ({...prev, files}));
     };
 
