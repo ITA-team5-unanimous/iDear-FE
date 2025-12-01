@@ -1,6 +1,4 @@
-'use client';
-import {useState} from 'react';
-import {GlobalSearchBar} from '@/components/Search/GlobalSearchBar';
+import {GlobalSearchBar} from '@/components/common/search/GlobalSearchBar';
 import {PopularContestList} from '@/components/contest/PopularContestList';
 import {SortDropdownContainer} from '@/components/dropdown/SortDropdownContainer';
 import {SaveButton} from '@/components/buttons/SaveButton';
@@ -10,28 +8,11 @@ import {UpFloatingButton} from '@/components/buttons/UpFloatingButton';
 
 export default function ContestMainPage() {
   const contests = mockContestCard;
-  const [isSaved, setIsSaved] = useState<boolean>(false);
-
-  const handleSearchClick = (keyword: string) => {
-    console.log('검색어:', keyword);
-  };
-
-  const handleSaveClick = () => setIsSaved((prev) => !prev);
-
-  const handleScrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
 
   return (
     <div className='relative mb-20 flex flex-col items-center'>
       <div className='mt-9 flex'>
-        <GlobalSearchBar
-          onSearch={handleSearchClick}
-          placeholder='다양한 공모전을 검색해보세요!'
-        />
+        <GlobalSearchBar placeholder='다양한 공모전을 검색해보세요!' />
       </div>
 
       <div className='border-primary mt-9 flex h-auto w-full max-w-[1400px] flex-col rounded-[4px] border-2 p-12'>
@@ -53,7 +34,7 @@ export default function ContestMainPage() {
         <SortDropdownContainer />
 
         <div className='ml-5.5'>
-          <SaveButton isOpen={isSaved} onClick={handleSaveClick} />
+          <SaveButton />
         </div>
       </div>
 
@@ -66,7 +47,7 @@ export default function ContestMainPage() {
       </div>
 
       <div className='absolute right-10 bottom-80 z-50'>
-        <UpFloatingButton onClick={handleScrollToTop} />
+        <UpFloatingButton />
       </div>
     </div>
   );

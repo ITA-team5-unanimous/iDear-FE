@@ -23,7 +23,7 @@ export const AttachmentList = ({
         <li
           key={idx}
           className={clsx(
-            'border-primary flex w-[1296px] flex-row items-center gap-[23px] border py-3 pl-4',
+            'border-primary flex max-w-full flex-row items-center gap-[23px] border py-3 pl-4',
             isEditable ? 'pr-[23px]' : 'pr-[71.25px]'
           )}>
           <FileIcon />

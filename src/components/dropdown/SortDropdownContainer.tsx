@@ -1,7 +1,9 @@
+'use client';
+
 import {useState} from 'react';
 import {SortDropdown} from '@/components/dropdown/SortDropdown';
 import {DropdownOption} from '@/components/dropdown/DropdownOption';
-import {SORT_OPTIONS} from '@/constants/sortOptions';
+import {SORT_OPTIONS} from '@/constants/sort-option';
 
 export const SortDropdownContainer = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);

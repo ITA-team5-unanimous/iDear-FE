@@ -1,14 +1,27 @@
+'use client';
+
 import {Contest} from '@/schemas/contests';
 import Image from 'next/image';
 import DefaultContestCard from '@/assets/default/default-contest-card.svg?url';
+import {useRouter} from 'next/navigation';
+import {ROUTES} from '@/constants/routes';
 
-type PopularContestProps = Pick<Contest, 'title' | 'imageUrl'>;
+type PopularContestProps = Pick<Contest, 'id' | 'title' | 'imageUrl'>;
 
-export const PopularContest = ({title, imageUrl}: PopularContestProps) => {
+export const PopularContest = ({id, title, imageUrl}: PopularContestProps) => {
   const imageSource = imageUrl || DefaultContestCard;
+  const router = useRouter();
+
+  const handleCardClick = () => {
+    router.push(`${ROUTES.CONTEST}/${id}`);
+  };
 
   return (
-    <div className='flex cursor-pointer flex-col'>
+    <div
+      onClick={handleCardClick}
+      role='button'
+      tabIndex={0}
+      className='flex cursor-pointer flex-col'>
       <Image
         src={imageSource}
         alt={title}

@@ -5,14 +5,16 @@ export const mockIdeaData: Idea[] = [
     id: 1,
     title:
       '2025년 이스포츠 대학리그 결선진출권(수도강원권) 대표 참가 대학 모집',
-    subtitle: '지속 가능한 도시를 위한 창의적 솔루션 제안',
+    ideaTitle: '지속 가능한 도시를 위한 창의적 솔루션 제안',
+    ideaShortDescription: '이것은 아이디어 한줄소개',
+    timeStamp: '2025년 10월 13일 17시 45분',
     hostingOrganization: '문화체육관광부',
     d_day: 12,
     startPeriod: '2025.09.01',
     endPeriod: '2025.10.15',
     registerDate: '2025.11.10',
     description: `
-아이디어 한줄 소개 — 이 아이디어는 컴퓨터 비전을 활용해 컵 적층 높이를 파악하고 일정 높이 도달 시 알림이 울리도록 하였습니다.
+ 이 아이디어는 컴퓨터 비전을 활용해 컵 적층 높이를 파악하고 일정 높이 도달 시 알림이 울리도록 하였습니다.
 이를 통해 센서 오작동을 방지하고, 보다 정확한 분리배출 시스템을 설계했습니다.
     `,
     imageUrl: 'https://example.com/uploads/smartcity-banner.png',
@@ -32,7 +34,9 @@ export const mockIdeaData: Idea[] = [
   {
     id: 2,
     title: 'AI 기반 환경 모니터링 해커톤',
-    subtitle: 'AI를 활용해 도시의 미세먼지를 줄이는 솔루션 제안',
+    ideaTitle: 'AI를 활용해 도시의 미세먼지를 줄이는 솔루션 제안',
+    ideaShortDescription: '이것은 아이디어 한줄소개',
+    timeStamp: '2025년 10월 13일 17시 45분',
     hostingOrganization: '환경부',
     d_day: 25,
     startPeriod: '2025.08.20',
@@ -54,7 +58,9 @@ export const mockIdeaData: Idea[] = [
   {
     id: 3,
     title: '2025 창의 융합 디자인 공모전',
-    subtitle: '기술과 예술의 만남, 혁신적인 사용자 경험 디자인',
+    ideaTitle: '기술과 예술의 만남, 혁신적인 사용자 경험 디자인',
+    ideaShortDescription: '이것은 아이디어 한줄소개',
+    timeStamp: '2025년 10월 13일 17시 45분',
     hostingOrganization: '한국디자인진흥원',
     d_day: 7,
     startPeriod: '2025.07.15',
@@ -76,7 +82,9 @@ export const mockIdeaData: Idea[] = [
   {
     id: 4,
     title: '스마트 팜 자동화 시스템 개발 경진대회',
-    subtitle: 'IoT 기반 농업 자동화 솔루션',
+    ideaTitle: 'IoT 기반 농업 자동화 솔루션',
+    ideaShortDescription: '이것은 아이디어 한줄소개',
+    timeStamp: '2025년 10월 13일 17시 45분',
     hostingOrganization: '농촌진흥청',
     d_day: 30,
     startPeriod: '2025.10.01',
@@ -97,7 +105,9 @@ IoT 센서를 통해 온도, 습도, 토양 정보를 수집하고 AI 분석으�
   {
     id: 5,
     title: '청년 창업 아이디어톤 2025',
-    subtitle: '미래를 바꾸는 스타트업 아이디어 경연',
+    ideaTitle: '미래를 바꾸는 스타트업 아이디어 경연',
+    ideaShortDescription: '이것은 아이디어 한줄소개',
+    timeStamp: '2025년 10월 13일 17시 45분',
     hostingOrganization: '중소벤처기업부',
     d_day: 3,
     startPeriod: '2025.06.01',

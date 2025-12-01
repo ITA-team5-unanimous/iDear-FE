@@ -16,7 +16,7 @@ export const DropdownOption = ({
       aria-label='드롭다운 옵션 버튼'
       onClick={onClick}
       className={clsx(
-        'border-primary hover:bg-primary-2 flex h-[70px] w-[180px] cursor-pointer items-center justify-center transition-colors',
+        'border-primary hover:bg-primary-2 flex h-[70px] w-full cursor-pointer items-center justify-center transition-colors',
         {'border-b-2': !isLast}
       )}>
       <span className='text-2xl font-bold text-black'>{label}</span>

@@ -67,6 +67,7 @@
   /* 메인 컬러 */
   --color-primary: #db0001;
   --color-primary-2: #ffa2a2;
+  --color-primary-3: #ffebeb;
 
   /* 서브 포인트 컬러 */
   --color-black: #1a1a1a;
@@ -74,6 +75,8 @@
 
   /* 그레이 스케일 */
   --color-gray: #575757;
+  --color-gray-2: #b9b9b9;
+  --color-gray-3: #f3f3f3;
 
   /* 브레이크 포인트 */
   --breakpoint-sm: 640px;
@@ -116,4 +119,16 @@
   100% {
     transform: translateX(-33.333%);
   }
+}
+.scrollable {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scrollable::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-placeholder-on-focus:focus::placeholder {
+  color: transparent;
 }
