@@ -1,20 +1,38 @@
 import {IdeaList} from '@/components/idea/IdeaList';
 import {mockIdeaData} from '@/mocks/data/mockIdeaData';
-import {Pagination} from '@/components/idea/Pagination';
+import {GlobalPagination} from '@/components/common/pagination/GlobalPagination';
 import {GlobalSearchBar} from '@/components/common/search/GlobalSearchBar';
 import {BackButton} from '@/components/buttons/BackButton';
 
-export default function IdeaPage() {
+type SearchParamsPromise = Promise<{page?: string}>;
+
+export default async function IdeaPage({
+  searchParams,
+}: {
+  searchParams: SearchParamsPromise;
+}) {
+  const awaitedSearchParams = await searchParams;
+  const currentPage = Number(awaitedSearchParams.page ?? 1);
+
+  const itemsPerPage = 8;
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentItems = mockIdeaData.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
   return (
     <div className='flex flex-col items-center py-9'>
       <header className='mb-[64px]'>
         <BackButton />
-
         <GlobalSearchBar placeholder='내가 등록한 아이디어를 검색해 보세요!' />
       </header>
-
-      <IdeaList ideas={mockIdeaData} totalItems={mockIdeaData.length} />
-      <Pagination totalItems={mockIdeaData.length} />
+      <IdeaList ideas={currentItems} totalItems={mockIdeaData.length} />
+      <GlobalPagination
+        totalItems={mockIdeaData.length}
+        itemsPerPage={itemsPerPage}
+        currentPage={currentPage}
+      />
     </div>
   );
 }
