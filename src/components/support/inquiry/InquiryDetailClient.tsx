@@ -23,9 +23,8 @@ export default function InquiryDetailClient({
 }: InquiryDetailClientProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [occurredAt, setOccurredAt] = useState(inquiry?.occurredAt ?? '');
+
   const [browser, setBrowser] = useState(inquiry?.browser ?? '');
   const [device, setDevice] = useState(inquiry?.device ?? '');
   const [problemDescription, setProblemDescription] = useState(
@@ -44,7 +43,6 @@ export default function InquiryDetailClient({
   if (!inquiry) return <p>문의사항을 찾을 수 없습니다.</p>;
 
   const resetState = () => {
-    setOccurredAt(inquiry?.occurredAt ?? '');
     setBrowser(inquiry?.browser ?? '');
     setDevice(inquiry?.device ?? '');
     setProblemDescription(inquiry?.problemDescription ?? '');
@@ -107,8 +105,7 @@ export default function InquiryDetailClient({
           <p className='text-2xl font-bold'>*발생 시각</p>
           <input
             type='text'
-            value={occurredAt}
-            onChange={(e) => setOccurredAt(e.target.value)}
+            value={inquiry.occurredAt}
             readOnly
             placeholder='YYYY-MM-DD HH:mm:ss'
             className='border-primary max-w-[512px] rounded-[8px] border px-6 py-2 outline-none'

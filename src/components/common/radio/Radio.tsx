@@ -8,16 +8,8 @@ interface RadioProps {
 }
 
 export const Radio = ({label, checked, onChange, disabled}: RadioProps) => {
-  const handleClick = () => {
-    if (!disabled) {
-      onChange();
-    }
-  };
-
   return (
-    <label
-      className='flex w-fit cursor-pointer items-center gap-3'
-      onClick={handleClick}>
+    <label className='flex w-fit cursor-pointer items-center gap-3'>
       <input
         type='radio'
         className='sr-only'
