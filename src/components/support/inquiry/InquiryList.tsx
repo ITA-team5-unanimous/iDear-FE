@@ -2,13 +2,13 @@ import {InquiryItem} from '@/components/support/inquiry/InquiryItem';
 import {Inquiry} from '@/schemas/inquiry';
 
 interface InquiryListProps {
-  inquirys: Inquiry[];
+  inquiries: Inquiry[];
 }
 
-export const InquiryList = ({inquirys}: InquiryListProps) => {
+export const InquiryList = ({inquiries}: InquiryListProps) => {
   return (
     <div className='flex flex-col items-center'>
-      {inquirys.map((inquiry) => (
+      {inquiries.map((inquiry) => (
         <InquiryItem
           key={inquiry.id}
           id={inquiry.id}

@@ -18,7 +18,7 @@ export const inquirySchema = z.object({
   status: z.enum([validStatuses[0], ...validStatuses.slice(1)]),
   occurredAt: z.string(),
   browser: z.enum(['chrome', 'safari', 'edge']),
-  device: z.enum(['window', 'mac', 'ipone', 'android']),
+  device: z.enum(['window', 'mac', 'iphone', 'android']),
   problemDescription: z.string(),
   attachments: z.array(attachmentSchema).optional(),
 });

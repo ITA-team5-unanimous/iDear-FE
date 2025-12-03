@@ -28,7 +28,7 @@ export default async function InquiryPage({
       <div className='border-gray mt-15 rounded-lg border p-12'>
         {hasInquiries ? (
           <>
-            <InquiryList inquirys={currentItems} />
+            <InquiryList inquiries={currentItems} />
             <GlobalPagination
               totalItems={mockInquiryData.length}
               itemsPerPage={itemsPerPage}
