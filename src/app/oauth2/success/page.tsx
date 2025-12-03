@@ -1,6 +1,7 @@
 'use client';
 
 import {Spinner} from '@/components/common/ui/Spinner';
+import SuspenseWrapper from '@/components/common/wrappers/SuspenseWrapper';
 import {ROUTES} from '@/constants/routes';
 import {reissueToken} from '@/services/api/auth/authApi';
 import {useRouter, useSearchParams} from 'next/navigation';
@@ -25,5 +26,9 @@ export default function OAuth2SuccessPage() {
     })();
   }, [refresh, router]);
 
-  return <Spinner />;
+  return (
+    <SuspenseWrapper>
+      <Spinner />
+    </SuspenseWrapper>
+  );
 }
