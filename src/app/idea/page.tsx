@@ -5,6 +5,7 @@ import {GlobalSearchBar} from '@/components/common/search/GlobalSearchBar';
 import {BackButton} from '@/components/buttons/BackButton';
 
 type SearchParamsPromise = Promise<{page?: string}>;
+const ITEMS_PER_PAGE = 8;
 
 export default async function IdeaPage({
   searchParams,
@@ -14,11 +15,10 @@ export default async function IdeaPage({
   const awaitedSearchParams = await searchParams;
   const currentPage = Number(awaitedSearchParams.page ?? 1);
 
-  const itemsPerPage = 8;
-  const startIndex = (currentPage - 1) * itemsPerPage;
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const currentItems = mockIdeaData.slice(
     startIndex,
-    startIndex + itemsPerPage
+    startIndex + ITEMS_PER_PAGE
   );
 
   return (
@@ -30,7 +30,7 @@ export default async function IdeaPage({
       <IdeaList ideas={currentItems} totalItems={mockIdeaData.length} />
       <GlobalPagination
         totalItems={mockIdeaData.length}
-        itemsPerPage={itemsPerPage}
+        itemsPerPage={ITEMS_PER_PAGE}
         currentPage={currentPage}
       />
     </div>

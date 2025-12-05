@@ -5,6 +5,7 @@ import {NoInquiryResult} from '@/components/support/inquiry/NoInquiryResult';
 import {GlobalPagination} from '@/components/common/pagination/GlobalPagination';
 
 type SearchParamsPromise = Promise<{page?: string}>;
+const ITEMS_PER_PAGE = 5;
 
 export default async function InquiryPage({
   searchParams,
@@ -12,13 +13,12 @@ export default async function InquiryPage({
   searchParams: SearchParamsPromise;
 }) {
   const hasInquiries = mockInquiryData.length > 0;
-  const itemsPerPage = 5;
   const awaitedSearchParams = await searchParams;
   const currentPage = Number(awaitedSearchParams.page ?? 1);
-  const startIndex = (currentPage - 1) * itemsPerPage;
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const currentItems = mockInquiryData.slice(
     startIndex,
-    startIndex + itemsPerPage
+    startIndex + ITEMS_PER_PAGE
   );
 
   return (
@@ -31,7 +31,7 @@ export default async function InquiryPage({
             <InquiryList inquiries={currentItems} />
             <GlobalPagination
               totalItems={mockInquiryData.length}
-              itemsPerPage={itemsPerPage}
+              itemsPerPage={ITEMS_PER_PAGE}
               currentPage={currentPage}
             />
           </>
