@@ -1,11 +1,9 @@
 'use client';
 
+import {InquiryForm} from '@/components/support/inquiry/InquiryForm';
 import {BackButton} from '@/components/buttons/BackButton';
 import GlobalButton from '@/components/buttons/GlobalButton';
-import {PlusButton} from '@/components/buttons/PlusButton';
-import {ImageFileBox} from '@/components/common/file/ImageFileBox';
 import {InquiryCompleteModal} from '@/components/common/modal/InquiryCompleteModal';
-import {RadioGroup} from '@/components/common/radio/RadioGroup';
 import {ModalWrapper} from '@/components/common/wrappers/ModalWrapper';
 import {ROUTES} from '@/constants/routes';
 import {FileBoxType} from '@/schemas/support';
@@ -16,6 +14,8 @@ import {v4 as uuidv4} from 'uuid';
 export default function SupportInquiryNewPage() {
   const [browser, setBrowser] = useState<string>('');
   const [device, setDevice] = useState<string>('');
+  const [occurredAt, setOccurredAt] = useState<string>('');
+  const [problemDescription, setProblemDescription] = useState<string>('');
   const [fileBoxes, setFileBoxes] = useState<FileBoxType[]>([
     {id: uuidv4(), files: []},
   ]);
@@ -63,69 +63,21 @@ export default function SupportInquiryNewPage() {
 
         <section className='border-gray flex flex-col gap-12 rounded-[8px] border p-12'>
           <strong className='text-[32px] font-bold'>문의사항</strong>
-          <div className='flex flex-col gap-6'>
-            <p className='text-2xl font-bold'>*발생 시각</p>
-            <input
-              type='text'
-              placeholder='YYYY-MM-DD HH:mm:ss'
-              className='border-primary placeholder-gray max-w-[512px] rounded-[8px] border px-6 py-2 outline-none'
-            />
-          </div>
 
-          <div className='flex flex-col gap-6'>
-            <p className='text-2xl font-bold'>사용 브라우저</p>
-            <RadioGroup
-              value={browser}
-              onChange={setBrowser}
-              options={[
-                {label: 'Chrome', value: 'chrome'},
-                {label: 'Safari', value: 'safari'},
-                {label: 'Microsoft Edge', value: 'edge'},
-              ]}
-            />
-          </div>
-
-          <div className='flex flex-col gap-6'>
-            <p className='text-2xl font-bold'>사용 기기</p>
-            <RadioGroup
-              value={device}
-              onChange={setDevice}
-              options={[
-                {label: 'Window PC', value: 'window'},
-                {label: 'Mac', value: 'mac'},
-                {label: 'Iphone', value: 'ipone'},
-                {label: 'Android Phone', value: 'android'},
-              ]}
-            />
-          </div>
-
-          <div className='flex flex-col gap-6'>
-            <div className='flex flex-row items-center gap-6'>
-              <p className='text-2xl font-bold'>*문제 상황</p>
-              <p className='text-primary text-xl font-medium'>
-                최대한 자세하게 작성해 주세요!
-              </p>
-            </div>
-            <textarea
-              placeholder='ex) 확인증 다운로드가 안 됩니다.'
-              className='border-primary placeholder-gray h-[72px] resize-none rounded-[8px] border p-6 outline-none'
-            />
-          </div>
-
-          <div className='flex flex-col gap-6'>
-            <p className='text-2xl font-bold'>에러 화면 캡처(최대 4장)</p>
-            <div className='flex flex-wrap items-center gap-10'>
-              {fileBoxes.map((box) => (
-                <ImageFileBox
-                  key={box.id}
-                  box={box}
-                  onFilesChange={handleFilesChange}
-                />
-              ))}
-
-              {fileBoxes.length < 4 && <PlusButton onClick={handleAddBox} />}
-            </div>
-          </div>
+          <InquiryForm
+            browser={browser}
+            setBrowser={setBrowser}
+            device={device}
+            setDevice={setDevice}
+            problemDescription={problemDescription}
+            setProblemDescription={setProblemDescription}
+            fileBoxes={fileBoxes}
+            handleFilesChange={handleFilesChange}
+            handleAddBox={handleAddBox}
+            isEditMode={true}
+            occurredAt={occurredAt}
+            setOccurredAt={setOccurredAt}
+          />
 
           <div className='flex flex-row justify-center gap-6'>
             <GlobalButton

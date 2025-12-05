@@ -3,15 +3,13 @@
 import {useState} from 'react';
 import {useRouter, useSearchParams} from 'next/navigation';
 import {v4 as uuidv4} from 'uuid';
-import {ImageFileBox} from '@/components/common/file/ImageFileBox';
-import {RadioGroup} from '@/components/common/radio/RadioGroup';
 import {GlobalSmallButton} from '@/components/buttons/GlobalSmallButton';
 import GlobalButton from '@/components/buttons/GlobalButton';
 import {BackButton} from '@/components/buttons/BackButton';
-import {PlusButton} from '@/components/buttons/PlusButton';
 import {DeleteAlertModal} from '@/components/common/modal/DeleteAlertModal';
 import {Inquiry} from '@/schemas/inquiry';
 import {ModalWrapper} from '@/components/common/wrappers/ModalWrapper';
+import {InquiryForm} from '@/components/support/inquiry/InquiryForm';
 
 interface InquiryDetailClientProps {
   inquiry: Inquiry | null;
@@ -23,19 +21,19 @@ export default function InquiryDetailClient({
 }: InquiryDetailClientProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const [browser, setBrowser] = useState(inquiry?.browser ?? '');
   const [device, setDevice] = useState(inquiry?.device ?? '');
   const [problemDescription, setProblemDescription] = useState(
     inquiry?.problemDescription ?? ''
   );
+  const [occurredAt, setOccurredAt] = useState(inquiry?.occurredAt ?? '');
 
   const [fileBoxes, setFileBoxes] = useState(
     inquiry?.attachments?.length
-      ? inquiry.attachments.map((att) => ({
-          ...att,
-          files: att.files ?? [],
+      ? inquiry.attachments.map((attachment) => ({
+          ...attachment,
+          files: attachment.files ?? [],
         }))
       : [{id: uuidv4(), files: []}]
   );
@@ -48,9 +46,9 @@ export default function InquiryDetailClient({
     setProblemDescription(inquiry?.problemDescription ?? '');
     setFileBoxes(
       inquiry?.attachments?.length
-        ? inquiry.attachments.map((att) => ({
-            ...att,
-            files: att.files ?? [],
+        ? inquiry.attachments.map((attachment) => ({
+            ...attachment,
+            files: attachment.files ?? [],
           }))
         : [{id: uuidv4(), files: []}]
     );
@@ -101,81 +99,20 @@ export default function InquiryDetailClient({
           </div>
         </div>
 
-        <div className='flex flex-col gap-6'>
-          <p className='text-2xl font-bold'>*발생 시각</p>
-          <input
-            type='text'
-            value={inquiry.occurredAt}
-            readOnly
-            placeholder='YYYY-MM-DD HH:mm:ss'
-            className='border-primary max-w-[512px] rounded-[8px] border px-6 py-2 outline-none'
-          />
-        </div>
-
-        <div className='flex flex-col gap-6'>
-          <p className='text-2xl font-bold'>사용 브라우저</p>
-          <RadioGroup
-            value={browser}
-            onChange={setBrowser}
-            disabled={!isEditMode}
-            options={[
-              {label: 'Chrome', value: 'chrome'},
-              {label: 'Safari', value: 'safari'},
-              {label: 'Microsoft Edge', value: 'edge'},
-            ]}
-          />
-        </div>
-
-        <div className='flex flex-col gap-6'>
-          <p className='text-2xl font-bold'>사용 기기</p>
-          <RadioGroup
-            value={device}
-            onChange={setDevice}
-            disabled={!isEditMode}
-            options={[
-              {label: 'Window PC', value: 'window'},
-              {label: 'Mac', value: 'mac'},
-              {label: 'Iphone', value: 'iphone'},
-              {label: 'Android Phone', value: 'android'},
-            ]}
-          />
-        </div>
-
-        <div className='flex flex-col gap-6'>
-          <div className='flex flex-row items-center gap-6'>
-            <p className='text-2xl font-bold'>*문제 상황</p>
-            <p className='text-primary text-xl font-medium'>
-              최대한 자세하게 작성해 주세요!
-            </p>
-          </div>
-
-          <textarea
-            value={problemDescription}
-            onChange={(e) => setProblemDescription(e.target.value)}
-            readOnly={!isEditMode}
-            placeholder='ex) 확인증 다운로드가 안 됩니다.'
-            className='border-primary h-[72px] resize-none rounded-[8px] border p-6 outline-none'
-          />
-        </div>
-
-        <div className='flex flex-col gap-6'>
-          <p className='text-2xl font-bold'>에러 화면 캡처(최대 4장)</p>
-
-          <div className='flex flex-wrap items-center gap-10'>
-            {fileBoxes.map((box) => (
-              <ImageFileBox
-                key={box.id}
-                box={box}
-                onFilesChange={handleFilesChange}
-                disabled={!isEditMode}
-              />
-            ))}
-
-            {isEditMode && fileBoxes.length < 4 && (
-              <PlusButton onClick={handleAddBox} />
-            )}
-          </div>
-        </div>
+        <InquiryForm
+          browser={browser}
+          setBrowser={setBrowser}
+          device={device}
+          setDevice={setDevice}
+          problemDescription={problemDescription}
+          setProblemDescription={setProblemDescription}
+          fileBoxes={fileBoxes}
+          handleFilesChange={handleFilesChange}
+          handleAddBox={handleAddBox}
+          isEditMode={isEditMode}
+          occurredAt={occurredAt}
+          setOccurredAt={setOccurredAt}
+        />
 
         {isEditMode && (
           <div className='flex flex-row justify-center gap-6'>
