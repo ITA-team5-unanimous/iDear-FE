@@ -7,7 +7,7 @@ interface InquiryListProps {
 
 export const InquiryList = ({inquiries}: InquiryListProps) => {
   return (
-    <div className='flex flex-col items-center'>
+    <ul className='flex flex-col items-center'>
       {inquiries.map((inquiry) => (
         <InquiryItem
           key={inquiry.id}
@@ -17,6 +17,6 @@ export const InquiryList = ({inquiries}: InquiryListProps) => {
           status={inquiry.status}
         />
       ))}
-    </div>
+    </ul>
   );
 };

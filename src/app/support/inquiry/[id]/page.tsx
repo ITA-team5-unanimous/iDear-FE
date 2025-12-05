@@ -21,7 +21,9 @@ export default async function InquiryDetailPage({
     (item) => item.id === Number(awaitedParams.id)
   );
 
-  return (
-    <InquiryDetailClient inquiry={inquiry ?? null} isEditMode={isEditMode} />
-  );
+  if (!inquiry) {
+    return <div>해당 문의를 찾을 수 없습니다.</div>;
+  }
+
+  return <InquiryDetailClient inquiry={inquiry} isEditMode={isEditMode} />;
 }

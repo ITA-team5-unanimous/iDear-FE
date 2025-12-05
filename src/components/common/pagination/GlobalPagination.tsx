@@ -2,7 +2,7 @@ import Link from 'next/link';
 import ChevronRight from '@/assets/chevrons/chevron-right.svg';
 import clsx from 'clsx';
 
-interface PaginationProps {
+interface GlobalPaginationProps {
   totalItems: number;
   itemsPerPage: number;
   currentPage: number;
@@ -12,7 +12,7 @@ export const GlobalPagination = ({
   totalItems,
   itemsPerPage,
   currentPage,
-}: PaginationProps) => {
+}: GlobalPaginationProps) => {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   return (
