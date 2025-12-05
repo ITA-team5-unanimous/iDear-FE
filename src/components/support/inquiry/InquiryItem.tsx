@@ -27,8 +27,8 @@ export const InquiryItem = ({
   };
 
   return (
-    <div
-      className='border-primary flex h-[200px] w-[1304px] items-center border-b pr-12 pl-12 hover:bg-[#F3F3F3]'
+    <li
+      className='border-primary hover:bg-gray-3 flex h-[200px] items-center gap-12 border-b px-12'
       onClick={handleClickInquiryList}
       role='button'
       tabIndex={0}
@@ -37,16 +37,20 @@ export const InquiryItem = ({
           handleClickInquiryList();
         }
       }}>
-      <div className='flex flex-col'></div>
-      <h1 className='text-primary mr-12 text-2xl font-bold'>{id}</h1>
-      <h2 className='mr-12 w-[186px] text-center text-xl font-medium'>
-        {title}
-      </h2>
-      <p className='mr-12 line-clamp-1 w-[693px] text-2xl font-bold'>
-        {description}
-      </p>
-      <span className='text-primary mr-auto text-2xl font-bold'>{status}</span>
-      <ChevronIcon alt='이동' width={11} height={20} className='m-2.5' />
-    </div>
+      <h1 className='text-primary m-2.5 text-2xl font-bold'>{id}</h1>
+      <h2 className='w-[186px] text-center text-xl font-medium'>{title}</h2>
+      <p className='line-clamp-1 w-[693px] text-2xl font-bold'>{description}</p>
+      <div className='flex items-center gap-0'>
+        <span className='text-primary w-[85px] text-2xl font-bold'>
+          {status}
+        </span>
+        <ChevronIcon
+          alt='이동'
+          width={11}
+          height={20}
+          className='mr-2.5 ml-5'
+        />
+      </div>
+    </li>
   );
 };
