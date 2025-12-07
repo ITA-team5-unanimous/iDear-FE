@@ -22,7 +22,7 @@ export const TextAreaField = ({
         value={value}
         readOnly={readOnly}
         placeholder='ex) 확인증 다운로드가 안 됩니다.'
-        className='border-primary h-[72px] resize-none rounded-[8px] border p-6 outline-none'
+        className='border-primary h-auto resize-none overflow-auto rounded-[8px] border px-6 pt-6 pb-1 outline-none'
         onChange={(e) => onChange?.(e.target.value)}
       />
     </div>
