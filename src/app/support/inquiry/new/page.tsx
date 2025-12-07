@@ -1,49 +1,39 @@
 'use client';
 
-import {InquiryForm} from '@/components/support/inquiry/InquiryForm';
+import {
+  InquiryForm,
+  InquiryFormData,
+} from '@/components/support/inquiry/InquiryForm';
 import {BackButton} from '@/components/buttons/BackButton';
-import GlobalButton from '@/components/buttons/GlobalButton';
 import {InquiryCompleteModal} from '@/components/common/modal/InquiryCompleteModal';
 import {ModalWrapper} from '@/components/common/wrappers/ModalWrapper';
 import {ROUTES} from '@/constants/routes';
-import {FileBoxType} from '@/schemas/support';
 import {useRouter} from 'next/navigation';
 import {useState} from 'react';
 import {v4 as uuidv4} from 'uuid';
 
-export default function SupportInquiryNewPage() {
-  const [browser, setBrowser] = useState<string>('');
-  const [device, setDevice] = useState<string>('');
-  const [occurredAt, setOccurredAt] = useState<string>('');
-  const [problemDescription, setProblemDescription] = useState<string>('');
-  const [fileBoxes, setFileBoxes] = useState<FileBoxType[]>([
-    {id: uuidv4(), files: []},
-  ]);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+const getInitialFormData = (): InquiryFormData => ({
+  browser: '',
+  device: '',
+  problemDescription: '',
+  occurredAt: '',
+  fileBoxes: [{id: uuidv4(), files: []}],
+});
 
+export default function SupportInquiryNewPage() {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const router = useRouter();
 
-  const handleAddBox = () => {
-    if (fileBoxes.length >= 4) return;
+  const initialData = getInitialFormData();
 
-    setFileBoxes((prev) => [...prev, {id: uuidv4(), files: []}]);
-  };
-
-  const handleFilesChange = (id: string, newFiles: File[]) => {
-    if (newFiles.length === 0) return;
-
-    setFileBoxes((prev) =>
-      prev.map((box) => (box.id === id ? {...box, files: [newFiles[0]]} : box))
-    );
+  const handleSubmit = (formData: InquiryFormData) => {
+    console.log('새 문의사항 제출 데이터:', formData);
+    // API 호출 로직 추가
+    setIsModalOpen(true);
   };
 
   const handleClickCancel = () => {
     router.back();
-  };
-
-  const handleClickSave = () => {
-    //todo: api post. 실제 API 호출 후 성공 시 모달 열기
-    setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
@@ -65,30 +55,14 @@ export default function SupportInquiryNewPage() {
           <strong className='text-[32px] font-bold'>문의사항</strong>
 
           <InquiryForm
-            browser={browser}
-            setBrowser={setBrowser}
-            device={device}
-            setDevice={setDevice}
-            problemDescription={problemDescription}
-            setProblemDescription={setProblemDescription}
-            fileBoxes={fileBoxes}
-            handleFilesChange={handleFilesChange}
-            handleAddBox={handleAddBox}
+            initialData={initialData}
             isEditMode={true}
-            occurredAt={occurredAt}
-            setOccurredAt={setOccurredAt}
+            onSubmit={handleSubmit}
+            onCancelEdit={handleClickCancel}
           />
-
-          <div className='flex flex-row justify-center gap-6'>
-            <GlobalButton
-              text='취소하기'
-              variant='gray'
-              onClick={handleClickCancel}
-            />
-            <GlobalButton text='저장하기' onClick={handleClickSave} />
-          </div>
         </section>
       </div>
+
       {isModalOpen && (
         <ModalWrapper isOpen={isModalOpen}>
           <InquiryCompleteModal onClose={handleCloseModal} />

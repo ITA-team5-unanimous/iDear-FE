@@ -17,10 +17,11 @@ export const inquirySchema = z.object({
   description: z.string(),
   status: z.enum([validStatuses[0], ...validStatuses.slice(1)]),
   occurredAt: z.string(),
-  browser: z.enum(['chrome', 'safari', 'edge']),
-  device: z.enum(['window', 'mac', 'iphone', 'android']),
+  browser: z.enum(['chrome', 'safari', 'edge']).or(z.literal('')),
+  device: z.enum(['window', 'mac', 'iphone', 'android']).or(z.literal('')),
   problemDescription: z.string(),
   attachments: z.array(attachmentSchema).optional(),
 });
 
 export type Inquiry = z.infer<typeof inquirySchema>;
+export type attachmentSchema = z.infer<typeof attachmentSchema>;

@@ -3,8 +3,9 @@
 import {useState} from 'react';
 import {useRouter, useSearchParams} from 'next/navigation';
 import {v4 as uuidv4} from 'uuid';
+import {FileBoxType} from '@/schemas/support';
+import {InquiryFormData} from '@/components/support/inquiry/InquiryForm';
 import {GlobalSmallButton} from '@/components/buttons/GlobalSmallButton';
-import GlobalButton from '@/components/buttons/GlobalButton';
 import {BackButton} from '@/components/buttons/BackButton';
 import {DeleteAlertModal} from '@/components/common/modal/DeleteAlertModal';
 import {Inquiry} from '@/schemas/inquiry';
@@ -15,6 +16,32 @@ interface InquiryDetailClientProps {
   inquiry: Inquiry | null;
   isEditMode: boolean;
 }
+
+const getInitialFileBoxes = (attachments?: FileBoxType[]) => {
+  return attachments?.length
+    ? attachments.map((box) => ({...box, files: box.files ?? []}))
+    : [{id: uuidv4(), files: []}];
+};
+
+const createInitialFormData = (inquiry: Inquiry | null): InquiryFormData => {
+  if (!inquiry) {
+    return {
+      browser: '',
+      device: '',
+      problemDescription: '',
+      occurredAt: '',
+      fileBoxes: getInitialFileBoxes(),
+    };
+  }
+  return {
+    browser: inquiry.browser,
+    device: inquiry.device,
+    problemDescription: inquiry.problemDescription,
+    occurredAt: inquiry.occurredAt,
+    fileBoxes: getInitialFileBoxes(inquiry.attachments as FileBoxType[]),
+  };
+};
+
 export default function InquiryDetailClient({
   inquiry,
   isEditMode,
@@ -22,53 +49,13 @@ export default function InquiryDetailClient({
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
-  const [browser, setBrowser] = useState(inquiry?.browser ?? '');
-  const [device, setDevice] = useState(inquiry?.device ?? '');
-  const [problemDescription, setProblemDescription] = useState(
-    inquiry?.problemDescription ?? ''
-  );
-  const [occurredAt, setOccurredAt] = useState(inquiry?.occurredAt ?? '');
-
-  const [fileBoxes, setFileBoxes] = useState(
-    inquiry?.attachments?.length
-      ? inquiry.attachments.map((attachment) => ({
-          ...attachment,
-          files: attachment.files ?? [],
-        }))
-      : [{id: uuidv4(), files: []}]
-  );
 
   if (!inquiry) return <p>문의사항을 찾을 수 없습니다.</p>;
-
-  const resetState = () => {
-    setBrowser(inquiry?.browser ?? '');
-    setDevice(inquiry?.device ?? '');
-    setProblemDescription(inquiry?.problemDescription ?? '');
-    setFileBoxes(
-      inquiry?.attachments?.length
-        ? inquiry.attachments.map((attachment) => ({
-            ...attachment,
-            files: attachment.files ?? [],
-          }))
-        : [{id: uuidv4(), files: []}]
-    );
-  };
 
   const handleEditMode = () => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('edit', 'true');
     router.push(`?${params.toString()}`);
-  };
-
-  const handleAddBox = () => {
-    if (fileBoxes.length >= 4) return;
-    setFileBoxes((prev) => [...prev, {id: uuidv4(), files: []}]);
-  };
-
-  const handleFilesChange = (id: string, newFiles: File[]) => {
-    setFileBoxes((prev) =>
-      prev.map((box) => (box.id === id ? {...box, files: newFiles} : box))
-    );
   };
 
   const handleDelete = () => {
@@ -79,12 +66,17 @@ export default function InquiryDetailClient({
     const params = new URLSearchParams(searchParams.toString());
     params.delete('edit');
     router.push(`?${params.toString()}`);
-    resetState();
   };
 
-  const handleClickSave = () => {
-    router.back();
+  const handleSubmitSave = (formData: InquiryFormData) => {
+    console.log('폼 제출 데이터:', formData);
+    // 여기에 API 호출 로직 추가
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete('edit');
+    router.push(`?${params.toString()}`);
   };
+
+  const initialFormData = createInitialFormData(inquiry);
 
   return (
     <div className='relative flex flex-col justify-center px-40 py-[145px]'>
@@ -100,35 +92,12 @@ export default function InquiryDetailClient({
         </div>
 
         <InquiryForm
-          browser={browser}
-          setBrowser={setBrowser}
-          device={device}
-          setDevice={setDevice}
-          problemDescription={problemDescription}
-          setProblemDescription={setProblemDescription}
-          fileBoxes={fileBoxes}
-          handleFilesChange={handleFilesChange}
-          handleAddBox={handleAddBox}
+          key={isEditMode ? 'edit' : 'view'}
+          initialData={initialFormData}
           isEditMode={isEditMode}
-          occurredAt={occurredAt}
-          setOccurredAt={setOccurredAt}
+          onSubmit={handleSubmitSave}
+          onCancelEdit={handleClickCancel}
         />
-
-        {isEditMode && (
-          <div className='flex flex-row justify-center gap-6'>
-            <GlobalButton
-              aria-label='취소하기 버튼'
-              text='취소하기'
-              variant='gray'
-              onClick={handleClickCancel}
-            />
-            <GlobalButton
-              aria-label='저장하기 버튼'
-              text='저장하기'
-              onClick={handleClickSave}
-            />
-          </div>
-        )}
       </section>
 
       {isDeleteModalOpen && (
