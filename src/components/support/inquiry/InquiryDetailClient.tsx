@@ -2,8 +2,6 @@
 
 import {useState} from 'react';
 import {useRouter, useSearchParams} from 'next/navigation';
-import {v4 as uuidv4} from 'uuid';
-import {FileBoxType} from '@/schemas/support';
 import {InquiryFormData} from '@/components/support/inquiry/InquiryForm';
 import {GlobalSmallButton} from '@/components/buttons/GlobalSmallButton';
 import {BackButton} from '@/components/buttons/BackButton';
@@ -11,36 +9,12 @@ import {DeleteAlertModal} from '@/components/common/modal/DeleteAlertModal';
 import {Inquiry} from '@/schemas/inquiry';
 import {ModalWrapper} from '@/components/common/wrappers/ModalWrapper';
 import {InquiryForm} from '@/components/support/inquiry/InquiryForm';
+import {createInitialFormData} from '@/hooks/inquiry/inquiryFormUtils';
 
 interface InquiryDetailClientProps {
   inquiry: Inquiry | null;
   isEditMode: boolean;
 }
-
-const getInitialFileBoxes = (attachments?: FileBoxType[]) => {
-  return attachments?.length
-    ? attachments.map((box) => ({...box, files: box.files ?? []}))
-    : [{id: uuidv4(), files: []}];
-};
-
-const createInitialFormData = (inquiry: Inquiry | null): InquiryFormData => {
-  if (!inquiry) {
-    return {
-      browser: '',
-      device: '',
-      problemDescription: '',
-      occurredAt: '',
-      fileBoxes: getInitialFileBoxes(),
-    };
-  }
-  return {
-    browser: inquiry.browser,
-    device: inquiry.device,
-    problemDescription: inquiry.problemDescription,
-    occurredAt: inquiry.occurredAt,
-    fileBoxes: getInitialFileBoxes(inquiry.attachments as FileBoxType[]),
-  };
-};
 
 export default function InquiryDetailClient({
   inquiry,
@@ -49,6 +23,7 @@ export default function InquiryDetailClient({
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
+  const initialFormData = createInitialFormData(inquiry);
 
   if (!inquiry) return <p>문의사항을 찾을 수 없습니다.</p>;
 
@@ -75,8 +50,6 @@ export default function InquiryDetailClient({
     params.delete('edit');
     router.push(`?${params.toString()}`);
   };
-
-  const initialFormData = createInitialFormData(inquiry);
 
   return (
     <div className='relative flex flex-col justify-center px-40 py-[145px]'>

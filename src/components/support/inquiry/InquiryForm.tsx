@@ -9,6 +9,7 @@ import {PlusButton} from '@/components/buttons/PlusButton';
 import {FileBoxType} from '@/schemas/support';
 import {OccurredAtInput} from '@/components/support/inquiry/form/OccurredAtInput';
 import {TextAreaField} from '@/components/support/inquiry/form/TextAreaField';
+import {getInitialFileBoxes} from '@/hooks/inquiry/inquiryFormUtils';
 import GlobalButton from '@/components/buttons/GlobalButton';
 
 type InquiryFormFields = Pick<
@@ -27,25 +28,21 @@ interface InquiryFormProps {
   onCancelEdit: () => void;
 }
 
-const getInitialFileBoxes = (attachments?: FileBoxType[]) => {
-  return attachments?.length
-    ? attachments.map((box) => ({...box, files: box.files ?? []}))
-    : [{id: uuidv4(), files: []}];
-};
-
 export const InquiryForm = ({
   initialData,
   isEditMode,
   onSubmit,
   onCancelEdit,
 }: InquiryFormProps) => {
-  const [browser, setBrowser] = useState(initialData.browser);
-  const [device, setDevice] = useState(initialData.device);
-  const [problemDescription, setProblemDescription] = useState(
+  const [browser, setBrowser] = useState<Inquiry['browser']>(
+    initialData.browser
+  );
+  const [device, setDevice] = useState<Inquiry['device']>(initialData.device);
+  const [problemDescription, setProblemDescription] = useState<string>(
     initialData.problemDescription
   );
-  const [occurredAt, setOccurredAt] = useState(initialData.occurredAt);
-  const [fileBoxes, setFileBoxes] = useState(
+  const [occurredAt, setOccurredAt] = useState<string>(initialData.occurredAt);
+  const [fileBoxes, setFileBoxes] = useState<FileBoxType[]>(
     getInitialFileBoxes(initialData.fileBoxes)
   );
 
@@ -99,7 +96,7 @@ export const InquiryForm = ({
         <p className='text-2xl font-bold'>사용 브라우저</p>
         <RadioGroup
           value={browser}
-          onChange={(value) => setBrowser(value as typeof browser)}
+          onChange={setBrowser}
           disabled={!isEditMode}
           options={[
             {label: 'Chrome', value: 'chrome'},
@@ -113,7 +110,7 @@ export const InquiryForm = ({
         <p className='text-2xl font-bold'>사용 기기</p>
         <RadioGroup
           value={device}
-          onChange={(value) => setDevice(value as typeof device)}
+          onChange={setDevice}
           disabled={!isEditMode}
           options={[
             {label: 'Window PC', value: 'window'},

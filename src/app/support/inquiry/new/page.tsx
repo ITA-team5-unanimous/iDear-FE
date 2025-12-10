@@ -10,21 +10,12 @@ import {ModalWrapper} from '@/components/common/wrappers/ModalWrapper';
 import {ROUTES} from '@/constants/routes';
 import {useRouter} from 'next/navigation';
 import {useState} from 'react';
-import {v4 as uuidv4} from 'uuid';
-
-const getInitialFormData = (): InquiryFormData => ({
-  browser: '',
-  device: '',
-  problemDescription: '',
-  occurredAt: '',
-  fileBoxes: [{id: uuidv4(), files: []}],
-});
+import {createInitialFormData} from '@/hooks/inquiry/inquiryFormUtils';
 
 export default function SupportInquiryNewPage() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const router = useRouter();
-
-  const initialData = getInitialFormData();
+  const initialData = createInitialFormData(null);
 
   const handleSubmit = (formData: InquiryFormData) => {
     console.log('새 문의사항 제출 데이터:', formData);
