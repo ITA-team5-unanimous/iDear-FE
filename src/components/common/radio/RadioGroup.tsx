@@ -1,23 +1,23 @@
 import {Radio} from '@/components/common/radio/Radio';
 
-interface Option {
+interface Option<T> {
   label: string;
-  value: string;
+  value: T;
 }
 
-interface RadioGroupProps {
-  value: string;
-  onChange: (value: string) => void;
-  options: Option[];
+interface RadioGroupProps<T extends string> {
+  value: T;
+  onChange: (value: T) => void;
+  options: Option<T>[];
   disabled?: boolean;
 }
 
-export const RadioGroup = ({
+export const RadioGroup = <T extends string>({
   value,
   onChange,
   options,
   disabled,
-}: RadioGroupProps) => {
+}: RadioGroupProps<T>) => {
   return (
     <div className='flex flex-col gap-4'>
       {options.map((opt) => (
