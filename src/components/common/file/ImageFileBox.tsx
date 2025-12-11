@@ -5,12 +5,18 @@ import {useRef} from 'react';
 interface ImageFileBoxProps {
   box: FileBoxType;
   onFilesChange: (id: string, files: File[]) => void;
+  disabled?: boolean;
 }
 
-export const ImageFileBox = ({box, onFilesChange}: ImageFileBoxProps) => {
+export const ImageFileBox = ({
+  box,
+  onFilesChange,
+  disabled,
+}: ImageFileBoxProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    if (disabled) return;
     e.preventDefault();
     const droppedFiles = Array.from(e.dataTransfer.files).filter((f) =>
       f.type.startsWith('image/')
@@ -18,9 +24,13 @@ export const ImageFileBox = ({box, onFilesChange}: ImageFileBoxProps) => {
     onFilesChange(box.id, droppedFiles);
   };
 
-  const handleClick = () => fileInputRef.current?.click();
+  const handleClick = () => {
+    if (disabled) return;
+    fileInputRef.current?.click();
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (disabled) return;
     if (e.target.files) {
       const newFiles = Array.from(e.target.files).filter((f) =>
         f.type.startsWith('image/')
