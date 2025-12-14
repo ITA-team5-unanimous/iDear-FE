@@ -1,6 +1,6 @@
 import {ROUTES} from '@/constants/routes';
 import {reissueToken} from '@/services/api/auth/authApi';
-import {API_BASE_URL} from '@/services/constant/endpoint';
+
 import axios from 'axios';
 
 // 토큰 재발급 mutex 처리를 위한 변수, 큐
@@ -13,7 +13,7 @@ const runQueue = () => {
 };
 
 export const axiosInstance = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
   headers: {'Content-Type': 'application/json'},
 });
 
