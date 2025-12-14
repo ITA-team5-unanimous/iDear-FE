@@ -1,5 +1,5 @@
 import {Meta, StoryObj} from '@storybook/nextjs';
-import {ContestCard} from '@/components/contest/ContestCard';
+import {ContestCard} from '@/app/contest/_components/ContestCard';
 
 // 컴포넌트에 대한 메타데이터 정의
 const meta: Meta<typeof ContestCard> = {

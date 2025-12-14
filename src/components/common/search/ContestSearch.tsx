@@ -1,7 +1,7 @@
 'use client';
 
 import {useSearchParams} from 'next/navigation';
-import {ContestCard} from '@/components/contest/ContestCard';
+import {ContestCard} from '@/app/contest/_components/ContestCard';
 import {mockContestCard} from '@/mocks/data/mockContestCard';
 import {Contest} from '@/schemas/contests';
 import {useMemo} from 'react';

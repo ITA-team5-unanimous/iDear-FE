@@ -1,27 +1,35 @@
 'use client';
 
 import {useState} from 'react';
-import {SortDropdown} from '@/components/dropdown/SortDropdown';
-import {DropdownOption} from '@/components/dropdown/DropdownOption';
+import {SortDropdown} from '@/app/contest/_components/dropdown/SortDropdown';
+import {DropdownOption} from '@/app/contest/_components/dropdown/DropdownOption';
 import {SORT_OPTIONS} from '@/constants/sort-option';
 
-export const SortDropdownContainer = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selectedKey, setSelectedKey] = useState<string>('latest');
+type SortType = 'latest' | 'popular' | 'deadline';
+interface SortDropdownContainerProps {
+  value: SortType;
+  onChange: (value: SortType) => void;
+}
 
-  const currentOption = SORT_OPTIONS.find((opt) => opt.key === selectedKey);
+export const SortDropdownContainer = ({
+  value,
+  onChange,
+}: SortDropdownContainerProps) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const currentOption = SORT_OPTIONS.find((opt) => opt.key === value);
   const currentLabel = currentOption ? currentOption.label : '정렬 선택';
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleOptionClick = (key: string) => {
-    setSelectedKey(key);
+  const handleOptionClick = (key: SortType) => {
+    onChange(key);
     setIsOpen(false);
   };
 
-  const menuOptions = SORT_OPTIONS.filter((opt) => opt.key !== selectedKey);
+  const menuOptions = SORT_OPTIONS.filter((opt) => opt.key !== value);
 
   return (
     <div className='relative'>
@@ -37,7 +45,7 @@ export const SortDropdownContainer = () => {
             <DropdownOption
               key={option.key}
               label={option.label}
-              onClick={() => handleOptionClick(option.key)}
+              onClick={() => handleOptionClick(option.key as SortType)}
               isLast={index === menuOptions.length - 1}
             />
           ))}

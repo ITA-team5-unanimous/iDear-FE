@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/nextjs';
-import {SaveButton} from '@/components/buttons/SaveButton';
+import {SaveButton} from '@/app/contest/_components/SaveButton';
 
 const meta: Meta<typeof SaveButton> = {
   title: 'Components/Buttons/Save Button',
