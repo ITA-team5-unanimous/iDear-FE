@@ -47,23 +47,18 @@ export const ContestCardSchema = z.object({
   title: z.string(),
   category: z.string(),
   host: z.string(),
-  imageUrl: z.string(),
+  imageUrl: z.string().nullish(),
   bookmarked: z.boolean(),
   dday: z.number(),
 });
 
-export const ContestPageSchema = z.object({
+export const ContestListSchema = z.object({
   totalElements: z.number(),
   totalPages: z.number(),
   content: z.array(ContestCardSchema),
 });
 
-export const ContestListResponseSchema = z.object({
-  status: z.string(),
-  code: z.string(),
-  message: z.string(),
-  data: ContestPageSchema,
-});
+export const ContestListResponseSchema = apiResponseSchema(ContestListSchema);
 
 export type PopularContestType = z.infer<typeof PopularContestSchema>;
 export type PopularContestResponse = z.infer<
