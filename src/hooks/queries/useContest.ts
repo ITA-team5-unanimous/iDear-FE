@@ -72,6 +72,7 @@ export const useAddBookMarkContest = (contestId: number) => {
     mutationFn: () => postBookMarkedContest(contestId),
     onSuccess: () => {
       queryClient.refetchQueries({queryKey: ['contestDetail', contestId]});
+      queryClient.refetchQueries({queryKey: ['contestList']});
     },
   });
 
@@ -85,6 +86,7 @@ export const useDeleteBookMarkContest = (contestId: number) => {
     mutationFn: () => deleteBookMarkedContest(contestId),
     onSuccess: () => {
       queryClient.refetchQueries({queryKey: ['contestDetail', contestId]});
+      queryClient.refetchQueries({queryKey: ['contestList']});
     },
   });
   return mutation;
