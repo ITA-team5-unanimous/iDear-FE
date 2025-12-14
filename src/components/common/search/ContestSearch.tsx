@@ -3,16 +3,17 @@
 import {useSearchParams} from 'next/navigation';
 import {ContestCard} from '@/app/contest/_components/ContestCard';
 import {mockContestCard} from '@/mocks/data/mockContestCard';
-import {Contest} from '@/schemas/contests';
+
 import {useMemo} from 'react';
 import {GlobalSearchBar} from '@/components/common/search/GlobalSearchBar';
 import {NoSearchResult} from '@/components/common/search/NoSearchResult';
+import {ContestCardType} from '@/schemas/contests';
 
 export const ContestSearch = () => {
   const searchParams = useSearchParams();
   const rawKeyword = searchParams.get('q') || '';
   const searchKeyword = rawKeyword.toLowerCase();
-  const contests: Contest[] = mockContestCard as Contest[];
+  const contests: ContestCardType[] = mockContestCard as ContestCardType[];
 
   // todo: change to real api get
   const filteredContests = useMemo(() => {
@@ -42,7 +43,7 @@ export const ContestSearch = () => {
         {hasResults ? (
           <div className='mt-9 grid grid-cols-2 gap-x-[40px] gap-y-9'>
             {filteredContests.map((contest) => (
-              <ContestCard key={contest.id} {...contest} />
+              <ContestCard key={contest.contestId} {...contest} />
             ))}
           </div>
         ) : (
