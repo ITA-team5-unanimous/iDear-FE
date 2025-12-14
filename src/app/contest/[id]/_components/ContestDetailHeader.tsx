@@ -1,6 +1,10 @@
 import {BackButton} from '@/components/buttons/BackButton';
 
-export const ContestDetailHeader = ({title}: {title: string}) => {
+interface ContestDetailHeaderProps {
+  title: string;
+}
+
+export const ContestDetailHeader = ({title}: ContestDetailHeaderProps) => {
   return (
     <>
       <BackButton />
