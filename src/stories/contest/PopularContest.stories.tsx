@@ -31,7 +31,7 @@ type Story = StoryObj<typeof PopularContest>;
 
 export const Default: Story = {
   args: {
-    id: 0,
+    contestId: 0,
     title: '2025년 [부산시민 모두를 위한 디지털 금융포용 정책 아이디어] 공모전',
     imageUrl:
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMKRY63t_07oVVNkww1iMbnsyiJcr5qzWhhg&s',
