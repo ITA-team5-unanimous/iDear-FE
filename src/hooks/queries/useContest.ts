@@ -3,6 +3,7 @@ import {
   getBookmarkedContestList,
   getContestDetail,
   getContestList,
+  getContestSearchResult,
   getPopularContest,
   postBookMarkedContest,
 } from '@/services/api/contest/contestApi';
@@ -90,4 +91,33 @@ export const useDeleteBookMarkContest = (contestId: number) => {
     },
   });
   return mutation;
+};
+
+export const useContestSearch = ({
+  keyword,
+  sortBy,
+}: {
+  keyword: string;
+  sortBy: SortType;
+}) => {
+  return useInfiniteQuery({
+    queryKey: ['contestSearch', keyword, sortBy],
+    queryFn: async ({pageParam = 0}) => {
+      const response = await getContestSearchResult({
+        keyword,
+        page: pageParam,
+        size: 10,
+        sortBy,
+      });
+
+      return response.data;
+    },
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage = allPages.length;
+      return nextPage < lastPage.totalPages ? nextPage : undefined;
+    },
+    enabled: !!keyword,
+    staleTime: 1000 * 60 * 5,
+  });
 };
