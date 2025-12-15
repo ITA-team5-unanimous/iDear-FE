@@ -72,6 +72,27 @@ export const getContestList = async ({
   return ContestListResponseSchema.parse(data);
 };
 
-export const getContestSearchResult = async () => {
-  //TODO: 공모전 검색 결과 페이지 API & refactor
+export const getContestSearchResult = async ({
+  keyword,
+  page = 0,
+  size = 20,
+  sortBy = 'latest',
+}: {
+  keyword: string;
+  page?: number;
+  size?: number;
+  sortBy?: string;
+}) => {
+  const {data} = await axiosInstance.get(API_ENDPOINTS.contest.search, {
+    params: {
+      keyword,
+      pageable: {
+        page,
+        size,
+        sort: [sortBy],
+      },
+    },
+  });
+
+  return ContestListResponseSchema.parse(data);
 };
