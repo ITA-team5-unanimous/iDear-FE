@@ -3,9 +3,7 @@
 import {useState} from 'react';
 import {SortDropdown} from '@/app/contest/_components/dropdown/SortDropdown';
 import {DropdownOption} from '@/app/contest/_components/dropdown/DropdownOption';
-import {SORT_OPTIONS} from '@/constants/sort-option';
-
-type SortType = 'latest' | 'popular' | 'deadline';
+import {SORT_OPTIONS, SortType} from '@/constants/sort-option';
 interface SortDropdownContainerProps {
   value: SortType;
   onChange: (value: SortType) => void;
@@ -45,7 +43,7 @@ export const SortDropdownContainer = ({
             <DropdownOption
               key={option.key}
               label={option.label}
-              onClick={() => handleOptionClick(option.key as SortType)}
+              onClick={() => handleOptionClick(option.key)}
               isLast={index === menuOptions.length - 1}
             />
           ))}
