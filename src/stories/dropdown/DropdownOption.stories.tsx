@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/nextjs';
-import {DropdownOption} from '@/components/dropdown/DropdownOption';
+import {DropdownOption} from '@/app/contest/_components/dropdown/DropdownOption';
 
 const meta: Meta<typeof DropdownOption> = {
   title: 'Components/Dropdown/Dropdown Option',

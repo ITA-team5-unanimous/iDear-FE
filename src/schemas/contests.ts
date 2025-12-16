@@ -5,25 +5,66 @@ import {z} from 'zod';
  * 추후 api 응답 데이터에 맞게 리팩토링 필요
  */
 
-export const contestSchema = z.object({
-  id: z.number(),
+// --- 공통 Response Wrapper ---
+export const apiResponseSchema = <T extends z.ZodTypeAny>(dataSchema: T) =>
+  z.object({
+    status: z.string(),
+    code: z.string(),
+    message: z.string(),
+    data: dataSchema,
+  });
+
+export const PopularContestSchema = z.object({
+  contestId: z.number(),
   title: z.string(),
-  hostingOrganization: z.string(),
   imageUrl: z.string().nullish(),
-  d_day: z.number(),
 });
 
-export const contestDetailSchema = z.object({
-  id: z.number(),
+export const PopularContestResponseSchema = apiResponseSchema(
+  z.array(PopularContestSchema)
+);
+
+export const ContestDetailSchema = z.object({
+  contestId: z.number().int(),
   title: z.string(),
-  startPeriod: z.string(),
-  endPeriod: z.string(),
-  hostingOrganization: z.string(),
-  managementOrganization: z.string(),
-  firstPrize: z.number(),
-  totalPrize: z.string(),
-  description: z.string(),
+  host: z.string(),
+  category: z.string(),
+  imageUrl: z.string().nullish(),
+  startDate: z.string(),
+  deadline: z.string(),
+  reward: z.string(),
+  description: z.string().nullish(),
+  homepageUrl: z.string().nullish(),
+  bookmarked: z.boolean(),
+  dday: z.number().int(),
 });
 
-export type Contest = z.infer<typeof contestSchema>;
-export type ContestDetail = z.infer<typeof contestDetailSchema>;
+export const ContestDetailResponseSchema =
+  apiResponseSchema(ContestDetailSchema);
+
+export const ContestCardSchema = z.object({
+  contestId: z.number(),
+  title: z.string(),
+  category: z.string(),
+  host: z.string(),
+  imageUrl: z.string().nullish(),
+  bookmarked: z.boolean(),
+  dday: z.number(),
+});
+
+export const ContestListSchema = z.object({
+  totalElements: z.number(),
+  totalPages: z.number(),
+  content: z.array(ContestCardSchema),
+});
+
+export const ContestListResponseSchema = apiResponseSchema(ContestListSchema);
+
+export type PopularContestType = z.infer<typeof PopularContestSchema>;
+export type PopularContestResponse = z.infer<
+  typeof PopularContestResponseSchema
+>;
+export type ContestDetailType = z.infer<typeof ContestDetailSchema>;
+export type ContestDetailResponse = z.infer<typeof ContestDetailResponseSchema>;
+export type ContestCardType = z.infer<typeof ContestCardSchema>;
+export type ContestListResponse = z.infer<typeof ContestListResponseSchema>;

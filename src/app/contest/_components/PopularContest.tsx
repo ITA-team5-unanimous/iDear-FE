@@ -1,19 +1,21 @@
 'use client';
 
-import {Contest} from '@/schemas/contests';
 import Image from 'next/image';
 import DefaultContestCard from '@/assets/default/default-contest-card.svg?url';
 import {useRouter} from 'next/navigation';
 import {ROUTES} from '@/constants/routes';
+import {PopularContestType} from '@/schemas/contests';
 
-type PopularContestProps = Pick<Contest, 'id' | 'title' | 'imageUrl'>;
-
-export const PopularContest = ({id, title, imageUrl}: PopularContestProps) => {
+export const PopularContest = ({
+  contestId,
+  title,
+  imageUrl,
+}: PopularContestType) => {
   const imageSource = imageUrl || DefaultContestCard;
   const router = useRouter();
 
   const handleCardClick = () => {
-    router.push(`${ROUTES.CONTEST}/${id}`);
+    router.push(`${ROUTES.CONTEST}/${contestId}`);
   };
 
   return (

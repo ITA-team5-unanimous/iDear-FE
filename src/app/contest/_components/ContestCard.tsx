@@ -4,33 +4,28 @@ import DefaultContestCard from '@/assets/default/default-contest-card.svg?url';
 import Image from 'next/image';
 import LikeIcon from '@/assets/contest/like-icon.svg';
 import GlobalButton from '@/components/buttons/GlobalButton';
-import {Contest} from '@/schemas/contests';
+import FilledLikeIcon from '@/assets/contest/filled-like.svg';
 import {useRouter} from 'next/navigation';
 import {ROUTES} from '@/constants/routes';
+import {ContestCardType} from '@/schemas/contests';
 
 export const ContestCard = ({
-  id,
+  contestId,
   title,
-  hostingOrganization,
-  d_day,
+  host,
+  dday,
+  bookmarked,
   imageUrl,
-}: Contest) => {
+}: ContestCardType) => {
   const router = useRouter();
 
   const handleCardClick = () => {
-    router.push(`${ROUTES.CONTEST}/${id}`);
-    //id 추후에 추가
+    router.push(`${ROUTES.CONTEST}/${contestId}`);
   };
 
   const handleRegisterClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    router.push(`${ROUTES.REGISTER}/${id}`);
-    console.log(`아이디어 등록하기 클릭: 공모전 ID ${id}의 등록 페이지로 이동`);
-  };
-
-  const handleLikeClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    alert(`ID: ${id}, 제목: ${title}을(를) 보관함에 추가합니다.`);
+    router.push(`${ROUTES.REGISTER}/${contestId}`);
   };
 
   return (
@@ -41,19 +36,16 @@ export const ContestCard = ({
       className='border-gray flex max-h-[363px] w-[680px] rounded-md border-[1px] p-12 shadow-md'>
       <div className='mr-9 flex-1'>
         <h1 className='h-[83px] max-w-[333px] text-2xl font-bold'>{title}</h1>
-        <p className='mt-6 text-xl text-black'>{hostingOrganization}</p>
+        <p className='mt-6 text-xl text-black'>{host}</p>
 
-        <p className='text-blue mt-6 text-xl font-bold'>D-{d_day}</p>
+        <p className='text-blue mt-6 text-xl font-bold'>D-{dday}</p>
         <div className='mt-9 flex'>
           <GlobalButton
             onClick={handleRegisterClick}
             text='아이디어 등록하기'
           />
-          <button
-            aria-label='좋아요'
-            onClick={handleLikeClick}
-            className='ml-6'>
-            <LikeIcon />
+          <button aria-label='좋아요' className='ml-6'>
+            {bookmarked ? <FilledLikeIcon /> : <LikeIcon />}
           </button>
         </div>
       </div>
