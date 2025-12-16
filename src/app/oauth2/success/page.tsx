@@ -17,7 +17,9 @@ export default function OAuth2SuccessPage() {
     (async () => {
       try {
         await reissueToken(refresh);
-        router.replace(ROUTES.COMPLETE);
+        // 개발모드 중 임시 주석 처리
+        // router.replace(ROUTES.COMPLETE);
+        alert('로그인 성공. 개발 모드 중입니다. /complete 경로로 이동');
       } catch {
         alert('로그인에 실패했습니다. 다시 시도해 주세요.');
         router.replace(ROUTES.AUTH);
