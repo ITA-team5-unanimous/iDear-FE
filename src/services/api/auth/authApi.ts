@@ -1,4 +1,5 @@
 import {API_ENDPOINTS} from '@/services/constant/endpoint';
+import {setAuthCookies} from '@/utils/auth/cookies';
 import axios from 'axios';
 
 export const reissueToken = async (refresh: string) => {
@@ -10,8 +11,7 @@ export const reissueToken = async (refresh: string) => {
 
   const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 
-  document.cookie = `access_token=${access}; path=/; expires=${expires.toUTCString()}; SameSite=Lax`;
-  document.cookie = `refresh_token=${newRefresh}; path=/; expires=${expires.toUTCString()}; SameSite=Lax`;
+  setAuthCookies(access, newRefresh, expires);
 
   return response.data;
 };
