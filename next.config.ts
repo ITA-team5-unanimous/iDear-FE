@@ -1,6 +1,9 @@
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
+  images: {
+    domains: ['api.linkareer.com'],
+  },
   webpack: (config) => {
     // @ts-expect-error ignore
     const fileLoaderRule = config.module.rules.find((rule) =>

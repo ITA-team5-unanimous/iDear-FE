@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/nextjs';
-import {SaveButton} from '@/components/buttons/SaveButton';
+import {SaveButton} from '@/app/contest/_components/SaveButton';
 
 const meta: Meta<typeof SaveButton> = {
   title: 'Components/Buttons/Save Button',
@@ -15,7 +15,7 @@ const meta: Meta<typeof SaveButton> = {
     },
   },
   argTypes: {
-    isOpen: {
+    active: {
       docs: {
         description: '버튼이 활성화 상태인지 여부',
       },
@@ -35,12 +35,12 @@ type Story = StoryObj<typeof SaveButton>;
 
 export const Default: Story = {
   args: {
-    isOpen: false,
+    active: false,
   },
 };
 
 export const Active: Story = {
   args: {
-    isOpen: true,
+    active: true,
   },
 };
