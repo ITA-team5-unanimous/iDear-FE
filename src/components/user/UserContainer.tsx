@@ -13,8 +13,7 @@ export const UserContainer = () => {
   const handleClick = (item: string) => {
     if (item === '고객센터') {
       router.push(ROUTES.SUPPORT);
-    }
-    if (item === '로그아웃') {
+    } else if (item === '로그아웃') {
       clearAuthCookies();
       // TODO: 로그아웃 모달로 변경?
       alert('로그아웃이 완료되었습니다.');
