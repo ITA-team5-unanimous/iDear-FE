@@ -3,6 +3,7 @@
 import {UserItem} from '@/components/user/UserItem';
 import {USER_OPTIONS} from '@/constants/gnb-option';
 import {ROUTES} from '@/constants/routes';
+import {clearAuthCookies} from '@/utils/auth/cookies';
 import {AnimatePresence, motion} from 'framer-motion';
 import {useRouter} from 'next/navigation';
 
@@ -11,9 +12,13 @@ export const UserContainer = () => {
 
   const handleClick = (item: string) => {
     if (item === '고객센터') {
-      router.push(`${ROUTES.SUPPORT}`);
+      router.push(ROUTES.SUPPORT);
+    } else if (item === '로그아웃') {
+      clearAuthCookies();
+      // TODO: 로그아웃 모달로 변경?
+      alert('로그아웃이 완료되었습니다.');
+      router.push(ROUTES.AUTH);
     }
-    // 공지사항, 로그아웃 추후 처리
   };
 
   return (

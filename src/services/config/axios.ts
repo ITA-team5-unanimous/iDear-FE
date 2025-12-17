@@ -1,5 +1,6 @@
 import {ROUTES} from '@/constants/routes';
 import {reissueToken} from '@/services/api/auth/authApi';
+import {clearAuthCookies, getCookie} from '@/utils/auth/cookies';
 
 import axios from 'axios';
 
@@ -19,10 +20,7 @@ export const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use((config) => {
   if (typeof document !== 'undefined') {
-    const token = document.cookie
-      .split('; ')
-      .find((row) => row.startsWith('access_token='))
-      ?.split('=')[1];
+    const token = getCookie('access_token');
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -50,10 +48,7 @@ axiosInstance.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        const refresh = document.cookie
-          .split('; ')
-          .find((row) => row.startsWith('refresh_token='))
-          ?.split('=')[1];
+        const refresh = getCookie('refresh_token');
 
         if (!refresh) throw new Error('No refresh token');
 
@@ -62,8 +57,7 @@ axiosInstance.interceptors.response.use(
         runQueue();
         return axiosInstance(originalRequest);
       } catch {
-        document.cookie = 'access_token=; Max-Age=0; path=/';
-        document.cookie = 'refresh_token=; Max-Age=0; path=/';
+        clearAuthCookies();
         window.location.href = ROUTES.AUTH;
       } finally {
         isRefreshing = false;
