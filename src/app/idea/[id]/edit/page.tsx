@@ -1,7 +1,7 @@
 import {IdeaDetailClient} from '@/app/idea/[id]/_components/IdeaDetailClient';
 import {mockIdeaDetail} from '@/mocks/data/mockIdeaData';
 
-export default function IdeaDetailViewPage() {
+export default function IdeaDetailEditPage() {
   const ideaDetail = mockIdeaDetail;
-  return <IdeaDetailClient ideaDetail={ideaDetail}></IdeaDetailClient>;
+  return <IdeaDetailClient ideaDetail={ideaDetail} />;
 }
