@@ -1,5 +1,5 @@
-import {AttachmentList} from '@/components/idea/AttachmentList';
-import {mockIdeaData} from '@/mocks/data/mockIdeaData';
+import {AttachmentList} from '@/app/idea/[id]/_components/AttachmentList';
+import {mockIdeaDetail} from '@/mocks/data/mockIdeaData';
 import {Meta, StoryObj} from '@storybook/nextjs';
 
 const meta: Meta<typeof AttachmentList> = {
@@ -25,7 +25,7 @@ type Story = StoryObj<typeof AttachmentList>;
 
 export const Default: Story = {
   args: {
-    attachments: mockIdeaData[0].attachments,
+    attachments: mockIdeaDetail.versions[0].attachments,
     isEditable: true,
   },
   render: (args) => <AttachmentList {...args} />,
