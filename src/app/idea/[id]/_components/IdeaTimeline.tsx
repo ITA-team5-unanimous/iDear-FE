@@ -12,7 +12,7 @@ export const IdeaTimeline = ({versions}: IdeaTimelineProps) => {
         {sortedVersions.map((version) => (
           <li
             key={version.version}
-            className='i grid h-[146px] grid-cols-[120px_40px_1fr] gap-12'>
+            className='grid h-[146px] grid-cols-[120px_40px_1fr] gap-12'>
             <div className='flex items-center text-xl font-medium'>
               <p>{version.registerDate}</p>
             </div>
