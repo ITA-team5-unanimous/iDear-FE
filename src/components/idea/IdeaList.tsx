@@ -21,7 +21,7 @@ export const IdeaList = ({ideas, totalItems}: IdeaListProps) => {
           key={idea.id}
           id={idea.id}
           title={idea.title}
-          hostingOrganization={idea.hostingOrganization}
+          host={idea.host}
           d_day={idea.d_day}
           registerDate={idea.registerDate}
         />

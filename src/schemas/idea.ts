@@ -12,19 +12,30 @@ export const attachmentSchema = z.object({
 /**
  * 아이디어 관련 스키마
  */
-export const ideaSchema = z.object({
-  id: z.number(),
-  title: z.string(),
+
+export const VersionSchema = z.object({
+  version: z.number(),
+  tags: z.array(z.string()).optional(),
   ideaTitle: z.string(),
-  ideaShortDescription: z.string(),
-  timeStamp: z.string(),
-  hostingOrganization: z.string(),
-  d_day: z.number(),
-  startPeriod: z.string(),
-  endPeriod: z.string(),
   registerDate: z.string(),
   description: z.string(),
   imageUrl: z.string().url().nullable(),
   attachments: z.array(attachmentSchema).optional(),
 });
+
+export const ideaSchema = z.object({
+  id: z.number(),
+  title: z.string(),
+  host: z.string(),
+  d_day: z.number(),
+  registerDate: z.string(),
+});
+
+export const ideaDetailSchema = z.object({
+  idea: ideaSchema,
+  versions: z.array(VersionSchema),
+});
+
+export type Version = z.infer<typeof VersionSchema>;
 export type Idea = z.infer<typeof ideaSchema>;
+export type IdeaDetail = z.infer<typeof ideaDetailSchema>;
