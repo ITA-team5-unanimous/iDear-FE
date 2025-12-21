@@ -50,7 +50,7 @@ export const IdeaDetailClient = ({ideaDetail}: IdeaDetailClientProps) => {
         </div>
       )}
 
-      {currentTab === 'timeline' && <IdeaTimeline versions={versions} />}
+      {currentTab === 'timeline' && <IdeaTimeline versions={sortedVersions} />}
     </div>
   );
 };

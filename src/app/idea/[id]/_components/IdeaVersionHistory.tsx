@@ -15,8 +15,6 @@ interface IdeaVersionHistoryProps {
 
 export const IdeaVersionHistory = ({versions}: IdeaVersionHistoryProps) => {
   const {currentVersion, setVersion} = useIdeaDetailStore();
-  const sortedVersions = [...versions].sort((a, b) => b.version - a.version);
-
   const [editingVersion, setEditingVersion] = useState<number | null>(null);
   const [inputValue, setInputValue] = useState<string>('');
 
@@ -40,7 +38,7 @@ export const IdeaVersionHistory = ({versions}: IdeaVersionHistoryProps) => {
 
   return (
     <div className='flex w-[304px] flex-col gap-4 rounded-xl border px-6 py-8'>
-      {sortedVersions.map((v) => {
+      {versions.map((v) => {
         const isOpen = v.version === currentVersion;
         const isEditing = editingVersion === v.version;
 
