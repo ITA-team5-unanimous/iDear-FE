@@ -65,7 +65,7 @@ export const IdeaVersionHistory = ({versions}: IdeaVersionHistoryProps) => {
                 isOpen ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'
               }`}>
               <div className='mt-3 flex flex-col gap-2'>
-                {(v.tags ?? ['']).map((tag) => (
+                {v.tags.map((tag) => (
                   <span
                     key={tag}
                     className='bg-primary-2 rounded-[4px] px-3 py-[10px] text-[16px]'>

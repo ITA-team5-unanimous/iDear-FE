@@ -7,7 +7,7 @@ interface IdeaTimelineProps {
 export const IdeaTimeline = ({versions}: IdeaTimelineProps) => {
   const sortedVersions = [...versions].sort((a, b) => b.version - a.version);
   return (
-    <section className='border-gray overflow-y-auto border-[1px] border-y'>
+    <section className='border-gray overflow-y-auto border-y'>
       <ul className='relative flex flex-col px-[117px] pb-[64px]'>
         {sortedVersions.map((version) => (
           <li
