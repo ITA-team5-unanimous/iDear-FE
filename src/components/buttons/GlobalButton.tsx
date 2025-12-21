@@ -22,7 +22,7 @@ export default function GlobalButton({
       onClick={onClick}
       type={type}
       className={clsx(
-        'flex w-[210px] flex-row justify-center gap-[10px] rounded-sm pt-3 pr-6 pb-3 pl-6 text-center text-lg font-bold text-white',
+        'flex w-[210px] flex-row items-center justify-center gap-[10px] rounded-sm pt-3 pr-6 pb-3 pl-6 text-center text-lg font-bold text-white',
         variant === 'primary' && 'bg-primary',
         variant === 'gray' && 'bg-gray'
       )}>
