@@ -1,8 +1,8 @@
 import IdearFace from '@/assets/logo/idear-face.svg';
 import {BackButton} from '@/components/buttons/BackButton';
 import {MainActionButton} from '@/components/buttons/MainActionButton';
-import {ConsultationCard} from '@/components/support/ConsultationCard';
-import {SupportCard} from '@/components/support/SupportCard';
+import {ConsultationCard} from '@/app/support/_components/ConsultationCard';
+import {SupportCard} from '@/app/support/_components/SupportCard';
 import {ROUTES} from '@/constants/routes';
 import {
   CONSULTATION_STEPS,

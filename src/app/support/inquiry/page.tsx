@@ -1,7 +1,7 @@
-import {InquiryList} from '@/components/support/inquiry/InquiryList';
+import {InquiryList} from '@/app/support/inquiry/[id]/_components/InquiryList';
+import {NoInquiryResult} from '@/app/support/inquiry/[id]/_components/NoInquiryResult';
 import {mockInquiryData} from '@/mocks/data/mockInquiryData';
 import {BackButton} from '@/components/buttons/BackButton';
-import {NoInquiryResult} from '@/components/support/inquiry/NoInquiryResult';
 import {GlobalPagination} from '@/components/common/pagination/GlobalPagination';
 
 type SearchParamsPromise = Promise<{page?: string}>;

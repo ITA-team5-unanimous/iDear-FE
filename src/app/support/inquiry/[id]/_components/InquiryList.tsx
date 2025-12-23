@@ -1,4 +1,4 @@
-import {InquiryItem} from '@/components/support/inquiry/InquiryItem';
+import {InquiryItem} from '@/app/support/inquiry/[id]/_components/InquiryItem';
 import {Inquiry} from '@/schemas/inquiry';
 
 interface InquiryListProps {

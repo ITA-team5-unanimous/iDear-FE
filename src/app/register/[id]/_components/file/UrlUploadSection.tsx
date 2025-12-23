@@ -1,3 +1,5 @@
+'use client';
+
 import {useState} from 'react';
 import {FileBox} from '@/app/register/[id]/_components/file/FileBox';
 import {ModalWrapper} from '@/components/common/wrappers/ModalWrapper';

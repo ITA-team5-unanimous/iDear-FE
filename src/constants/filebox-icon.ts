@@ -1,7 +1,7 @@
-import ImageIcon from '@/assets/register/image-icon.svg';
-import FileIcon from '@/assets/register/file-icon.svg';
-import GitHubIcon from '@/assets/register/github-icon.svg';
-import FigmaIcon from '@/assets/register/figma-icon.svg';
+import ImageIcon from '@/assets/idea/image.svg';
+import FileIcon from '@/assets/idea/file.svg';
+import GitHubIcon from '@/assets/idea/github.svg';
+import FigmaIcon from '@/assets/idea/figma.svg';
 
 export const FILE_BOX_ICONS = {
   image: ImageIcon,
