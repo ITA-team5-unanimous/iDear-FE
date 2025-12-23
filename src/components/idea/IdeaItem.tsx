@@ -8,7 +8,7 @@ import {ROUTES} from '@/constants/routes';
 interface IdeaItemProps {
   id: number;
   title: string;
-  hostingOrganization: string;
+  host: string;
   d_day: number;
   registerDate: string;
 }
@@ -16,7 +16,7 @@ interface IdeaItemProps {
 export const IdeaItem = ({
   id,
   title,
-  hostingOrganization,
+  host,
   d_day,
   registerDate,
 }: IdeaItemProps) => {
@@ -38,7 +38,7 @@ export const IdeaItem = ({
           className='truncate overflow-hidden text-2xl font-bold whitespace-nowrap'>
           {title}
         </strong>
-        <p className='mt-3 text-xl font-medium'>{hostingOrganization}</p>
+        <p className='mt-3 text-xl font-medium'>{host}</p>
         <DayBadge date={d_day} />
         <p className='text-xl font-medium'>등록 날짜 : {registerDate}</p>
       </div>
