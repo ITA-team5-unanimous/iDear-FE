@@ -3,7 +3,7 @@
 import {
   InquiryForm,
   InquiryFormData,
-} from '@/components/support/inquiry/InquiryForm';
+} from '@/app/support/inquiry/[id]/_components/InquiryForm';
 import {BackButton} from '@/components/buttons/BackButton';
 import {InquiryCompleteModal} from '@/components/common/modal/InquiryCompleteModal';
 import {ModalWrapper} from '@/components/common/wrappers/ModalWrapper';

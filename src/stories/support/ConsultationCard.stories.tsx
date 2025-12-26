@@ -1,5 +1,5 @@
 import {Meta, StoryObj} from '@storybook/nextjs';
-import {ConsultationCard} from '@/components/support/ConsultationCard';
+import {ConsultationCard} from '@/app/support/_components/ConsultationCard';
 import ConsultationIconFirst from '@/assets/support/consultation-1.svg';
 
 const meta: Meta<typeof ConsultationCard> = {

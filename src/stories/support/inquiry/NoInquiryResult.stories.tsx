@@ -1,5 +1,5 @@
 import {Meta, StoryObj} from '@storybook/nextjs';
-import {NoInquiryResult} from '@/components/support/inquiry/NoInquiryResult';
+import {NoInquiryResult} from '@/app/support/inquiry/[id]/_components/NoInquiryResult';
 
 const meta: Meta<typeof NoInquiryResult> = {
   title: 'Components/Support/Inquiry/No Inquiry Result',

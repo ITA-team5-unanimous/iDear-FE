@@ -1,5 +1,5 @@
 import {Meta, StoryObj} from '@storybook/nextjs';
-import {SupportCard} from '@/components/support/SupportCard';
+import {SupportCard} from '@/app/support/_components/SupportCard';
 
 const meta: Meta<typeof SupportCard> = {
   title: 'Components/Support/Support Card',

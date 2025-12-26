@@ -1,20 +1,17 @@
 'use client';
 
-import clsx from 'clsx';
 import GlobalButton from '@/components/buttons/GlobalButton';
 import {useState} from 'react';
+import {useParams, useRouter} from 'next/navigation';
 import {BackButton} from '@/components/buttons/BackButton';
-import {IdeaFormInput} from '@/components/register/IdeaFormInput';
-import {PlusButton} from '@/components/buttons/PlusButton';
-import {ImageFileBox} from '@/components/common/file/ImageFileBox';
-import {SingleFileBox} from '@/components/common/file/SingleFileBox';
-import {FileBoxType} from '@/schemas/support';
+import {IdeaFormInput} from '@/app/register/[id]/_components/IdeaFormInput';
+import {ImageUploadSection} from '@/app/register/[id]/_components/file/ImageUploadSection';
+import {FileUploadSection} from '@/app/register/[id]/_components/file/FileUploadSection';
+import {UrlUploadSection} from '@/app/register/[id]/_components/file/UrlUploadSection';
 import {RegisterCompleteModal} from '@/components/common/modal/RegisterCompleteModal';
 import {IdeaExitModal} from '@/components/common/modal/IdeaExitModal';
 import {IdeaAgreementModal} from '@/components/common/modal/IdeaAgreementModal';
 import {ModalWrapper} from '@/components/common/wrappers/ModalWrapper';
-import {useParams, useRouter} from 'next/navigation';
-import {v4 as uuidv4} from 'uuid';
 
 export default function IdeaRegisterPage() {
   const params = useParams();
@@ -22,57 +19,21 @@ export default function IdeaRegisterPage() {
   const {id} = params;
 
   const [ideaTitle, setIdeaTitle] = useState<string>('');
-  const [ideaShortDescription, setIdeaShortDescription] = useState<string>('');
   const [ideaDescription, setIdeaDescription] = useState<string>('');
   const [isAgreementModalOpen, setIsAgreementModalOpen] =
     useState<boolean>(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] =
     useState<boolean>(false);
   const [isExitModalOpen, setIsExitModalOpen] = useState<boolean>(false);
-  const [fileBoxes, setFileBoxes] = useState<FileBoxType[]>([
-    {id: uuidv4(), files: []},
-  ]);
-  const [singleFileBox, setSingleFileBox] = useState<FileBoxType>({
-    id: uuidv4(),
-    files: [],
-  });
-  const isSingleImage = fileBoxes.length === 1;
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIdeaTitle(e.target.value);
-  };
-
-  const handleShortDescriptionChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setIdeaShortDescription(e.target.value);
   };
 
   const handleDescriptionChange = (
     e: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     setIdeaDescription(e.target.value);
-  };
-
-  const handleAddBox = () => {
-    if (fileBoxes.length >= 4) return;
-
-    setFileBoxes((prev) => [...prev, {id: uuidv4(), files: []}]);
-  };
-
-  const handleFilesChange = (id: string, newFiles: File[]) => {
-    if (newFiles.length === 0) return;
-
-    setFileBoxes((prev) =>
-      prev.map((box) => (box.id === id ? {...box, files: [newFiles[0]]} : box))
-    );
-  };
-
-  const handleSingleFilesChange = (_id: string, newFiles: File | null) => {
-    setSingleFileBox((prev) => ({
-      ...prev,
-      files: newFiles ? [newFiles] : [],
-    }));
   };
 
   const handleClickCancel = () => {
@@ -95,11 +56,12 @@ export default function IdeaRegisterPage() {
   };
 
   return (
-    <div className='relative flex pt-14 pb-14 pl-41'>
+    <div className='relative flex justify-center pt-14 pb-14'>
       <BackButton />
-      <div className='border-gray flex h-full max-w-full flex-col rounded-[4px] border p-12'>
+
+      <div className='border-gray flex h-full w-[1400px] flex-col gap-12 rounded-sm border p-12'>
         <h1 className='flex flex-col text-[32px] font-bold'>아이디어 등록</h1>
-        <div className='mt-9 flex'>
+        <div className='flex'>
           <div>
             <IdeaFormInput
               label='아이디어 제목'
@@ -107,51 +69,26 @@ export default function IdeaRegisterPage() {
               onChange={handleTitleChange}
             />
           </div>
-          <div className='ml-36'>
-            <IdeaFormInput
-              onChange={handleShortDescriptionChange}
-              label='아이디어 한줄 소개'
-              value={ideaShortDescription}
-            />
-          </div>
         </div>
-        <div
-          className={clsx('mt-12 flex', {
-            'items-start gap-13': isSingleImage,
-            'flex-col gap-12': !isSingleImage,
-          })}>
-          <div className='flex flex-col'>
-            <p className='mb-4 text-2xl font-bold'>이미지 파일(최대 4장)</p>
-            <div className='flex flex-wrap items-center gap-10'>
-              {fileBoxes.map((box) => (
-                <ImageFileBox
-                  key={box.id}
-                  box={box}
-                  onFilesChange={handleFilesChange}
-                />
-              ))}
-              {fileBoxes.length < 4 && <PlusButton onClick={handleAddBox} />}
-            </div>
-          </div>
 
-          <div className='flex flex-col'>
-            <p className='mb-4 text-2xl font-bold'>파일 업로드</p>
-            <SingleFileBox
-              box={singleFileBox}
-              onFilesChange={handleSingleFilesChange}
-            />
-          </div>
-        </div>
         <div>
-          <p className='mt-12 text-2xl font-bold'>아이디어 설명</p>
+          <p className='text-2xl font-bold'>아이디어 설명</p>
           <textarea
-            className='border-primary mt-6 min-h-[249px] w-[1304px] resize-none rounded-lg border p-4 focus:outline-none'
+            className='border-primary mt-6 min-h-[249px] w-full resize-none rounded-lg border p-4 focus:outline-none'
             value={ideaDescription}
             onChange={handleDescriptionChange}
           />
         </div>
 
-        <div className='mt-12 flex flex-row justify-center gap-6'>
+        <ImageUploadSection />
+
+        <div className='flex flex-col gap-6'>
+          <p className='text-2xl font-bold'>파일 업로드</p>
+          <FileUploadSection />
+          <UrlUploadSection />
+        </div>
+
+        <div className='flex flex-row justify-center gap-6'>
           <GlobalButton
             aria-label='취소하기 버튼'
             text='취소하기'

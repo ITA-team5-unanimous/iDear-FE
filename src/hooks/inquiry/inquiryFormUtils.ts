@@ -1,7 +1,7 @@
 import {v4 as uuidv4} from 'uuid';
 import {FileBoxType} from '@/schemas/support';
 import {Inquiry} from '@/schemas/inquiry';
-import {InquiryFormData} from '@/components/support/inquiry/InquiryForm';
+import {InquiryFormData} from '@/app/support/inquiry/[id]/_components/InquiryForm';
 
 export const getInitialFileBoxes = (
   attachments?: FileBoxType[]

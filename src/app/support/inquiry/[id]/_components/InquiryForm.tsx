@@ -7,8 +7,8 @@ import {RadioGroup} from '@/components/common/radio/RadioGroup';
 import {ImageFileBox} from '@/components/common/file/ImageFileBox';
 import {PlusButton} from '@/components/buttons/PlusButton';
 import {FileBoxType} from '@/schemas/support';
-import {OccurredAtInput} from '@/components/support/inquiry/form/OccurredAtInput';
-import {TextAreaField} from '@/components/support/inquiry/form/TextAreaField';
+import {OccurredAtInput} from '@/app/support/inquiry/[id]/_components/form/OccurredAtInput';
+import {TextAreaField} from '@/app/support/inquiry/[id]/_components/form/TextAreaField';
 import {getInitialFileBoxes} from '@/hooks/inquiry/inquiryFormUtils';
 import GlobalButton from '@/components/buttons/GlobalButton';
 

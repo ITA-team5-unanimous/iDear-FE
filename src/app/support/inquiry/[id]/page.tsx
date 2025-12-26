@@ -1,5 +1,5 @@
 import {mockInquiryData} from '@/mocks/data/mockInquiryData';
-import InquiryDetailClient from '@/components/support/inquiry/InquiryDetailClient';
+import InquiryDetailClient from '@/app/support/inquiry/[id]/_components/InquiryDetailClient';
 
 type InquiryPageParamsPromise = Promise<{id: string}>;
 type InquiryPageSearchParamsPromise = Promise<
