@@ -24,7 +24,7 @@ export const FileBox = ({
     <div
       onClick={onClick}
       className={clsx(
-        'flex h-[65px] w-full items-center gap-3 rounded-lg border px-6',
+        'flex h-[65px] w-full items-center gap-3 rounded-lg border px-6 transition-colors',
         isSelected
           ? 'border-primary hover:bg-primary-2 hover:border-transparent'
           : 'border-primary border-dashed'
