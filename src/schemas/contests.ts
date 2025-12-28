@@ -1,18 +1,10 @@
+import {apiResponseSchema} from '@/schemas/response';
 import {z} from 'zod';
 
 /**
  * 공모전 관련 스키마
  * 추후 api 응답 데이터에 맞게 리팩토링 필요
  */
-
-// --- 공통 Response Wrapper ---
-export const apiResponseSchema = <T extends z.ZodTypeAny>(dataSchema: T) =>
-  z.object({
-    status: z.string(),
-    code: z.string(),
-    message: z.string(),
-    data: dataSchema,
-  });
 
 export const PopularContestSchema = z.object({
   contestId: z.number(),
