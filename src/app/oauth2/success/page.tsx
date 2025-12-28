@@ -2,7 +2,7 @@
 
 import {Spinner} from '@/components/common/ui/Spinner';
 import {ROUTES} from '@/constants/routes';
-import {reissueToken} from '@/services/api/auth/authApi';
+import {ensurePublicKey, reissueToken} from '@/services/api/auth/authApi';
 import {useRouter, useSearchParams} from 'next/navigation';
 import {useEffect} from 'react';
 
@@ -17,6 +17,8 @@ export default function OAuth2SuccessPage() {
     (async () => {
       try {
         await reissueToken(refresh);
+
+        await ensurePublicKey();
         router.replace(ROUTES.COMPLETE);
       } catch {
         alert('로그인에 실패했습니다. 다시 시도해 주세요.');
