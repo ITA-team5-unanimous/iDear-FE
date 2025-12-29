@@ -6,8 +6,8 @@ import {useState} from 'react';
 
 export const EmailChangeForm = () => {
   const [currentEmail, setCurrentEmail] = useState<string>('abcdefghi@naver');
-  const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState<string>('');
+  const [error, setError] = useState<string>('');
 
   const validateEmail = (value: string) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
