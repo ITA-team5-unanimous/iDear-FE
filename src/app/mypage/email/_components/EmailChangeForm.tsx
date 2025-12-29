@@ -2,12 +2,26 @@
 
 import {NewEmailInput} from '@/app/mypage/email/_components/NewEmailInput';
 import GlobalButton from '@/components/buttons/GlobalButton';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+import {getUsers} from '@/services/api/user/userApi';
 
 export const EmailChangeForm = () => {
-  const [currentEmail, setCurrentEmail] = useState<string>('abcdefghi@naver');
+  const [currentEmail, setCurrentEmail] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [error, setError] = useState<string>('');
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await getUsers();
+        setCurrentEmail(res.data.email);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   const validateEmail = (value: string) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -39,7 +53,7 @@ export const EmailChangeForm = () => {
   return (
     <div className='flex flex-col gap-6'>
       <div className='flex gap-3'>
-        <label className='text-gray text-xl'>현재 이메일</label>
+        <span className='text-gray text-xl'>현재 이메일</span>
         <span className='text-xl'>{currentEmail}</span>
       </div>
 
