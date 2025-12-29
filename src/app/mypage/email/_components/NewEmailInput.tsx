@@ -21,11 +21,7 @@ export const NewEmailInput = ({value, error, onChange}: NewEmailInputProps) => {
         )}
       />
 
-      {error && (
-        <span className='text-primary pt-3 text-xl'>
-          이메일 주소가 올바르지 않아요
-        </span>
-      )}
+      {error && <span className='text-primary pt-3 text-xl'>{error}</span>}
     </div>
   );
 };
