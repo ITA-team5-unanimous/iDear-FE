@@ -16,7 +16,9 @@ export const UserContainer = () => {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState<boolean>(false);
 
   const handleClick = (item: string) => {
-    if (item === '고객센터') {
+    if (item === '나의 계정') {
+      router.push(ROUTES.MYPAGE);
+    } else if (item === '고객센터') {
       router.push(ROUTES.SUPPORT);
     } else if (item === '로그아웃') {
       clearAuthCookies();
