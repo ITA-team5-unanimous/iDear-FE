@@ -9,4 +9,6 @@ export const ROUTES = {
   SUPPORT: '/support',
   SUPPORT_INQUIRY: '/support/inquiry',
   SUPPORT_INQUIRY_NEW: '/support/inquiry/new',
+  MYPAGE: '/mypage',
+  MYPAGE_EMAIL: '/mypage/email',
 };
