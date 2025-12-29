@@ -6,7 +6,7 @@ import {InquiryFormData} from '@/app/support/inquiry/[id]/_components/InquiryFor
 import {InquiryForm} from '@/app/support/inquiry/[id]/_components/InquiryForm';
 import {GlobalSmallButton} from '@/components/buttons/GlobalSmallButton';
 import {BackButton} from '@/components/buttons/BackButton';
-import {DeleteAlertModal} from '@/components/common/modal/DeleteAlertModal';
+import {DeleteAlertModal} from '@/components/common/modal/GlobalAlertModal';
 import {Inquiry} from '@/schemas/inquiry';
 import {ModalWrapper} from '@/components/common/wrappers/ModalWrapper';
 import {createInitialFormData} from '@/hooks/inquiry/inquiryFormUtils';
