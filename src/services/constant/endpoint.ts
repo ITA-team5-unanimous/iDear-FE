@@ -10,4 +10,9 @@ export const API_ENDPOINTS = {
     bookmarked: `/contests/bookmarks`,
     search: `contests/search`,
   },
+  user: {
+    users: `/users`,
+    userName: `/users/name`,
+    publicKey: `/users/public-key`,
+  },
 };
