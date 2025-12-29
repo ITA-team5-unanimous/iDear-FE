@@ -19,5 +19,5 @@ export const postPublicKey = async (publicKey: string): Promise<void> => {
     `${API_ENDPOINTS.user.publicKey}`,
     body
   );
-  PublicKeyResponseSchema.parse(response.data);
+  response.data && PublicKeyResponseSchema.parse(response.data);
 };
