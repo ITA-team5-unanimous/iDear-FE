@@ -4,27 +4,22 @@ import {DayBadge} from '@/components/badge/DayBadge';
 import DefaultContestCard from '@/assets/default/default-contest-card.svg';
 import {useRouter} from 'next/navigation';
 import {ROUTES} from '@/constants/routes';
-
-interface IdeaItemProps {
-  id: number;
-  title: string;
-  host: string;
-  d_day: number;
-  registerDate: string;
-}
+import {IdeaItem as IdeaType} from '@/schemas/idea';
 
 export const IdeaItem = ({
-  id,
+  ideaId,
   title,
   host,
-  d_day,
-  registerDate,
-}: IdeaItemProps) => {
+  dday,
+  requestedAt,
+}: IdeaType) => {
   const router = useRouter();
 
   const handleClickIdeaList = () => {
-    router.push(`${ROUTES.IDEA}/${id}`);
+    router.push(`${ROUTES.IDEA}/${ideaId}`);
   };
+
+  const formattedDate = requestedAt.split('T')[0];
 
   return (
     <div
@@ -39,8 +34,8 @@ export const IdeaItem = ({
           {title}
         </strong>
         <p className='mt-3 text-xl font-medium'>{host}</p>
-        <DayBadge date={d_day} />
-        <p className='text-xl font-medium'>등록 날짜 : {registerDate}</p>
+        <DayBadge date={dday} />
+        <p className='text-xl font-medium'>등록 날짜 : {formattedDate}</p>
       </div>
       <DefaultContestCard />
     </div>
