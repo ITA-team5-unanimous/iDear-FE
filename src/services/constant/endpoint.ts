@@ -15,4 +15,10 @@ export const API_ENDPOINTS = {
     userName: `/users/name`,
     publicKey: `/users/public-key`,
   },
+  idea: {
+    register: `/ideas`,
+    getIdeas: `/ideas`,
+    signatures: (ideaId: number) => `/ideas/${ideaId}/signatures`,
+    detail: (ideaId: number) => `/ideas/${ideaId}`,
+  },
 };
