@@ -10,11 +10,9 @@ export const signIdeaFiles = async (ideaId: number, files: IdeaFile[]) => {
     throw new Error('전자서명을 위한 개인키를 찾을 수 없습니다.');
   }
 
-  const timestamp = Date.now().toString();
-
   const signatures = await Promise.all(
     files.map(async (file) => {
-      const message = `${file.fileHash}|${timestamp}`;
+      const message = `${file.fileHash}|${file.timestamp}`;
 
       const userSignature = await signMessage(privateKey, message);
 
