@@ -1,11 +1,13 @@
 import {BackButton} from '@/components/buttons/BackButton';
 import ChevronRight from '@/assets/chevrons/chevron-right.svg';
-import {Idea} from '@/schemas/idea';
 import {useRouter} from 'next/navigation';
 import {ROUTES} from '@/constants/routes';
 
 interface IdeaDetailHeaderProps {
-  idea: Idea;
+  idea: {
+    id: number;
+    title: string;
+  };
 }
 
 export const IdeaDetailHeader = ({idea}: IdeaDetailHeaderProps) => {

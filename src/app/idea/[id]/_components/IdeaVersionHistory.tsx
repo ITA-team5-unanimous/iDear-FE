@@ -9,7 +9,7 @@ interface IdeaVersionHistoryProps {
   versions: {
     version: number;
     registerDate: string;
-    tags: string[];
+    tags?: string[];
   }[];
 }
 
@@ -31,9 +31,12 @@ export const IdeaVersionHistory = ({versions}: IdeaVersionHistoryProps) => {
 
     // TODO: api post
     console.log('추가할 태그:', inputValue);
-
     setEditingVersion(null);
     setInputValue('');
+  };
+
+  const formatDate = (dateString: string) => {
+    return dateString.split('T')[0].replace(/-/g, '.');
   };
 
   return (
@@ -41,6 +44,7 @@ export const IdeaVersionHistory = ({versions}: IdeaVersionHistoryProps) => {
       {versions.map((v) => {
         const isOpen = v.version === currentVersion;
         const isEditing = editingVersion === v.version;
+        const tags = v.tags ?? [];
 
         return (
           <div key={v.version} className='w-full'>
@@ -56,7 +60,7 @@ export const IdeaVersionHistory = ({versions}: IdeaVersionHistoryProps) => {
                 <ChevronRight />
               </span>
               <span>
-                ver.{v.version} ({v.registerDate})
+                ver.{v.version} ({formatDate(v.registerDate)})
               </span>
             </button>
 
@@ -65,7 +69,7 @@ export const IdeaVersionHistory = ({versions}: IdeaVersionHistoryProps) => {
                 isOpen ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'
               }`}>
               <div className='mt-3 flex flex-col gap-2'>
-                {v.tags.map((tag) => (
+                {tags.map((tag) => (
                   <span
                     key={tag}
                     className='bg-primary-2 rounded-[4px] px-3 py-[10px] text-[16px]'>

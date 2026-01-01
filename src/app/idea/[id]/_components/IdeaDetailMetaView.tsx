@@ -2,8 +2,7 @@
 
 import {GlobalSmallButton} from '@/components/buttons/GlobalSmallButton';
 import {AttachmentList} from '@/app/idea/[id]/_components/AttachmentList';
-import {Version} from '@/schemas/idea';
-import {isImageFile} from '@/utils/isImageFile';
+import {IdeaVersionDetail} from '@/schemas/idea';
 import {useParams, useRouter} from 'next/navigation';
 import {ROUTES} from '@/constants/routes';
 import GlobalButton from '@/components/buttons/GlobalButton';
@@ -13,7 +12,7 @@ import {DeleteAlertModal} from '@/components/common/modal/DeleteAlertModal';
 import {RegisterCompleteModal} from '@/components/common/modal/RegisterCompleteModal';
 
 interface IdeaDetailMetaViewProps {
-  version: Version;
+  version: IdeaVersionDetail;
   isEditable?: boolean;
 }
 
@@ -28,13 +27,17 @@ export const IdeaDetailMetaView = ({
   const [isRegisterCompleteModalOpen, setIsRegisterCompleteModalOpen] =
     useState<boolean>(false);
 
-  const imageAttachments = version.attachments?.filter((file) =>
-    isImageFile(file.name)
-  );
+  const imageAttachments = version.images.map((img) => ({
+    name: img.fileName,
+    url: img.filePath,
+  }));
 
-  const fileAttachments = version.attachments?.filter(
-    (file) => !isImageFile(file.name)
-  );
+  // 2. 파일 데이터 가공
+  const fileAttachments = version.files.map((file) => ({
+    name: file.fileName,
+    url: file.filePath,
+    status: file.status,
+  }));
 
   const handleEditMode = () => {
     router.push(`${ROUTES.IDEA}/${params.id}/edit`);
@@ -61,7 +64,7 @@ export const IdeaDetailMetaView = ({
       <div className='flex flex-col gap-6'>
         <div className='flex flex-row items-center justify-between'>
           <strong className='text-2xl font-bold'>
-            ver.{version.version} : {version.ideaTitle}
+            ver.{version.versionNumber} : {version.shortDescription}
           </strong>
           <div className='flex flex-row gap-4'>
             {!isEditable && (
@@ -72,7 +75,9 @@ export const IdeaDetailMetaView = ({
             )}
           </div>
         </div>
-        <p>등록 날짜 : {version.registerDate}</p>
+        <p>
+          등록 날짜 : {version.requestedAt.split('T')[0].replace(/-/g, '.')}
+        </p>
       </div>
 
       <div className='flex flex-col gap-6'>
