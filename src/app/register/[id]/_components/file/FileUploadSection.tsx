@@ -1,10 +1,14 @@
 'use client';
 
-import {useRef, useState} from 'react';
+import {useRef} from 'react';
 import {FileBox} from '@/app/register/[id]/_components/file/FileBox';
 
-export const FileUploadSection = () => {
-  const [file, setFile] = useState<File | null>(null);
+interface FileUploadSectionProps {
+  file: File | null;
+  setFile: React.Dispatch<React.SetStateAction<File | null>>;
+}
+
+export const FileUploadSection = ({file, setFile}: FileUploadSectionProps) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleClickAdd = () => {
