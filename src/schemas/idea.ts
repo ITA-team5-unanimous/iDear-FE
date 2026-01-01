@@ -107,18 +107,4 @@ export const attachmentSchema = z.object({
   size: z.number().optional(),
 });
 
-/**
- * 아이디어 관련 스키마
- */
-
-export const VersionSchema = z.object({
-  version: z.number(),
-  tags: z.array(z.string()).optional(),
-  ideaTitle: z.string(),
-  registerDate: z.string(),
-  description: z.string(),
-  imageUrl: z.string().url().nullable(),
-  attachments: z.array(attachmentSchema).optional(),
-});
-
-export type Version = z.infer<typeof VersionSchema>;
+export type Attachment = z.infer<typeof attachmentSchema>;

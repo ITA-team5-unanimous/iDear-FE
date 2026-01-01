@@ -8,6 +8,7 @@ import {IdeaDetailMetaView} from '@/app/idea/[id]/_components/IdeaDetailMetaView
 import {useParams, usePathname, useSearchParams} from 'next/navigation';
 import {IdeaTimeline} from '@/app/idea/[id]/_components/IdeaTimeline';
 import {useIdeaDetail} from '@/hooks/queries/useIdea';
+import {Spinner} from '@/components/common/ui/Spinner';
 
 export const IdeaDetailClient = () => {
   const {id} = useParams();
@@ -20,10 +21,10 @@ export const IdeaDetailClient = () => {
   const pathname = usePathname();
   const isEditable = pathname.endsWith('/edit');
 
-  if (isLoading) return;
+  if (isLoading) return <Spinner />;
   if (isError || !ideaDetail) return <p>아이디어를 찾을 수 없습니다.</p>;
 
-  const {ideaId: _id, title, versions} = ideaDetail;
+  const {title, versions} = ideaDetail;
 
   const sortedVersions = [...versions].sort(
     (a, b) => b.versionNumber - a.versionNumber
