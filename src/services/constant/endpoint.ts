@@ -20,5 +20,6 @@ export const API_ENDPOINTS = {
     getIdeas: `/ideas`,
     signatures: (ideaId: number) => `/ideas/${ideaId}/signatures`,
     detail: (ideaId: number) => `/ideas/${ideaId}`,
+    tags: (versionId: number) => `/idea-versions/${versionId}/tags`,
   },
 };
