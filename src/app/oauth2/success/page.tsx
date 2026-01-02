@@ -17,7 +17,6 @@ export default function OAuth2SuccessPage() {
     (async () => {
       try {
         await reissueToken(refresh);
-
         await ensurePublicKey();
         router.replace(ROUTES.COMPLETE);
       } catch {
