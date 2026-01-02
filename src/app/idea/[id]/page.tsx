@@ -1,4 +1,4 @@
-import {IdeaDetailClient} from './_components/IdeaDetailClient';
+import {IdeaDetailClient} from '@/app/idea/[id]/_components/IdeaDetailClient';
 
 export default function IdeaDetailViewPage() {
   return <IdeaDetailClient />;
