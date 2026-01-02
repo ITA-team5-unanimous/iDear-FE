@@ -40,6 +40,15 @@ export const IdeaDetailMetaView = ({
     status: file.status,
   }));
 
+  const linkAttachments = [
+    ...(version.githubUrl
+      ? [{name: version.githubUrl, url: version.githubUrl}]
+      : []),
+    ...(version.figmaUrl
+      ? [{name: version.figmaUrl, url: version.figmaUrl}]
+      : []),
+  ];
+
   const handleEditMode = () => {
     router.push(`${ROUTES.IDEA}/${params.id}/edit`);
   };
@@ -103,6 +112,14 @@ export const IdeaDetailMetaView = ({
       <div className='flex flex-col gap-6'>
         <strong className='text-2xl font-bold'>파일</strong>
         <AttachmentList attachments={fileAttachments} isEditable={isEditable} />
+        {linkAttachments.length > 0 && (
+          <>
+            <AttachmentList
+              attachments={linkAttachments}
+              isEditable={isEditable}
+            />
+          </>
+        )}
       </div>
       <div className='flex w-full justify-center'>
         {isEditable && <GlobalButton text='저장하기' onClick={handleSave} />}
