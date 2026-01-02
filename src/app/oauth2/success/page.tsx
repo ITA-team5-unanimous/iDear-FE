@@ -17,7 +17,6 @@ export default function OAuth2SuccessPage() {
     (async () => {
       try {
         await reissueToken(refresh);
-
         await ensurePublicKey();
         router.replace(ROUTES.COMPLETE);
       } catch {
@@ -28,4 +27,5 @@ export default function OAuth2SuccessPage() {
   }, [refresh, router]);
 
   return <Spinner />;
+
 }
