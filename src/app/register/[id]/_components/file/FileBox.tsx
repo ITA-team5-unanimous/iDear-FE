@@ -25,9 +25,7 @@ export const FileBox = ({
       onClick={onClick}
       className={clsx(
         'flex h-[65px] w-full items-center gap-3 rounded-lg border px-6 transition-colors',
-        isSelected
-          ? 'border-primary hover:bg-primary-2 hover:border-transparent'
-          : 'border-primary border-dashed'
+        isSelected ? 'border-primary' : 'border-primary border-dashed'
       )}>
       {Icon && <Icon />}
       <span className='text-xl'>{displayText ?? text}</span>

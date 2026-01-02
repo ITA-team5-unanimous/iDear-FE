@@ -4,9 +4,19 @@ import {useState} from 'react';
 import {FileBox} from '@/app/register/[id]/_components/file/FileBox';
 import {UrlAttachModal} from '@/app/register/[id]/_components/file/UrlAttachModal';
 
-export const UrlUploadSection = () => {
-  const [githubUrl, setGithubUrl] = useState<string | undefined>();
-  const [figmaUrl, setFigmaUrl] = useState<string | undefined>();
+interface UrlUploadSectionProps {
+  githubUrl: string | undefined;
+  setGithubUrl: React.Dispatch<React.SetStateAction<string | undefined>>;
+  figmaUrl: string | undefined;
+  setFigmaUrl: React.Dispatch<React.SetStateAction<string | undefined>>;
+}
+
+export const UrlUploadSection = ({
+  githubUrl,
+  setGithubUrl,
+  figmaUrl,
+  setFigmaUrl,
+}: UrlUploadSectionProps) => {
   const [activeType, setActiveType] = useState<'github' | 'figma' | null>(null);
 
   const handleConfirmUrl = (value: string) => {

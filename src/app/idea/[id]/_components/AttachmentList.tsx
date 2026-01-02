@@ -1,15 +1,15 @@
+import clsx from 'clsx';
 import FileIcon from '@/assets/idea/file.svg';
 import ImageIcon from '@/assets/idea/image.svg';
 import GithubIcon from '@/assets/idea/github.svg';
 import FigmaIcon from '@/assets/idea/figma.svg';
 import ChevronRight from '@/assets/chevrons/chevron-right.svg';
 import DeleteFileIcon from '@/assets/idea/delete-file.svg';
-import {Version} from '@/schemas/idea';
-import clsx from 'clsx';
+import {Attachment} from '@/schemas/idea';
 import {getAttachmentIconType} from '@/utils/getAttachmentIconType';
 
 interface AttachmentListProps {
-  attachments?: Version['attachments'];
+  attachments?: Attachment[];
   isEditable?: boolean;
   onDelete?: (fileName: string) => void;
 }

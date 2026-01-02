@@ -1,8 +1,8 @@
-import {IdeaItem} from '@/components/idea/IdeaItem';
-import {Idea} from '@/schemas/idea';
+import {IdeaItem} from '@/app/idea/_components/IdeaItem';
+import {IdeaItem as IdeaItemType} from '@/schemas/idea';
 
 interface IdeaListProps {
-  ideas: Idea[];
+  ideas: IdeaItemType[];
   totalItems: number;
 }
 
@@ -17,14 +17,7 @@ export const IdeaList = ({ideas, totalItems}: IdeaListProps) => {
       </div>
 
       {ideas.map((idea) => (
-        <IdeaItem
-          key={idea.id}
-          id={idea.id}
-          title={idea.title}
-          host={idea.host}
-          d_day={idea.d_day}
-          registerDate={idea.registerDate}
-        />
+        <IdeaItem key={idea.ideaId} {...idea} />
       ))}
     </section>
   );
