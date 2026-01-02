@@ -24,7 +24,7 @@ export const IdeaDetailClient = () => {
   if (isLoading) return <Spinner />;
   if (isError || !ideaDetail) return <p>아이디어를 찾을 수 없습니다.</p>;
 
-  const {title, versions} = ideaDetail;
+  const {versions, contestId, contestTitle} = ideaDetail;
 
   const sortedVersions = [...versions].sort(
     (a, b) => b.versionNumber - a.versionNumber
@@ -40,18 +40,13 @@ export const IdeaDetailClient = () => {
 
   return (
     <div className='relative flex flex-col gap-6 px-[164px] py-[54px]'>
-      <IdeaDetailHeader idea={{id: ideaId, title: title}} />
+      <IdeaDetailHeader contest={{id: contestId, title: contestTitle}} />
       <IdeaDetailTab />
 
       {currentTab === 'version' && (
         <div className='flex gap-6'>
           <div className='flex flex-col items-center gap-6'>
-            <IdeaVersionHistory
-              versions={sortedVersions.map(({versionNumber, requestedAt}) => ({
-                version: versionNumber,
-                registerDate: requestedAt,
-              }))}
-            />
+            <IdeaVersionHistory ideaId={ideaId} />
           </div>
           <IdeaDetailMetaView version={current} isEditable={isEditable} />
         </div>

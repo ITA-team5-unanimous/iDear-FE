@@ -7,6 +7,8 @@ import {
   IdeaListResponseSchema,
   IdeaDetailResponse,
   IdeaDetailResponseSchema,
+  IdeaTagCreateResponse,
+  IdeaTagCreateResponseSchema,
 } from '@/schemas/idea';
 import {axiosInstance} from '@/services/config/axios';
 import {API_ENDPOINTS} from '@/services/constant/endpoint';
@@ -54,4 +56,15 @@ export const getIdeaDetail = async (
   const {data} = await axiosInstance.get(API_ENDPOINTS.idea.detail(ideaId));
 
   return IdeaDetailResponseSchema.parse(data);
+};
+
+export const postIdeaVersionTag = async (
+  versionId: number,
+  tag: string
+): Promise<IdeaTagCreateResponse> => {
+  const {data} = await axiosInstance.post(API_ENDPOINTS.idea.tags(versionId), {
+    tag,
+  });
+
+  return IdeaTagCreateResponseSchema.parse(data);
 };

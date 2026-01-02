@@ -34,8 +34,9 @@ export const IdeaTimeline = ({versions}: IdeaTimelineProps) => {
                 ver.{version.versionNumber}.0
               </p>
               <p className='text-xl font-medium'>
-                {/* {version.tags?.length ? ` ${version.tags.join(' / ')}` : ''} */}
-                {version.shortDescription}
+                {version.tags?.length ? (
+                  <span>{version.tags.map((t) => t.tag).join(' / ')}</span>
+                ) : null}
               </p>
             </div>
           </li>

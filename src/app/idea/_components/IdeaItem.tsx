@@ -1,10 +1,11 @@
 'use client';
 
 import {DayBadge} from '@/components/badge/DayBadge';
-import DefaultContestCard from '@/assets/default/default-contest-card.svg';
+import DefaultContestCard from '@/assets/default/default-contest-card.svg?url';
 import {useRouter} from 'next/navigation';
 import {ROUTES} from '@/constants/routes';
 import {IdeaItem as IdeaType} from '@/schemas/idea';
+import Image from 'next/image';
 
 export const IdeaItem = ({
   ideaId,
@@ -12,6 +13,7 @@ export const IdeaItem = ({
   host,
   dday,
   requestedAt,
+  contestImageUrl,
 }: IdeaType) => {
   const router = useRouter();
 
@@ -37,7 +39,12 @@ export const IdeaItem = ({
         <DayBadge date={dday} />
         <p className='text-xl font-medium'>등록 날짜 : {formattedDate}</p>
       </div>
-      <DefaultContestCard />
+      <Image
+        src={contestImageUrl || DefaultContestCard}
+        alt={title}
+        height={270}
+        width={215}
+      />
     </div>
   );
 };
