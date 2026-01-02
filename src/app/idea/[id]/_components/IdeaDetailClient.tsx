@@ -46,7 +46,7 @@ export const IdeaDetailClient = () => {
       {currentTab === 'version' && (
         <div className='flex gap-6'>
           <div className='flex flex-col items-center gap-6'>
-            <IdeaVersionHistory ideaId={ideaId} versions={sortedVersions} />
+            <IdeaVersionHistory ideaId={ideaId} />
           </div>
           <IdeaDetailMetaView version={current} isEditable={isEditable} />
         </div>

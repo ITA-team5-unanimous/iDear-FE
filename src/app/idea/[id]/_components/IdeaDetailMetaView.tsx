@@ -113,12 +113,10 @@ export const IdeaDetailMetaView = ({
         <strong className='text-2xl font-bold'>파일</strong>
         <AttachmentList attachments={fileAttachments} isEditable={isEditable} />
         {linkAttachments.length > 0 && (
-          <>
-            <AttachmentList
-              attachments={linkAttachments}
-              isEditable={isEditable}
-            />
-          </>
+          <AttachmentList
+            attachments={linkAttachments}
+            isEditable={isEditable}
+          />
         )}
       </div>
       <div className='flex w-full justify-center'>

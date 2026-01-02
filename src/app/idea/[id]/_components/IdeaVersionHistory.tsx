@@ -5,11 +5,9 @@ import ChevronRight from '@/assets/chevrons/chevron-right.svg';
 import Plus from '@/assets/idea/add-plus.svg';
 import {useState} from 'react';
 import {useAddIdeaTag, useIdeaDetail} from '@/hooks/queries/useIdea';
-import {IdeaVersionDetail} from '@/schemas/idea';
 
 interface IdeaVersionHistoryProps {
   ideaId: number;
-  versions: IdeaVersionDetail[];
 }
 
 export const IdeaVersionHistory = ({ideaId}: IdeaVersionHistoryProps) => {
