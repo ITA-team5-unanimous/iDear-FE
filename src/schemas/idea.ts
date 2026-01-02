@@ -31,6 +31,12 @@ export const RegisteredFilesSchema = z.object({
   commit: z.string(),
 });
 
+export const IdeaVersionTagSchema = z.object({
+  ideaVersionTagId: z.number(),
+  tag: z.string().max(50),
+  addedAt: z.string(),
+});
+
 export const IdeaDetailFileSchema = z.object({
   fileName: z.string(),
   filePath: z.string(),
@@ -48,12 +54,14 @@ export const IdeaVersionDetailSchema = z.object({
   requestedAt: z.string(),
   files: z.array(IdeaDetailFileSchema),
   images: z.array(IdeaImageSchema),
+  tags: z.array(IdeaVersionTagSchema),
 });
 
 export const IdeaDetailDataSchema = z.object({
   ideaId: z.number(),
   title: z.string(),
-  contestId: z.number().nullable(),
+  contestId: z.number(),
+  contestTitle: z.string(),
   requestedAt: z.string(),
   versions: z.array(IdeaVersionDetailSchema),
 });
@@ -71,6 +79,7 @@ export const IdeaItemSchema = z.object({
   title: z.string(),
   host: z.string(),
   dday: z.number(),
+  contestImageUrl: z.string(),
   shortDescription: z.string(),
   requestedAt: z.string(),
   githubUrl: z.string().nullable(),
@@ -88,6 +97,8 @@ export const IdeaSignatureResponseSchema = apiResponseSchema(
   IdeaSignatureDataSchema
 );
 export const IdeaDetailResponseSchema = apiResponseSchema(IdeaDetailDataSchema);
+export const IdeaTagCreateResponseSchema =
+  apiResponseSchema(IdeaVersionTagSchema);
 
 export type IdeaFile = z.infer<typeof IdeaFileSchema>;
 export type IdeaRegisterResponse = z.infer<typeof IdeaRegisterResponseSchema>;
@@ -97,6 +108,8 @@ export type IdeaListResponse = z.infer<typeof IdeaListResponseSchema>;
 export type IdeaDetail = z.infer<typeof IdeaDetailDataSchema>;
 export type IdeaVersionDetail = z.infer<typeof IdeaVersionDetailSchema>;
 export type IdeaDetailResponse = z.infer<typeof IdeaDetailResponseSchema>;
+export type IdeaVersionTag = z.infer<typeof IdeaVersionTagSchema>;
+export type IdeaTagCreateResponse = z.infer<typeof IdeaTagCreateResponseSchema>;
 
 /**
  * 첨부파일 관련 스키마

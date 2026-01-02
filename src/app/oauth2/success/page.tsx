@@ -27,5 +27,4 @@ export default function OAuth2SuccessPage() {
   }, [refresh, router]);
 
   return <Spinner />;
-
 }
