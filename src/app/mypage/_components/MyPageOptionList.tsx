@@ -10,8 +10,12 @@ export const MyPageOptionList = () => {
   const handleClickEmail = () => {
     router.push(ROUTES.MYPAGE_EMAIL);
   };
-  const handleClickSetting = () => {};
-  const handleClickWithdraw = () => {};
+  const handleClickSetting = () => {
+    router.push(ROUTES.MYPAGE_ALARM);
+  };
+  const handleClickWithdraw = () => {
+    router.push(ROUTES.MYPAGE_WITHDRAW);
+  };
 
   return (
     <>

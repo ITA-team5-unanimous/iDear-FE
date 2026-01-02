@@ -6,10 +6,11 @@ import {InquiryFormData} from '@/app/support/inquiry/[id]/_components/InquiryFor
 import {InquiryForm} from '@/app/support/inquiry/[id]/_components/InquiryForm';
 import {GlobalSmallButton} from '@/components/buttons/GlobalSmallButton';
 import {BackButton} from '@/components/buttons/BackButton';
-import {DeleteAlertModal} from '@/components/common/modal/DeleteAlertModal';
+
 import {Inquiry} from '@/schemas/inquiry';
 import {ModalWrapper} from '@/components/common/wrappers/ModalWrapper';
 import {createInitialFormData} from '@/hooks/inquiry/inquiryFormUtils';
+import {GlobalAlertModal} from '@/components/common/modal/GlobalAlertModal';
 
 interface InquiryDetailClientProps {
   inquiry: Inquiry | null;
@@ -80,7 +81,10 @@ export default function InquiryDetailClient({
         <ModalWrapper
           isOpen={isDeleteModalOpen}
           onClose={() => setIsDeleteModalOpen(false)}>
-          <DeleteAlertModal
+          <GlobalAlertModal
+            withdrawText='계속 작성하기'
+            strongText='정말 삭제하시겠습니까?'
+            content='한 번 삭제하면 다시 되돌릴 수 없어요.'
             onClose={() => setIsDeleteModalOpen(false)}
             onContinue={() => setIsDeleteModalOpen(false)}
           />

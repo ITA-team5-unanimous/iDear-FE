@@ -21,3 +21,7 @@ export const postPublicKey = async (publicKey: string): Promise<void> => {
   );
   response.data && PublicKeyResponseSchema.parse(response.data);
 };
+
+export const deleteUser = async (): Promise<void> => {
+  await axiosInstance.delete(API_ENDPOINTS.user.users);
+};

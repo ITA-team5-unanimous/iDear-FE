@@ -9,8 +9,9 @@ import {ROUTES} from '@/constants/routes';
 import GlobalButton from '@/components/buttons/GlobalButton';
 import {useState} from 'react';
 import {ModalWrapper} from '@/components/common/wrappers/ModalWrapper';
-import {DeleteAlertModal} from '@/components/common/modal/DeleteAlertModal';
+
 import {RegisterCompleteModal} from '@/components/common/modal/RegisterCompleteModal';
+import {GlobalAlertModal} from '@/components/common/modal/GlobalAlertModal';
 
 interface IdeaDetailMetaViewProps {
   version: Version;
@@ -106,7 +107,10 @@ export const IdeaDetailMetaView = ({
         <ModalWrapper
           isOpen={isDeleteModalOpen}
           onClose={() => setIsDeleteModalOpen(false)}>
-          <DeleteAlertModal
+          <GlobalAlertModal
+            withdrawText='계속 작성하기'
+            strongText='정말 삭제하시겠습니까?'
+            content='한 번 삭제하면 다시 되돌릴 수 없어요.'
             onClose={handleConfirmDelete}
             onContinue={() => setIsDeleteModalOpen(false)}
           />

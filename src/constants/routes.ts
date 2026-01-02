@@ -11,4 +11,6 @@ export const ROUTES = {
   SUPPORT_INQUIRY_NEW: '/support/inquiry/new',
   MYPAGE: '/mypage',
   MYPAGE_EMAIL: '/mypage/email',
+  MYPAGE_ALARM: '/mypage/alarm-setting',
+  MYPAGE_WITHDRAW: '/mypage/withdraw-guide',
 };

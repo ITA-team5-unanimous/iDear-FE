@@ -1,8 +1,8 @@
 import {NavBar} from '@/components/layout/NavBar';
 
-export default function IdeaLayout({children}: {children: React.ReactNode}) {
+export default function MypageLayout({children}: {children: React.ReactNode}) {
   return (
-    <div>
+    <div className='flex min-h-screen flex-col'>
       <NavBar />
       <main>{children}</main>
     </div>
