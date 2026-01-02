@@ -99,9 +99,18 @@ export const IdeaRegisterClient = () => {
 
   const handleClickSave = () => {
     if (!id) return {};
-    if (!ideaTitle.trim()) return;
-    if (!ideaDescription.trim()) return;
-    if (!file) return;
+    if (!ideaTitle.trim()) {
+      alert('아이디어 제목을 입력해주세요.');
+      return;
+    }
+    if (!ideaDescription.trim()) {
+      alert('아이디어 설명을 입력해주세요.');
+      return;
+    }
+    if (!file) {
+      alert('파일을 첨부해주세요.');
+      return;
+    }
 
     setIsAgreementModalOpen(true);
   };
