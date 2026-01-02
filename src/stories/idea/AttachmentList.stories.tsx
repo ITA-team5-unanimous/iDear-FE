@@ -1,5 +1,4 @@
-import {AttachmentList} from '@/components/idea/AttachmentList';
-import {mockIdeaData} from '@/mocks/data/mockIdeaData';
+import {AttachmentList} from '@/app/idea/[id]/_components/AttachmentList';
 import {Meta, StoryObj} from '@storybook/nextjs';
 
 const meta: Meta<typeof AttachmentList> = {
@@ -25,8 +24,24 @@ type Story = StoryObj<typeof AttachmentList>;
 
 export const Default: Story = {
   args: {
-    attachments: mockIdeaData[0].attachments,
+    attachments: [
+      {
+        name: '기획서.pdf',
+        url: 'https://example.com/files/plan.pdf',
+      },
+      {
+        name: '와이어프레임.fig',
+        url: 'https://figma.com/file/xxxxx',
+      },
+      {
+        name: 'Github Repository',
+        url: 'https://github.com/example/repo',
+      },
+      {
+        name: '스크린샷.png',
+        url: 'https://example.com/images/screenshot.png',
+      },
+    ],
     isEditable: true,
   },
-  render: (args) => <AttachmentList {...args} />,
 };

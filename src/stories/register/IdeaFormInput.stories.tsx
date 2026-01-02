@@ -1,5 +1,5 @@
 import {Meta, StoryObj} from '@storybook/nextjs';
-import {IdeaFormInput} from '@/components/register/IdeaFormInput';
+import {IdeaFormInput} from '@/app/register/[id]/_components/IdeaFormInput';
 
 const meta: Meta<typeof IdeaFormInput> = {
   title: 'Components/Register/Idea Form Input',

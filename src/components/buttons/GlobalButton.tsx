@@ -7,6 +7,7 @@ interface GlobalButtonProps {
   icon?: React.ReactNode;
   variant?: 'primary' | 'gray';
   type?: 'button' | 'submit';
+  disabled?: boolean;
 }
 
 export default function GlobalButton({
@@ -15,14 +16,16 @@ export default function GlobalButton({
   icon,
   variant = 'primary',
   type = 'button',
+  disabled = false,
 }: GlobalButtonProps) {
   return (
     <button
       aria-label={text}
       onClick={onClick}
       type={type}
+      disabled={disabled}
       className={clsx(
-        'flex w-[210px] flex-row justify-center gap-[10px] rounded-sm pt-3 pr-6 pb-3 pl-6 text-center text-lg font-bold text-white',
+        'flex min-w-[210px] flex-row items-center justify-center gap-[10px] rounded-sm pt-3 pr-6 pb-3 pl-6 text-center text-xl font-bold text-white',
         variant === 'primary' && 'bg-primary',
         variant === 'gray' && 'bg-gray'
       )}>

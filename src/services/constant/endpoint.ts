@@ -10,4 +10,15 @@ export const API_ENDPOINTS = {
     bookmarked: `/contests/bookmarks`,
     search: `contests/search`,
   },
+  user: {
+    users: `/users`,
+    userName: `/users/name`,
+    publicKey: `/users/public-key`,
+  },
+  idea: {
+    register: `/ideas`,
+    getIdeas: `/ideas`,
+    signatures: (ideaId: number) => `/ideas/${ideaId}/signatures`,
+    detail: (ideaId: number) => `/ideas/${ideaId}`,
+  },
 };
