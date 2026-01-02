@@ -4,18 +4,18 @@ import {useRouter} from 'next/navigation';
 import {ROUTES} from '@/constants/routes';
 
 interface IdeaDetailHeaderProps {
-  idea: {
+  contest: {
     id: number;
     title: string;
   };
 }
 
-export const IdeaDetailHeader = ({idea}: IdeaDetailHeaderProps) => {
+export const IdeaDetailHeader = ({contest}: IdeaDetailHeaderProps) => {
   const router = useRouter();
 
   const handleChevronRightClick = () => {
     // TODO: 해당 아이디어의 공모전 상세 페이지로 이동
-    router.push(`${ROUTES.CONTEST}/${idea.id}`);
+    router.push(`${ROUTES.CONTEST}/${contest.id}`);
   };
 
   return (
@@ -25,7 +25,7 @@ export const IdeaDetailHeader = ({idea}: IdeaDetailHeaderProps) => {
         <p className='text-[32px] font-bold'>아이디어 기록함</p>
       </div>
       <div className='border-b-primary flex flex-row items-center justify-between border-b pb-4 text-[32px] font-bold'>
-        <h1>{idea.title}</h1>
+        <h1>{contest.title}</h1>
         <button
           type='button'
           onClick={handleChevronRightClick}
