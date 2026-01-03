@@ -15,6 +15,7 @@ import {IdeaExitModal} from '@/components/common/modal/IdeaExitModal';
 import {FileBoxType} from '@/schemas/support';
 import {useIdeaRegister} from '@/hooks/queries/useIdea';
 import {signIdeaFiles} from '@/services/crypto/signIdeaFiles';
+import {ROUTES} from '@/constants/routes';
 
 export const IdeaRegisterClient = () => {
   const {id} = useParams();
@@ -123,6 +124,7 @@ export const IdeaRegisterClient = () => {
   const handleClickRegister = () => {
     setIsRegisterModalOpen(false);
     setIsAgreementModalOpen(false);
+    router.push(`${ROUTES.IDEA}`);
   };
 
   return (
