@@ -9,12 +9,15 @@ import {SortDropdownContainer} from '@/app/contest/_components/dropdown/SortDrop
 import {useContestList} from '@/hooks/queries/useContest';
 import {useState} from 'react';
 import {useInfiniteScroll} from '@/hooks/ui/useInfiniteScroll';
+import {useScrollFixed} from '@/hooks/ui/useScrollFixed';
 
 export const ContestListClient = () => {
   const [sortBy, setSortBy] = useState<'latest' | 'popular' | 'deadline'>(
     'latest'
   );
   const [mode, setMode] = useState<'all' | 'bookmarked'>('all');
+
+  const isUpButtonFixed = useScrollFixed(2610);
 
   const {data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading} =
     useContestList(mode, sortBy);
@@ -67,7 +70,12 @@ export const ContestListClient = () => {
         loadMoreRef={loadMoreRef}
       />
 
-      <div className='absolute right-10 bottom-80 z-50'>
+      <div
+        className={`z-50 transition-all ${
+          isUpButtonFixed
+            ? 'fixed right-10 bottom-20'
+            : 'absolute right-10 bottom-80'
+        }`}>
         <UpFloatingButton />
       </div>
     </div>
