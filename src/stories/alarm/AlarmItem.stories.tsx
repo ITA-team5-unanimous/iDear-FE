@@ -28,6 +28,7 @@ type Story = StoryObj<typeof AlarmItem>;
 export const Default: Story = {
   args: {
     date: '2025-11-16',
+    content: '아이디어가 등록되었습니다. 내용이 맞는지 확인해주세요.',
     onDelete: () => {},
   },
   render: (args) => (
