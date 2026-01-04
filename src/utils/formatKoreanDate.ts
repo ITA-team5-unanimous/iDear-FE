@@ -11,3 +11,12 @@ export function formatKoreanDate(dateString: string): string {
 
   return `${month}월 ${day}일 (${weekday})`;
 }
+
+export const formatAlarmDate = (isoDate: string) => {
+  const date = new Date(isoDate);
+
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+
+  return `${month}월 ${day}일`;
+};
