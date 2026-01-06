@@ -8,6 +8,10 @@ import FilledLikeIcon from '@/assets/contest/filled-like.svg';
 import {useRouter} from 'next/navigation';
 import {ROUTES} from '@/constants/routes';
 import {ContestCardType} from '@/schemas/contests';
+import {
+  useAddBookMarkContest,
+  useDeleteBookMarkContest,
+} from '@/hooks/queries/useContest';
 
 export const ContestCard = ({
   contestId,
@@ -19,6 +23,9 @@ export const ContestCard = ({
 }: ContestCardType) => {
   const router = useRouter();
 
+  const {mutate: addBookmark} = useAddBookMarkContest(contestId);
+  const {mutate: deleteBookmark} = useDeleteBookMarkContest(contestId);
+
   const handleCardClick = () => {
     router.push(`${ROUTES.CONTEST}/${contestId}`);
   };
@@ -26,6 +33,16 @@ export const ContestCard = ({
   const handleRegisterClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     router.push(`${ROUTES.REGISTER}/${contestId}`);
+  };
+
+  const handleBookmarkClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+
+    if (bookmarked) {
+      deleteBookmark();
+    } else {
+      addBookmark();
+    }
   };
 
   return (
@@ -44,7 +61,10 @@ export const ContestCard = ({
             onClick={handleRegisterClick}
             text='아이디어 등록하기'
           />
-          <button aria-label='좋아요' className='ml-6'>
+          <button
+            aria-label='좋아요'
+            className='ml-6'
+            onClick={handleBookmarkClick}>
             {bookmarked ? <FilledLikeIcon /> : <LikeIcon />}
           </button>
         </div>
