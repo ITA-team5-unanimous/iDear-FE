@@ -32,7 +32,7 @@ export const FileBox = ({
           <Icon />
         </div>
       )}
-      <span className='line-clamp-2 min-w-0 flex-1 text-xl break-all'>
+      <span className='line-clamp-2 min-w-0 flex-1 text-xl font-medium break-all'>
         {displayText ?? text}
       </span>
     </div>

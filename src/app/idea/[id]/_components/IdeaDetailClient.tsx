@@ -36,11 +36,9 @@ export const IdeaDetailClient = () => {
   }
 
   const latestVersion = sortedVersions[0];
-
   const current =
     sortedVersions.find((v) => v.versionNumber === currentVersion) ??
     latestVersion;
-
   const isLatestVersion = current.versionNumber === latestVersion.versionNumber;
 
   return (
