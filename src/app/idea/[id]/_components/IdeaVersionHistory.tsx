@@ -5,6 +5,7 @@ import ChevronRight from '@/assets/chevrons/chevron-right.svg';
 import Plus from '@/assets/idea/add-plus.svg';
 import {useState} from 'react';
 import {useAddIdeaTag, useIdeaDetail} from '@/hooks/queries/useIdea';
+import {usePathname, useRouter} from 'next/navigation';
 
 interface IdeaVersionHistoryProps {
   ideaId: number;
@@ -18,6 +19,19 @@ export const IdeaVersionHistory = ({ideaId}: IdeaVersionHistoryProps) => {
   const {data, isLoading} = useIdeaDetail(ideaId);
   const versions = data?.versions ?? [];
   const {mutate: addTag} = useAddIdeaTag(ideaId);
+
+  const router = useRouter();
+  const pathname = usePathname();
+  const isEditMode = pathname.endsWith('/edit');
+
+  const handleClickVersion = (v: (typeof versions)[0], isOpen: boolean) => {
+    if (isEditMode) {
+      router.push(`/idea/${ideaId}`);
+      setVersion(v.versionNumber);
+      return;
+    }
+    setVersion(isOpen ? null : v.versionNumber);
+  };
 
   const handleAddTag = (versionId: number) => {
     setEditingVersionId(versionId);
@@ -56,7 +70,7 @@ export const IdeaVersionHistory = ({ideaId}: IdeaVersionHistoryProps) => {
         return (
           <div key={v.ideaVersionId} className='w-full'>
             <button
-              onClick={() => setVersion(isOpen ? null : v.versionNumber)}
+              onClick={() => handleClickVersion(v, isOpen)}
               className='flex w-full items-center gap-3 text-[16px] font-medium'>
               <span
                 className={`transition-transform duration-200 ${

@@ -13,12 +13,10 @@ export const IdeaMainClient = () => {
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get('page') ?? 1);
 
-  const {data: allIdeas} = useIdeaList();
+  const {data} = useIdeaList(currentPage - 1);
 
-  const totalItems = allIdeas?.length ?? 0;
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const currentItems =
-    allIdeas?.slice(startIndex, startIndex + ITEMS_PER_PAGE) ?? [];
+  const ideas = data?.content ?? [];
+  const totalItems = data?.totalElements ?? 0;
 
   return (
     <div className='flex flex-col items-center py-9'>
@@ -27,7 +25,7 @@ export const IdeaMainClient = () => {
         <GlobalSearchBar placeholder='내가 등록한 아이디어를 검색해 보세요!' />
       </header>
 
-      <IdeaList ideas={currentItems} totalItems={totalItems} />
+      <IdeaList ideas={ideas} totalItems={totalItems} />
 
       <GlobalPagination
         totalItems={totalItems}

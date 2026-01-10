@@ -1,5 +1,5 @@
 import {Meta, StoryObj} from '@storybook/nextjs';
-import {FileBox} from '@/app/register/[id]/_components/file/FileBox';
+import {FileBox} from '@/components/common/file/FileBox';
 
 const meta: Meta<typeof FileBox> = {
   title: 'Components/Register/File Box',

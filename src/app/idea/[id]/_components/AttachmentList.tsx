@@ -11,7 +11,7 @@ import {getAttachmentIconType} from '@/utils/getAttachmentIconType';
 interface AttachmentListProps {
   attachments?: Attachment[];
   isEditable?: boolean;
-  onDelete?: (fileName: string) => void;
+  onDelete?: (index: number) => void;
 }
 
 export const AttachmentList = ({
@@ -22,7 +22,7 @@ export const AttachmentList = ({
   if (!attachments || attachments.length === 0) return <>파일이 없습니다.</>;
 
   return (
-    <ul className='flex flex-col gap-4'>
+    <ul className='flex flex-col gap-6'>
       {attachments.map((file, idx) => {
         const iconType = getAttachmentIconType(file.name, file.url);
 
@@ -39,9 +39,9 @@ export const AttachmentList = ({
 
         return (
           <li
-            key={idx}
+            key={`${file.name}-${idx}`}
             className={clsx(
-              'border-primary flex max-w-full flex-row items-center gap-[23px] border py-3 pl-4',
+              'border-primary flex h-[65px] max-w-full flex-row items-center gap-[23px] rounded-sm border py-3 pl-4',
               isEditable ? 'pr-[23px]' : 'pr-[71.25px]'
             )}>
             <Icon />
@@ -51,11 +51,13 @@ export const AttachmentList = ({
                 href={file.url}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='flex-1 text-xl font-medium underline'>
+                className='line-clamp-2 min-w-0 flex-1 text-xl font-medium break-all underline'>
                 {file.name}
               </a>
             ) : (
-              <span className='flex-1 text-xl font-medium'>{file.name}</span>
+              <span className='line-clamp-2 min-w-0 flex-1 text-xl font-medium break-all'>
+                {file.name}
+              </span>
             )}
 
             {!isLink && (
@@ -79,7 +81,7 @@ export const AttachmentList = ({
             {isEditable && (
               <button
                 aria-label='첨부파일 삭제'
-                onClick={() => onDelete?.(file.name)}>
+                onClick={() => onDelete?.(idx)}>
                 <DeleteFileIcon />
               </button>
             )}

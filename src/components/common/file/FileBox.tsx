@@ -24,11 +24,17 @@ export const FileBox = ({
     <div
       onClick={onClick}
       className={clsx(
-        'flex h-[65px] w-full items-center gap-3 rounded-lg border px-6 transition-colors',
+        'flex h-[65px] w-full items-center gap-3 rounded-sm border px-6 transition-colors',
         isSelected ? 'border-primary' : 'border-primary border-dashed'
       )}>
-      {Icon && <Icon />}
-      <span className='text-xl'>{displayText ?? text}</span>
+      {Icon && (
+        <div className='flex-shrink-0'>
+          <Icon />
+        </div>
+      )}
+      <span className='line-clamp-2 min-w-0 flex-1 text-xl font-medium break-all'>
+        {displayText ?? text}
+      </span>
     </div>
   );
 };
