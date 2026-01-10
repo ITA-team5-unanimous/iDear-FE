@@ -77,9 +77,9 @@ export const IdeaItemSchema = z.object({
   ideaVersionId: z.number(),
   versionNumber: z.number(),
   title: z.string(),
-  host: z.string(),
-  dday: z.number(),
-  contestImageUrl: z.string(),
+  host: z.string().nullable(),
+  dday: z.number().nullable(),
+  contestImageUrl: z.string().nullable(),
   shortDescription: z.string(),
   requestedAt: z.string(),
   githubUrl: z.string().nullable(),
@@ -87,9 +87,19 @@ export const IdeaItemSchema = z.object({
   images: z.array(IdeaImageSchema),
 });
 
-export const IdeaListResponseSchema = apiResponseSchema(
-  z.array(IdeaItemSchema)
-);
+export const IdeaPageDataSchema = z.object({
+  content: z.array(IdeaItemSchema),
+  totalElements: z.number(),
+  totalPages: z.number(),
+  number: z.number(),
+  size: z.number(),
+  first: z.boolean(),
+  last: z.boolean(),
+  numberOfElements: z.number(),
+  empty: z.boolean(),
+});
+
+export const IdeaListResponseSchema = apiResponseSchema(IdeaPageDataSchema);
 export const IdeaRegisterResponseSchema = apiResponseSchema(
   IdeaRegisterDataSchema
 );
@@ -99,12 +109,11 @@ export const IdeaSignatureResponseSchema = apiResponseSchema(
 export const IdeaDetailResponseSchema = apiResponseSchema(IdeaDetailDataSchema);
 export const IdeaTagCreateResponseSchema =
   apiResponseSchema(IdeaVersionTagSchema);
-
+export type IdeaListResponse = z.infer<typeof IdeaListResponseSchema>;
 export type IdeaFile = z.infer<typeof IdeaFileSchema>;
 export type IdeaRegisterResponse = z.infer<typeof IdeaRegisterResponseSchema>;
 export type IdeaSignatureResponse = z.infer<typeof IdeaSignatureResponseSchema>;
 export type IdeaItem = z.infer<typeof IdeaItemSchema>;
-export type IdeaListResponse = z.infer<typeof IdeaListResponseSchema>;
 export type IdeaDetail = z.infer<typeof IdeaDetailDataSchema>;
 export type IdeaVersionDetail = z.infer<typeof IdeaVersionDetailSchema>;
 export type IdeaDetailResponse = z.infer<typeof IdeaDetailResponseSchema>;

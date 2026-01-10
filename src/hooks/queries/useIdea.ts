@@ -17,10 +17,10 @@ export const useIdeaRegister = () => {
   });
 };
 
-export const useIdeaList = () => {
+export const useIdeaList = (page: number) => {
   return useQuery({
-    queryKey: ['ideasList'],
-    queryFn: getIdeas,
+    queryKey: ['ideasList', page],
+    queryFn: () => getIdeas(page),
     select: (response) => response.data,
     staleTime: 1000 * 60 * 5,
   });
