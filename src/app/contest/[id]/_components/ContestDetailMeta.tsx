@@ -51,7 +51,7 @@ export const ContestDetailMeta = ({
           <div className='flex flex-row items-center gap-[75px]'>
             <DayBadge date={contest.dday} />
             <h3 className='text-xl font-normal'>
-              {formatKoreanDate(contest.startDate)} ~{' '}
+              {formatKoreanDate(contest.startDate)} ~
               {formatKoreanDate(contest.deadline)}
             </h3>
           </div>
@@ -63,20 +63,12 @@ export const ContestDetailMeta = ({
             <p>주최</p>
             <p>{contest.host}</p>
           </div>
-          <div className='flex flex-row gap-[138px] text-xl font-normal'>
-            <p>주관</p>
-            <p>{contest.host}</p>
-          </div>
         </div>
 
         <div className='flex flex-col gap-4'>
           <h2 className='text-2xl font-bold'>시상</h2>
-          <div className='flex flex-row gap-[90px] text-xl font-normal'>
-            <p>1등시상금</p>
-            <p>{contest.reward}</p>
-          </div>
-          <div className='flex flex-row gap-[103px] text-xl font-normal'>
-            <p>총시상금</p>
+          <div className='flex flex-row gap-[120px] text-xl font-normal'>
+            <p>시상금</p>
             <p>{contest.reward}</p>
           </div>
         </div>
