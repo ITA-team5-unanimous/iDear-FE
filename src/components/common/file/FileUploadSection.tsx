@@ -1,7 +1,7 @@
 'use client';
 
 import {useRef} from 'react';
-import {FileBox} from '@/app/register/[id]/_components/file/FileBox';
+import {FileBox} from '@/components/common/file/FileBox';
 
 interface FileUploadSectionProps {
   file: File | null;
