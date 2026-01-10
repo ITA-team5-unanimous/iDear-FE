@@ -1,5 +1,5 @@
 import {Meta, StoryObj} from '@storybook/nextjs';
-import {UrlAttachModal} from '@/app/register/[id]/_components/file/UrlAttachModal';
+import {UrlAttachModal} from '@/components/common/file/UrlAttachModal';
 
 const meta: Meta<typeof UrlAttachModal> = {
   title: 'Components/Register/Url Attach Modal',
