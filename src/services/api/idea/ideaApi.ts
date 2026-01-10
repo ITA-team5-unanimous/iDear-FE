@@ -9,6 +9,8 @@ import {
   IdeaDetailResponseSchema,
   IdeaTagCreateResponse,
   IdeaTagCreateResponseSchema,
+  IdeaUpdateResponse,
+  IdeaUpdateResponseSchema,
 } from '@/schemas/idea';
 import {axiosInstance} from '@/services/config/axios';
 import {API_ENDPOINTS} from '@/services/constant/endpoint';
@@ -71,4 +73,27 @@ export const postIdeaVersionTag = async (
   });
 
   return IdeaTagCreateResponseSchema.parse(data);
+};
+
+export const patchIdea = async (
+  ideaId: number,
+  formData: FormData
+): Promise<IdeaUpdateResponse> => {
+  const {data} = await axiosInstance.patch(
+    API_ENDPOINTS.idea.edit(ideaId),
+    formData,
+    {
+      headers: {
+        'Content-Type': undefined,
+      },
+    }
+  );
+
+  return IdeaUpdateResponseSchema.parse(data);
+};
+
+export const deleteIdea = async (ideaId: number) => {
+  const {data} = await axiosInstance.delete(API_ENDPOINTS.idea.detail(ideaId));
+
+  return data;
 };

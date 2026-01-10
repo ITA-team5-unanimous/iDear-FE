@@ -12,6 +12,8 @@ import {EditCompleteModal} from '@/components/common/modal/EditCompleteModal';
 import {FileUploadSection} from '@/components/common/file/FileUploadSection';
 import {ImageUploadSection} from '@/components/common/file/ImageUploadSection';
 import {UrlUploadSection} from '@/components/common/file/UrlUploadSection';
+import {useIdeaUpdate} from '@/hooks/queries/useIdea';
+import {signIdeaFiles} from '@/services/crypto/signIdeaFiles';
 
 interface IdeaDetailMetaEditProps {
   version: IdeaVersionDetail;
@@ -20,8 +22,10 @@ interface IdeaDetailMetaEditProps {
 export const IdeaDetailMetaEdit = ({version}: IdeaDetailMetaEditProps) => {
   const router = useRouter();
   const params = useParams();
+  const ideaId = Number(params.id);
+  const {mutateAsync: updateIdea} = useIdeaUpdate(ideaId);
 
-  const [title, setTitle] = useState<string>(version.shortDescription);
+  const [title, setTitle] = useState<string>(version.title);
   const [description, setDescription] = useState<string>(version.description);
   const [isEditCompleteModalOpen, setIsEditCompleteModalOpen] =
     useState<boolean>(false);
@@ -31,6 +35,8 @@ export const IdeaDetailMetaEdit = ({version}: IdeaDetailMetaEditProps) => {
   const [githubUrl, setGithubUrl] = useState<string | undefined>(
     version.githubUrl ?? undefined
   );
+  const [deleteFileIds, setDeleteFileIds] = useState<number[]>([]);
+  const [deleteImageIds, setDeleteImageIds] = useState<number[]>([]);
   const [figmaUrl, setFigmaUrl] = useState<string | undefined>(
     version.figmaUrl ?? undefined
   );
@@ -50,6 +56,55 @@ export const IdeaDetailMetaEdit = ({version}: IdeaDetailMetaEditProps) => {
 
   const isFileChanged = file !== null || isFileDeleted;
 
+  const handleSubmit = async () => {
+    const formData = new FormData();
+
+    const ideaData = {
+      title,
+      shortDescription: title.slice(0, 50),
+      description,
+      githubUrl,
+      figmaUrl,
+      deleteFileIds,
+      deleteImageIds,
+    };
+
+    formData.append(
+      'ideaData',
+      new Blob([JSON.stringify(ideaData)], {
+        type: 'application/json',
+      })
+    );
+
+    if (file) {
+      formData.append('files', file);
+    }
+
+    images.forEach((imageBox) => {
+      imageBox.files.forEach((imgFile) => {
+        formData.append('images', imgFile);
+      });
+    });
+
+    if (isFileDeleted) {
+      formData.append('isFileDeleted', 'true');
+    }
+
+    try {
+      const response = await updateIdea(formData);
+
+      if (response.status === 'success') {
+        if (response.data?.files && response.data.files.length > 0) {
+          await signIdeaFiles(response.data.ideaId, response.data.files);
+        }
+        setIsEditCompleteModalOpen(true);
+      }
+    } catch (e) {
+      console.error(e);
+      alert('수정 중 오류가 발생했습니다.');
+    }
+  };
+
   const handleSave = () => {
     if (
       !title.trim() ||
@@ -60,7 +115,7 @@ export const IdeaDetailMetaEdit = ({version}: IdeaDetailMetaEditProps) => {
       return;
     }
 
-    setIsEditCompleteModalOpen(true);
+    handleSubmit();
   };
 
   const handleCorfirmSave = () => {

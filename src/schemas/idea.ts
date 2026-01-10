@@ -47,6 +47,7 @@ export const IdeaDetailFileSchema = z.object({
 export const IdeaVersionDetailSchema = z.object({
   ideaVersionId: z.number(),
   versionNumber: z.number(),
+  title: z.string(),
   shortDescription: z.string(),
   description: z.string(),
   githubUrl: z.string().nullable(),
@@ -59,7 +60,6 @@ export const IdeaVersionDetailSchema = z.object({
 
 export const IdeaDetailDataSchema = z.object({
   ideaId: z.number(),
-  title: z.string(),
   contestId: z.number(),
   contestTitle: z.string(),
   requestedAt: z.string(),
@@ -99,6 +99,23 @@ export const IdeaPageDataSchema = z.object({
   empty: z.boolean(),
 });
 
+export const IdeaUpdateRequestSchema = z.object({
+  deleteFileIds: z.array(z.number()).optional(),
+  deleteImageIds: z.array(z.number()).optional(),
+  title: z.string(),
+  shortDescription: z.string(),
+  description: z.string().min(1),
+  githubUrl: z.string().nullable().optional(),
+  figmaUrl: z.string().nullable().optional(),
+});
+
+export const IdeaUpdateResponseDataSchema = z.object({
+  ideaId: z.number(),
+  versionNumber: z.number(),
+  updatedAt: z.string(),
+  files: z.array(IdeaFileSchema),
+});
+
 export const IdeaListResponseSchema = apiResponseSchema(IdeaPageDataSchema);
 export const IdeaRegisterResponseSchema = apiResponseSchema(
   IdeaRegisterDataSchema
@@ -107,8 +124,12 @@ export const IdeaSignatureResponseSchema = apiResponseSchema(
   IdeaSignatureDataSchema
 );
 export const IdeaDetailResponseSchema = apiResponseSchema(IdeaDetailDataSchema);
+export const IdeaUpdateResponseSchema = apiResponseSchema(
+  IdeaUpdateResponseDataSchema
+);
 export const IdeaTagCreateResponseSchema =
   apiResponseSchema(IdeaVersionTagSchema);
+
 export type IdeaListResponse = z.infer<typeof IdeaListResponseSchema>;
 export type IdeaFile = z.infer<typeof IdeaFileSchema>;
 export type IdeaRegisterResponse = z.infer<typeof IdeaRegisterResponseSchema>;
@@ -119,6 +140,7 @@ export type IdeaVersionDetail = z.infer<typeof IdeaVersionDetailSchema>;
 export type IdeaDetailResponse = z.infer<typeof IdeaDetailResponseSchema>;
 export type IdeaVersionTag = z.infer<typeof IdeaVersionTagSchema>;
 export type IdeaTagCreateResponse = z.infer<typeof IdeaTagCreateResponseSchema>;
+export type IdeaUpdateResponse = z.infer<typeof IdeaUpdateResponseSchema>;
 
 /**
  * 첨부파일 관련 스키마

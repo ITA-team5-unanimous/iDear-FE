@@ -3,6 +3,8 @@ import {
   getIdeas,
   getIdeaDetail,
   postIdeaVersionTag,
+  patchIdea,
+  deleteIdea,
 } from '@/services/api/idea/ideaApi';
 import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query';
 
@@ -44,6 +46,29 @@ export const useAddIdeaTag = (ideaId: number) => {
 
     onSuccess: () => {
       queryClient.invalidateQueries({queryKey: ['ideaDetail', ideaId]});
+    },
+  });
+};
+
+export const useIdeaUpdate = (ideaId: number) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (formData: FormData) => patchIdea(ideaId, formData),
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: ['ideaDetail', ideaId]});
+      queryClient.invalidateQueries({queryKey: ['ideasList']});
+    },
+  });
+};
+
+export const useDeleteIdea = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (ideaId: number) => deleteIdea(ideaId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: ['ideasList']});
     },
   });
 };
