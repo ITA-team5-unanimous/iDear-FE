@@ -118,7 +118,7 @@ export const IdeaDetailMetaEdit = ({version}: IdeaDetailMetaEditProps) => {
     handleSubmit();
   };
 
-  const handleCorfirmSave = () => {
+  const handleConfirmSave = () => {
     setIsEditCompleteModalOpen(false);
     router.push(`${ROUTES.IDEA}/${params.id}`);
   };
@@ -224,7 +224,7 @@ export const IdeaDetailMetaEdit = ({version}: IdeaDetailMetaEditProps) => {
           isOpen={isEditCompleteModalOpen}
           onClose={() => setIsEditCompleteModalOpen(false)}>
           <EditCompleteModal
-            onClose={handleCorfirmSave}
+            onClose={handleConfirmSave}
             isFileChanged={isFileChanged}
           />
         </ModalWrapper>
