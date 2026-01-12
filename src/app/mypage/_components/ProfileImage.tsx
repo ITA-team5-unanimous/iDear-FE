@@ -4,11 +4,19 @@ import {useRef, useState, useEffect} from 'react';
 import DefaultImage from '@/assets/default/default-image.svg?url';
 import Image from 'next/image';
 import GlobalButton from '@/components/buttons/GlobalButton';
+import {useUserStore} from '@/hooks/stores/useUserStore';
+import {useUploadProfileImage} from '@/hooks/queries/useUser';
+import {Spinner} from '@/components/common/ui/Spinner';
 
 export const ProfileImage = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const profileImageUrl = useUserStore((state) => state.profileImageUrl);
+
+  const {mutate: uploadProfileImage, isPending} = useUploadProfileImage();
+
   const [preview, setPreview] = useState<string | null>(null);
-  const [savedImage, setSavedImage] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
 
   useEffect(() => {
@@ -19,34 +27,49 @@ export const ProfileImage = () => {
     };
   }, [preview]);
 
+  const handleEditModeChange = () => {
+    if (isPending) return;
+    setIsEditMode(true);
+  };
+
   const handleClickCancel = () => {
-    setPreview(savedImage);
+    if (isPending) return;
+    setPreview(null);
+    setSelectedFile(null);
     setIsEditMode(false);
   };
 
   const handleClickSave = () => {
-    setSavedImage(preview);
-    setIsEditMode(false);
-  };
+    if (!selectedFile || isPending) return;
 
-  const handleEditModeChange = () => {
-    setIsEditMode(true);
+    uploadProfileImage(selectedFile, {
+      onSuccess: () => {
+        setPreview(null);
+        setSelectedFile(null);
+        setIsEditMode(false);
+      },
+    });
   };
 
   const handleImageOpen = () => {
+    if (isPending) return;
     fileInputRef.current?.click();
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (isPending) return;
     const file = e.target.files?.[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setPreview(imageUrl);
-    }
+    if (!file) return;
+
+    const imageUrl = URL.createObjectURL(file);
+
+    setPreview(imageUrl);
+    setSelectedFile(file);
+
     e.target.value = '';
   };
 
-  const imageSrc = preview ?? savedImage ?? DefaultImage;
+  const imageSrc = preview ?? profileImageUrl ?? DefaultImage;
 
   return (
     <div className='flex flex-col items-center gap-12'>
@@ -59,6 +82,11 @@ export const ProfileImage = () => {
           fill
           className='object-cover'
         />
+        {isPending && (
+          <div className='absolute inset-0 flex items-center justify-center bg-black/40'>
+            <Spinner />
+          </div>
+        )}
       </div>
 
       <div>
