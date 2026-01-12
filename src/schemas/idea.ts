@@ -76,14 +76,12 @@ export const IdeaItemSchema = z.object({
   ideaId: z.number(),
   ideaVersionId: z.number(),
   versionNumber: z.number(),
-  title: z.string(),
+  contestTitle: z.string(),
+  ideaTitle: z.string(),
   host: z.string().nullable(),
   dday: z.number().nullable(),
   contestImageUrl: z.string().nullable(),
-  shortDescription: z.string(),
   requestedAt: z.string(),
-  githubUrl: z.string().nullable(),
-  figmaUrl: z.string().nullable(),
   images: z.array(IdeaImageSchema),
 });
 

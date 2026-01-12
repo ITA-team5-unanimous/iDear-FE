@@ -9,8 +9,8 @@ import Image from 'next/image';
 
 export const IdeaItem = ({
   ideaId,
-  title,
-  host,
+  contestTitle,
+  ideaTitle,
   dday,
   requestedAt,
   contestImageUrl,
@@ -31,17 +31,17 @@ export const IdeaItem = ({
       tabIndex={0}>
       <div className='mt-12 mb-[19px] flex w-[1041px] flex-col gap-6'>
         <strong
-          title={title}
+          title={contestTitle}
           className='truncate overflow-hidden text-2xl font-bold whitespace-nowrap'>
-          {title}
+          {contestTitle}
         </strong>
-        <p className='mt-3 text-xl font-medium'>{host}</p>
+        <p className='mt-3 text-xl font-medium'>{ideaTitle}</p>
         {dday !== null && <DayBadge date={dday} />}
         <p className='text-xl font-medium'>등록 날짜 : {formattedDate}</p>
       </div>
       <Image
         src={contestImageUrl || DefaultContestCard}
-        alt={title}
+        alt={contestTitle}
         height={270}
         width={215}
       />
