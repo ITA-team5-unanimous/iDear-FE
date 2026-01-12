@@ -56,6 +56,11 @@ export const IdeaDetailMetaEdit = ({version}: IdeaDetailMetaEditProps) => {
 
   const isFileChanged = file !== null || isFileDeleted;
 
+  const isFormValid =
+    !!title.trim() &&
+    !!description.trim() &&
+    (!!file || (version.files.length > 0 && !isFileDeleted));
+
   const handleSubmit = async () => {
     const formData = new FormData();
 
@@ -106,11 +111,7 @@ export const IdeaDetailMetaEdit = ({version}: IdeaDetailMetaEditProps) => {
   };
 
   const handleSave = () => {
-    if (
-      !title.trim() ||
-      !description.trim() ||
-      !(file || (version.files.length > 0 && !isFileDeleted))
-    ) {
+    if (!isFormValid) {
       alert('아이디어 제목, 아이디어 설명, 파일이 필수로 있어야 저장됩니다.');
       return;
     }
