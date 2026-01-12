@@ -6,6 +6,7 @@ import Plus from '@/assets/idea/add-plus.svg';
 import {useState} from 'react';
 import {useAddIdeaTag, useIdeaDetail} from '@/hooks/queries/useIdea';
 import {usePathname, useRouter} from 'next/navigation';
+import {ROUTES} from '@/constants/routes';
 
 interface IdeaVersionHistoryProps {
   ideaId: number;
@@ -26,7 +27,7 @@ export const IdeaVersionHistory = ({ideaId}: IdeaVersionHistoryProps) => {
 
   const handleClickVersion = (v: (typeof versions)[0], isOpen: boolean) => {
     if (isEditMode) {
-      router.push(`/idea/${ideaId}`);
+      router.push(`${ROUTES.IDEA}/${ideaId}`);
       setVersion(v.versionNumber);
       return;
     }
