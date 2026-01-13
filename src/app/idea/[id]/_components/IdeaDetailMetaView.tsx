@@ -26,7 +26,6 @@ export const IdeaDetailMetaView = ({
   const fileAttachments = version.files.map((file) => ({
     name: file.fileName,
     url: file.filePath,
-    status: file.status,
   }));
 
   const linkAttachments = [
