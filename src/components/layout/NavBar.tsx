@@ -10,12 +10,16 @@ import {AlarmContainer} from '@/components/alarm/AlarmContainer';
 import {UserContainer} from '@/components/user/UserContainer';
 import {useClickOutside} from '@/hooks/ui/useClickOutside';
 import {NavItem} from '@/components/layout/NavItem';
+import {useUserStore} from '@/hooks/stores/useUserStore';
+import Image from 'next/image';
 
 export const NavBar = () => {
   const [openMenu, setOpenMenu] = useState<'alarm' | 'user' | null>(null);
 
   const alarmRef = useRef<HTMLDivElement>(null);
   const userRef = useRef<HTMLDivElement>(null);
+
+  const profileImageUrl = useUserStore((state) => state.profileImageUrl);
 
   useClickOutside(alarmRef, () => openMenu === 'alarm' && setOpenMenu(null));
   useClickOutside(userRef, () => openMenu === 'user' && setOpenMenu(null));
@@ -53,8 +57,18 @@ export const NavBar = () => {
           <button
             type='button'
             onClick={handleClickUser}
-            aria-label='사용자 메뉴'>
-            <User />
+            aria-label='사용자 메뉴'
+            className='relative h-15 w-15 overflow-hidden rounded-full'>
+            {profileImageUrl ? (
+              <Image
+                src={profileImageUrl}
+                alt='프로필 이미지'
+                fill
+                className='object-cover'
+              />
+            ) : (
+              <User />
+            )}
           </button>
           {openMenu === 'user' && (
             <div className='absolute top-full right-[150px]'>
