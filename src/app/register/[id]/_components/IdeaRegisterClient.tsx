@@ -159,9 +159,13 @@ export const IdeaRegisterClient = () => {
           <UrlUploadSection
             type='github'
             url={githubUrl}
-            setUrl={setGithubUrl}
+            setUrl={(url) => setGithubUrl(url ?? undefined)}
           />
-          <UrlUploadSection type='figma' url={figmaUrl} setUrl={setFigmaUrl} />
+          <UrlUploadSection
+            type='figma'
+            url={figmaUrl}
+            setUrl={(url) => setFigmaUrl(url ?? undefined)}
+          />
         </div>
 
         <div className='flex flex-row justify-center gap-6'>

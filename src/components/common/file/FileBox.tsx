@@ -17,7 +17,7 @@ export const FileBox = ({
   selectedUrl,
 }: FileBoxProps) => {
   const Icon = FILE_BOX_ICONS[icon];
-  const displayText = file?.name ?? selectedUrl;
+  const displayText = file?.name || selectedUrl;
   const isSelected = !!displayText;
 
   return (
@@ -33,7 +33,7 @@ export const FileBox = ({
         </div>
       )}
       <span className='line-clamp-2 min-w-0 flex-1 text-xl font-medium break-all'>
-        {displayText ?? text}
+        {displayText || text}
       </span>
     </div>
   );
