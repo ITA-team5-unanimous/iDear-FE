@@ -16,15 +16,17 @@ export const API_ENDPOINTS = {
     publicKey: `/users/public-key`,
   },
   idea: {
-    register: `/ideas`,
-    getIdeas: `/ideas`,
+    ideas: `/ideas`,
     signatures: (ideaId: number) => `/ideas/${ideaId}/signatures`,
     detail: (ideaId: number) => `/ideas/${ideaId}`,
     tags: (versionId: number) => `/idea-versions/${versionId}/tags`,
-    edit: (ideaId: number) => `/ideas/${ideaId}`,
   },
   alert: {
     read: (alertId: number) => `/alerts/${alertId}/read`,
     unread: '/alerts/unread',
+  },
+  inquiry: {
+    inquiry: `/inquiry`,
+    detail: (inquiryId: number) => `/inquiry/${inquiryId}`,
   },
 };

@@ -97,16 +97,6 @@ export const IdeaPageDataSchema = z.object({
   empty: z.boolean(),
 });
 
-export const IdeaUpdateRequestSchema = z.object({
-  deleteFileIds: z.array(z.number()).optional(),
-  deleteImageIds: z.array(z.number()).optional(),
-  title: z.string(),
-  shortDescription: z.string(),
-  description: z.string().min(1),
-  githubUrl: z.string().nullable().optional(),
-  figmaUrl: z.string().nullable().optional(),
-});
-
 export const IdeaUpdateResponseDataSchema = z.object({
   ideaId: z.number(),
   versionNumber: z.number(),

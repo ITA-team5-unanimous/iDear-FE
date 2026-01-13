@@ -18,15 +18,11 @@ import {API_ENDPOINTS} from '@/services/constant/endpoint';
 export const postIdeaRegister = async (
   formData: FormData
 ): Promise<IdeaRegisterResponse> => {
-  const {data} = await axiosInstance.post(
-    API_ENDPOINTS.idea.register,
-    formData,
-    {
-      headers: {
-        'Content-Type': undefined,
-      },
-    }
-  );
+  const {data} = await axiosInstance.post(API_ENDPOINTS.idea.ideas, formData, {
+    headers: {
+      'Content-Type': undefined,
+    },
+  });
 
   return IdeaRegisterResponseSchema.parse(data);
 };
@@ -47,7 +43,7 @@ export const postIdeaSignatures = async (
 };
 
 export const getIdeas = async (page: number): Promise<IdeaListResponse> => {
-  const {data} = await axiosInstance.get(API_ENDPOINTS.idea.getIdeas, {
+  const {data} = await axiosInstance.get(API_ENDPOINTS.idea.ideas, {
     params: {
       page,
       size: 8,
@@ -80,7 +76,7 @@ export const patchIdea = async (
   formData: FormData
 ): Promise<IdeaUpdateResponse> => {
   const {data} = await axiosInstance.patch(
-    API_ENDPOINTS.idea.edit(ideaId),
+    API_ENDPOINTS.idea.detail(ideaId),
     formData,
     {
       headers: {
