@@ -2,19 +2,18 @@
 
 import {useState, useEffect} from 'react';
 import {v4 as uuidv4} from 'uuid';
-import {Inquiry} from '@/schemas/inquiry';
+import {InquiryDetail} from '@/schemas/inquiry';
 import {RadioGroup} from '@/components/common/radio/RadioGroup';
 import {ImageFileBox} from '@/components/common/file/ImageFileBox';
 import {PlusButton} from '@/components/buttons/PlusButton';
 import {FileBoxType} from '@/schemas/support';
 import {OccurredAtInput} from '@/app/support/inquiry/[id]/_components/form/OccurredAtInput';
 import {TextAreaField} from '@/app/support/inquiry/[id]/_components/form/TextAreaField';
-import {getInitialFileBoxes} from '@/hooks/inquiry/inquiryFormUtils';
 import GlobalButton from '@/components/buttons/GlobalButton';
 
 type InquiryFormFields = Pick<
-  Inquiry,
-  'browser' | 'device' | 'problemDescription' | 'occurredAt'
+  InquiryDetail,
+  'browser' | 'device' | 'problemDescription' | 'occurrenceTime'
 >;
 
 export interface InquiryFormData extends InquiryFormFields {
@@ -34,27 +33,40 @@ export const InquiryForm = ({
   onSubmit,
   onCancelEdit,
 }: InquiryFormProps) => {
-  const [browser, setBrowser] = useState<Inquiry['browser']>(
+  const [browser, setBrowser] = useState<InquiryDetail['browser']>(
     initialData.browser
   );
-  const [device, setDevice] = useState<Inquiry['device']>(initialData.device);
+  const [device, setDevice] = useState<InquiryDetail['device']>(
+    initialData.device
+  );
   const [problemDescription, setProblemDescription] = useState<string>(
     initialData.problemDescription
   );
-  const [occurredAt, setOccurredAt] = useState<string>(initialData.occurredAt);
-  const [fileBoxes, setFileBoxes] = useState<FileBoxType[]>(
-    getInitialFileBoxes(initialData.fileBoxes)
+  const [occurrenceTime, setOccurrenceTime] = useState<string>(
+    initialData.occurrenceTime
   );
+  const [fileBoxes, setFileBoxes] = useState<FileBoxType[]>([]);
 
+  // 초기 파일 박스 세팅
+  useEffect(() => {
+    setFileBoxes(initialData.fileBoxes.map((box) => ({...box})));
+  }, [initialData]);
+
+  // edit 모드가 바뀌면 폼 초기화
   useEffect(() => {
     if (!isEditMode) {
       setBrowser(initialData.browser);
       setDevice(initialData.device);
       setProblemDescription(initialData.problemDescription);
-      setOccurredAt(initialData.occurredAt);
-      setFileBoxes(getInitialFileBoxes(initialData.fileBoxes));
+      setOccurrenceTime(initialData.occurrenceTime);
+      setFileBoxes(initialData.fileBoxes.map((box) => ({...box})));
     }
   }, [isEditMode, initialData]);
+
+  const isValidDateTime = (value: string) => {
+    const regex = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/;
+    return regex.test(value);
+  };
 
   const handleFilesChange = (id: string, newFiles: File[]) => {
     setFileBoxes((prev) =>
@@ -70,11 +82,28 @@ export const InquiryForm = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!occurrenceTime.trim()) {
+      alert('발생 시각은 필수 입력입니다.');
+      return;
+    }
+
+    if (!isValidDateTime(occurrenceTime)) {
+      alert(
+        '발생 시각이 올바른 형식이 아닙니다. YYYY-MM-DD HH:mm:ss 형식으로 입력해주세요.'
+      );
+      return;
+    }
+
+    if (!problemDescription.trim()) {
+      alert('문제 상황은 필수 입력입니다.');
+      return;
+    }
+
     const formData: InquiryFormData = {
       browser,
       device,
       problemDescription,
-      occurredAt,
+      occurrenceTime,
       fileBoxes,
     };
     onSubmit(formData);
@@ -87,9 +116,9 @@ export const InquiryForm = ({
   return (
     <form onSubmit={handleSubmit} className='flex flex-col gap-12'>
       <OccurredAtInput
-        value={occurredAt}
+        value={occurrenceTime}
         readOnly={!isEditMode}
-        onChange={setOccurredAt}
+        onChange={setOccurrenceTime}
       />
 
       <div className='flex flex-col gap-6'>
@@ -129,7 +158,6 @@ export const InquiryForm = ({
 
       <div className='flex flex-col gap-6'>
         <p className='text-2xl font-bold'>에러 화면 캡처(최대 4장)</p>
-
         <div className='flex flex-wrap items-center gap-10'>
           {fileBoxes.map((box) => (
             <ImageFileBox

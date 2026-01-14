@@ -4,7 +4,7 @@ import {
   InquiryForm,
   InquiryFormData,
 } from '@/app/support/inquiry/[id]/_components/InquiryForm';
-import {useRouter} from 'next/navigation';
+import {useRouter, useSearchParams} from 'next/navigation';
 import {useState} from 'react';
 import {ROUTES} from '@/constants/routes';
 import {BackButton} from '@/components/buttons/BackButton';
@@ -17,13 +17,16 @@ export const InquiryNewClient = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const initialData = createInitialFormData(null);
+  const searchParams = useSearchParams();
+  const category = searchParams.get('category');
   const {mutate: createInquiry} = useInquiryCreate();
 
   const handleSubmit = (data: InquiryFormData) => {
     const formData = new FormData();
-    const formattedTime = data.occurredAt.replace(' ', 'T');
+    const formattedTime = data.occurrenceTime.replace(' ', 'T');
 
     const inquiryData = {
+      category: category,
       occurrenceTime: formattedTime,
       browser: data.browser,
       device: data.device,
