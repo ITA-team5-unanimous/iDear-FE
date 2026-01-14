@@ -1,22 +1,21 @@
 'use client';
 
-import {INQUIRY_STATUS} from '@/constants/inquiry';
 import ChevronIcon from '@/assets/chevrons/chevron-right.svg';
 import {useRouter} from 'next/navigation';
 import {ROUTES} from '@/constants/routes';
-
-type InquiryStatus = (typeof INQUIRY_STATUS)[keyof typeof INQUIRY_STATUS];
+import {InquiryStatus} from '@/schemas/inquiry';
+import {INQUIRY_STATUS} from '@/constants/inquiry';
 
 interface InquiryItemProps {
   id: number;
-  title: string;
+  category: string;
   description: string;
   status: InquiryStatus;
 }
 
 export const InquiryItem = ({
   id,
-  title,
+  category,
   description,
   status,
 }: InquiryItemProps) => {
@@ -38,11 +37,11 @@ export const InquiryItem = ({
         }
       }}>
       <h1 className='text-primary m-2.5 text-2xl font-bold'>{id}</h1>
-      <h2 className='w-[186px] text-center text-xl font-medium'>{title}</h2>
+      <h2 className='w-[186px] text-center text-xl font-medium'>{category}</h2>
       <p className='line-clamp-1 w-[693px] text-2xl font-bold'>{description}</p>
       <div className='flex items-center gap-0'>
         <span className='text-primary w-[85px] text-2xl font-bold'>
-          {status}
+          {INQUIRY_STATUS[status]}
         </span>
         <ChevronIcon
           alt='이동'
