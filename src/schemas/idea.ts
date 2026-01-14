@@ -6,6 +6,7 @@ import {IdeaItem} from '@/app/idea/_components/IdeaItem';
  * 아이디어 api 스키마
  */
 export const IdeaImageSchema = z.object({
+  ideaImageId: z.number(),
   fileName: z.string(),
   filePath: z.string(),
 });
@@ -38,10 +39,9 @@ export const IdeaVersionTagSchema = z.object({
 });
 
 export const IdeaDetailFileSchema = z.object({
+  ideaFileId: z.number(),
   fileName: z.string(),
   filePath: z.string(),
-  status: z.string(),
-  txHash: z.string().nullable(),
 });
 
 export const IdeaVersionDetailSchema = z.object({
