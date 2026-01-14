@@ -15,6 +15,7 @@ export const SUPPORT_TEXT = {
 
 export const SUPPORT_CARDS = [
   {
+    key: 'IDEA',
     title: '아이디어 등록·기록 관련 문의',
     contents: [
       '아이디어 생성/수정/삭제 관련 기술 문제',
@@ -23,6 +24,7 @@ export const SUPPORT_CARDS = [
     ],
   },
   {
+    key: 'BLOCKCHAIN',
     title: '아이디어 보호·블록체인 검증 문의',
     contents: [
       '확인증 발급 과정 안내',
@@ -31,6 +33,7 @@ export const SUPPORT_CARDS = [
     ],
   },
   {
+    key: 'ACCOUNT',
     title: '계정·보안 관련 문의',
     contents: [
       '회원 정보 변경',
@@ -39,6 +42,7 @@ export const SUPPORT_CARDS = [
     ],
   },
   {
+    key: 'CONTEST',
     title: '공모전·대외활동 연계 지원',
     contents: [
       '아이디어 생성/수정/삭제 관련 기술 문제',
@@ -47,6 +51,7 @@ export const SUPPORT_CARDS = [
     ],
   },
   {
+    key: 'BUG',
     title: '기술적 오류 신고',
     contents: [
       'UX/UI 불편 사항 제보',

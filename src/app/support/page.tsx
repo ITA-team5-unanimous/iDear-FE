@@ -38,21 +38,23 @@ export default function SupportPage() {
           </div>
           <div className='flex flex-col gap-12'>
             <div className='flex flex-row gap-12'>
-              {SUPPORT_CARDS.slice(0, 3).map((card, idx) => (
+              {SUPPORT_CARDS.slice(0, 3).map((card) => (
                 <SupportCard
-                  key={idx}
+                  key={card.key}
                   title={card.title}
                   contents={card.contents}
+                  categoryKey={card.key}
                 />
               ))}
             </div>
 
             <div className='flex flex-row justify-center gap-12'>
-              {SUPPORT_CARDS.slice(3, 5).map((card, idx) => (
+              {SUPPORT_CARDS.slice(3, 5).map((card) => (
                 <SupportCard
-                  key={idx}
+                  key={card.key}
                   title={card.title}
                   contents={card.contents}
+                  categoryKey={card.key}
                 />
               ))}
             </div>
