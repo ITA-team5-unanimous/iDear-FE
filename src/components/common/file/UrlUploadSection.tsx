@@ -7,7 +7,7 @@ import {UrlAttachModal} from '@/components/common/file/UrlAttachModal';
 interface UrlUploadSectionProps {
   type: 'github' | 'figma';
   url?: string;
-  setUrl: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setUrl: (url: string | null) => void;
 }
 
 export const UrlUploadSection = ({

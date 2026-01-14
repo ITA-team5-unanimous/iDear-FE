@@ -14,6 +14,7 @@ export const API_ENDPOINTS = {
     users: `/users`,
     userName: `/users/name`,
     publicKey: `/users/public-key`,
+    profileImage: '/users/profile-image',
   },
   idea: {
     ideas: `/ideas`,

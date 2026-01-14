@@ -19,6 +19,10 @@ interface IdeaDetailMetaEditProps {
   version: IdeaVersionDetail;
 }
 
+interface ImageAttachment extends Attachment {
+  ideaImageId: number;
+}
+
 export const IdeaDetailMetaEdit = ({version}: IdeaDetailMetaEditProps) => {
   const router = useRouter();
   const params = useParams();
@@ -32,17 +36,18 @@ export const IdeaDetailMetaEdit = ({version}: IdeaDetailMetaEditProps) => {
   const [images, setImages] = useState<FileBoxType[]>([]);
   const [file, setFile] = useState<File | null>(null);
   const [isFileDeleted, setIsFileDeleted] = useState<boolean>(false);
-  const [githubUrl, setGithubUrl] = useState<string | undefined>(
-    version.githubUrl ?? undefined
+  const [githubUrl, setGithubUrl] = useState<string | null>(
+    version.githubUrl ?? null
+  );
+  const [figmaUrl, setFigmaUrl] = useState<string | null>(
+    version.figmaUrl ?? null
   );
   const [deleteFileIds, setDeleteFileIds] = useState<number[]>([]);
   const [deleteImageIds, setDeleteImageIds] = useState<number[]>([]);
-  const [figmaUrl, setFigmaUrl] = useState<string | undefined>(
-    version.figmaUrl ?? undefined
-  );
 
-  const [imageAttachments, setImageAttachments] = useState<Attachment[]>(
+  const [imageAttachments, setImageAttachments] = useState<ImageAttachment[]>(
     version.images.map((img) => ({
+      ideaImageId: img.ideaImageId,
       name: img.fileName,
       url: img.filePath,
     }))
@@ -51,7 +56,6 @@ export const IdeaDetailMetaEdit = ({version}: IdeaDetailMetaEditProps) => {
   const fileAttachments = version.files.map((file) => ({
     name: file.fileName,
     url: file.filePath,
-    status: file.status,
   }));
 
   const isFileChanged = file !== null || isFileDeleted;
@@ -68,8 +72,8 @@ export const IdeaDetailMetaEdit = ({version}: IdeaDetailMetaEditProps) => {
       title,
       shortDescription: title.slice(0, 50),
       description,
-      githubUrl,
-      figmaUrl,
+      githubUrl: githubUrl || '',
+      figmaUrl: figmaUrl || '',
       deleteFileIds,
       deleteImageIds,
     };
@@ -125,17 +129,21 @@ export const IdeaDetailMetaEdit = ({version}: IdeaDetailMetaEditProps) => {
   };
 
   const handleDeleteImage = (index: number) => {
+    const targetImageId = imageAttachments[index].ideaImageId;
+    setDeleteImageIds((prev) => [...prev, targetImageId]);
     setImageAttachments((prev) => prev.filter((_, i) => i !== index));
   };
 
   const handleDeleteFile = () => {
+    const fileIds = version.files.map((file) => file.ideaFileId);
+    setDeleteFileIds(fileIds);
     setIsFileDeleted(true);
     setFile(null);
   };
 
   const handleDeleteLink = (type: 'github' | 'figma') => {
-    if (type === 'github') setGithubUrl(undefined);
-    if (type === 'figma') setFigmaUrl(undefined);
+    if (type === 'github') setGithubUrl(null);
+    if (type === 'figma') setFigmaUrl(null);
   };
 
   return (
@@ -201,8 +209,8 @@ export const IdeaDetailMetaEdit = ({version}: IdeaDetailMetaEditProps) => {
         ) : (
           <UrlUploadSection
             type='github'
-            url={githubUrl}
-            setUrl={setGithubUrl}
+            url={githubUrl ?? undefined}
+            setUrl={(url) => setGithubUrl(url ?? null)}
           />
         )}
 
@@ -213,7 +221,11 @@ export const IdeaDetailMetaEdit = ({version}: IdeaDetailMetaEditProps) => {
             onDelete={() => handleDeleteLink('figma')}
           />
         ) : (
-          <UrlUploadSection type='figma' url={figmaUrl} setUrl={setFigmaUrl} />
+          <UrlUploadSection
+            type='figma'
+            url={figmaUrl ?? undefined}
+            setUrl={(url) => setFigmaUrl(url ?? null)}
+          />
         )}
       </div>
       <div className='flex w-full justify-center'>

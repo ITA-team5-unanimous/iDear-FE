@@ -1,4 +1,5 @@
 import {
+  ProfileImageResponseSchema,
   PublicKeyRequestSchema,
   PublicKeyResponseSchema,
   UserResponse,
@@ -24,4 +25,21 @@ export const postPublicKey = async (publicKey: string): Promise<void> => {
 
 export const deleteUser = async (): Promise<void> => {
   await axiosInstance.delete(API_ENDPOINTS.user.users);
+};
+
+export const postProfileImage = async (file: File) => {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  const {data} = await axiosInstance.post(
+    API_ENDPOINTS.user.profileImage,
+    formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    }
+  );
+
+  return ProfileImageResponseSchema.parse(data);
 };
