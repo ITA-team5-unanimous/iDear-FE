@@ -6,6 +6,7 @@ import {GlobalPagination} from '@/components/common/pagination/GlobalPagination'
 import {GlobalSearchBar} from '@/components/common/search/GlobalSearchBar';
 import {BackButton} from '@/components/buttons/BackButton';
 import {useIdeaList} from '@/hooks/queries/useIdea';
+import {Spinner} from '@/components/common/ui/Spinner';
 
 const ITEMS_PER_PAGE = 8;
 
@@ -13,10 +14,14 @@ export const IdeaMainClient = () => {
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get('page') ?? 1);
 
-  const {data} = useIdeaList(currentPage - 1);
+  const {data, isLoading} = useIdeaList(currentPage - 1);
 
   const ideas = data?.content ?? [];
   const totalItems = data?.totalElements ?? 0;
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className='flex flex-col items-center py-9'>
