@@ -123,7 +123,7 @@ export const EmailChangeForm = () => {
           )}
         </div>
 
-        {!isEmailValid && (
+        {email && !isEmailValid && (
           <p className='text-primary text-xl font-medium'>
             이메일 주소가 올바르지 않아요.
           </p>
