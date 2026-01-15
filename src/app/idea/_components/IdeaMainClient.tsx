@@ -19,19 +19,22 @@ export const IdeaMainClient = () => {
   const totalItems = data?.totalElements ?? 0;
 
   return (
-    <div className='flex flex-col items-center py-9'>
-      <header className='mb-[64px]'>
+    <div className='flex flex-col py-9'>
+      <header className='relative'>
         <BackButton />
-        <GlobalSearchBar placeholder='내가 등록한 아이디어를 검색해 보세요!' />
       </header>
+      <div className='mt-13 mb-[70px] flex w-full items-center justify-center'>
+        <GlobalSearchBar placeholder='내가 등록한 아이디어를 검색해 보세요!' />
+      </div>
+      <div className='flex flex-col items-center'>
+        <IdeaList ideas={ideas} totalItems={totalItems} />
 
-      <IdeaList ideas={ideas} totalItems={totalItems} />
-
-      <GlobalPagination
-        totalItems={totalItems}
-        itemsPerPage={ITEMS_PER_PAGE}
-        currentPage={currentPage}
-      />
+        <GlobalPagination
+          totalItems={totalItems}
+          itemsPerPage={ITEMS_PER_PAGE}
+          currentPage={currentPage}
+        />
+      </div>
     </div>
   );
 };
