@@ -49,7 +49,7 @@ export const ContestSearchClient = () => {
             <div ref={loadMoreRef} className='h-10' />
           </>
         ) : (
-          <NoSearchResult />
+          <NoSearchResult type='공모전' />
         )}
       </div>
     </div>

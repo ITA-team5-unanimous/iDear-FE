@@ -35,9 +35,7 @@ export const IdeaMainClient = () => {
         <div className='flex w-full justify-center'>
           <div className='flex w-full max-w-[1200px] flex-col items-center'>
             {keyword && ideas.length === 0 ? (
-              <>
-                <NoSearchResult />
-              </>
+              <NoSearchResult type='아이디어' />
             ) : (
               <>
                 <IdeaList ideas={ideas} totalItems={totalItems} />
