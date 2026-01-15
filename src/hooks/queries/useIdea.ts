@@ -20,10 +20,10 @@ export const useIdeaRegister = () => {
   });
 };
 
-export const useIdeaList = (page: number) => {
+export const useIdeaList = (page: number, keyword?: string) => {
   return useQuery({
-    queryKey: ['ideasList', page],
-    queryFn: () => getIdeas(page),
+    queryKey: ['ideasList', page, keyword],
+    queryFn: () => getIdeas(page, keyword),
     select: (response) => response.data,
     staleTime: 1000 * 60 * 5,
   });
