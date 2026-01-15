@@ -1,5 +1,4 @@
 import {Meta, StoryObj} from '@storybook/nextjs';
-import {INQUIRY_STATUS} from '@/constants/inquiry';
 import {InquiryItem} from '@/app/support/inquiry/_components/InquiryItem';
 
 const meta: Meta<typeof InquiryItem> = {
