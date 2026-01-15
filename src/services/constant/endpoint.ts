@@ -23,6 +23,7 @@ export const API_ENDPOINTS = {
     detail: (ideaId: number) => `/ideas/${ideaId}`,
     tags: (versionId: number) => `/idea-versions/${versionId}/tags`,
     edit: (ideaId: number) => `/ideas/${ideaId}`,
+    certificate: (ideaId: number) => `/ideas/${ideaId}/certificate`,
   },
   alert: {
     read: (alertId: number) => `/alerts/${alertId}/read`,
