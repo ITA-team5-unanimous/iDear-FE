@@ -5,19 +5,36 @@ import RedCheckBox from '@/assets/idea/checkbox-red.svg';
 import GrayCheckBox from '@/assets/idea/checkbox-gray.svg';
 import GlobalButton from '@/components/buttons/GlobalButton';
 import {useRouter} from 'next/navigation';
+import {useUpdateNotificationSettings} from '@/hooks/mutations/useNotification';
 
 export const AlarmSettingClient = () => {
   const router = useRouter();
   const [isCheckedPush, setIsCheckedPush] = useState<boolean>(false);
   const [isCheckedEmail, setIsCheckedEmail] = useState<boolean>(false);
+  const {mutate: updateSettings, isPending} = useUpdateNotificationSettings();
 
   const handleSave = () => {
-    console.log('TODO: 저장 API');
+    updateSettings(
+      {
+        push: isCheckedPush,
+        email: isCheckedEmail,
+      },
+      {
+        onSuccess: () => {
+          alert('알림 저장에 성공했습니다.');
+          router.back();
+        },
+        onError: () => {
+          alert('알림 설정 저장에 실패했어요.');
+        },
+      }
+    );
   };
 
   const handleRemove = () => {
     router.back();
   };
+
   return (
     <div className='flex flex-col gap-12'>
       <div className='flex flex-col gap-12'>
@@ -53,7 +70,11 @@ export const AlarmSettingClient = () => {
       </div>
       <div className='flex w-full flex-row justify-center gap-6'>
         <GlobalButton text='취소하기' variant='gray' onClick={handleRemove} />
-        <GlobalButton text='저장하기' onClick={handleSave} />
+        <GlobalButton
+          text='저장하기'
+          onClick={handleSave}
+          disabled={isPending}
+        />
       </div>
     </div>
   );

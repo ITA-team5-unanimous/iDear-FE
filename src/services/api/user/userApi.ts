@@ -1,3 +1,4 @@
+import {UpdateNotificationSettingsRequest} from '@/schemas/notification';
 import {
   ProfileImageResponseSchema,
   PublicKeyRequestSchema,
@@ -42,4 +43,15 @@ export const postProfileImage = async (file: File) => {
   );
 
   return ProfileImageResponseSchema.parse(data);
+};
+
+export const patchNotificationSettings = async (
+  body: UpdateNotificationSettingsRequest
+) => {
+  const {data} = await axiosInstance.patch(
+    API_ENDPOINTS.user.notificationSettings,
+    body
+  );
+
+  return data;
 };
