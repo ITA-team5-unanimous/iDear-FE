@@ -16,10 +16,14 @@ interface CertificatePdfProps {
 
 export const CertificatePdf = ({data, onDownloaded}: CertificatePdfProps) => {
   useEffect(() => {
-    // 렌더링 직후 바로 다운로드
-    downloadCertificatePdf();
-    onDownloaded?.();
-  }, []);
+    const generatePdf = async () => {
+      // 렌더링 직후 바로 다운로드
+      await downloadCertificatePdf();
+      onDownloaded?.();
+    };
+
+    generatePdf();
+  }, [onDownloaded]);
 
   return (
     <div
