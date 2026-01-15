@@ -30,14 +30,19 @@ export const EmailChangeForm = () => {
 
   useEffect(() => {
     if (!isCodeRequested) return;
-    if (timer <= 0) return;
 
     const interval = setInterval(() => {
-      setTimer((prev) => prev - 1);
+      setTimer((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          return 0;
+        }
+        return prev - 1;
+      });
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [isCodeRequested, timer]);
+  }, [isCodeRequested]);
 
   const handleRequestCode = () => {
     sendVerification(
