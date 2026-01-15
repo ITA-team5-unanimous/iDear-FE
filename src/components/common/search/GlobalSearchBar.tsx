@@ -23,7 +23,7 @@ export const GlobalSearchBar = ({
 
     const keyword = value.trim();
     if (!keyword) {
-      router.push(pathname);
+      router.replace(pathname);
       return;
     }
 
