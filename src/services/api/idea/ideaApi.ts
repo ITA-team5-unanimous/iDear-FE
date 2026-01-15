@@ -12,6 +12,7 @@ import {
   IdeaUpdateResponse,
   IdeaUpdateResponseSchema,
   IdeaCertificateResponse,
+  IdeaCertificateResponseSchema,
 } from '@/schemas/idea';
 import {axiosInstance} from '@/services/config/axios';
 import {API_ENDPOINTS} from '@/services/constant/endpoint';
@@ -105,5 +106,5 @@ export const getIdeaCertificate = async (
   const {data} = await axiosInstance.get(
     API_ENDPOINTS.idea.certificate(ideaId)
   );
-  return data;
+  return IdeaCertificateResponseSchema.parse(data);
 };
