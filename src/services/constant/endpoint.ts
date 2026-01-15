@@ -18,6 +18,7 @@ export const API_ENDPOINTS = {
     email: '/users/email',
     emailVerification: '/users/email/verification',
     emailVerify: '/users/email/verification/verify',
+    notificationSettings: '/users/notification-settings',
   },
   idea: {
     register: `/ideas`,
