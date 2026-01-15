@@ -15,6 +15,9 @@ export const API_ENDPOINTS = {
     userName: `/users/name`,
     publicKey: `/users/public-key`,
     profileImage: '/users/profile-image',
+    email: '/users/email',
+    emailVerification: '/users/email/verification',
+    emailVerify: '/users/email/verification/verify',
   },
   idea: {
     register: `/ideas`,
