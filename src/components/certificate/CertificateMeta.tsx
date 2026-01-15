@@ -1,9 +1,9 @@
-import {CertificateMetaRow} from '@/app/certificate/_pdf/CertificateMetaRow';
-import {CertificateMetaRowWithNote} from '@/app/certificate/_pdf/CertificateMetaRowWithNote';
-import {certificateType} from '@/schemas/certificate';
+import {CertificateMetaRow} from '@/components/certificate/CertificateMetaRow';
+import {CertificateMetaRowWithNote} from '@/components/certificate/CertificateMetaRowWithNote';
+import {IdeaCertificateType} from '@/schemas/idea';
 
 interface CertificateMetaProps {
-  data: certificateType;
+  data: IdeaCertificateType;
 }
 
 export const CertificateMeta = ({data}: CertificateMetaProps) => {
@@ -12,25 +12,25 @@ export const CertificateMeta = ({data}: CertificateMetaProps) => {
       <CertificateMetaRow
         label='제출자 :'
         subLabel='Submission'
-        value={data.submission}
+        value={data.submitter}
       />
 
       <CertificateMetaRow
         label='아이디어 명 :'
         subLabel='Idea Title'
-        value={data.title}
+        value={data.ideaTitle}
       />
 
       <CertificateMetaRow
         label='제출 일시 :'
         subLabel='Submission Time'
-        value={data.submissionTime}
+        value={data.submissionDate}
       />
 
       <CertificateMetaRowWithNote
         label='문서 식별 해시 :'
         subLabel='Hash'
-        value={data.hash}
+        value={data.documentHash}
         note='해시는 원본 파일 전체를 기반으로 생성되며, 단 한 글자라도 변경될 경우 값이 완전히 달라집니다.'
       />
 
@@ -38,6 +38,12 @@ export const CertificateMeta = ({data}: CertificateMetaProps) => {
         label='네트워크 :'
         subLabel='Network'
         value={data.network}
+      />
+
+      <CertificateMetaRow
+        label='커밋 :'
+        subLabel='Commit'
+        value={data.commit}
       />
 
       <CertificateMetaRow
@@ -49,7 +55,7 @@ export const CertificateMeta = ({data}: CertificateMetaProps) => {
       <CertificateMetaRow
         label='트랜잭션 해시 :'
         subLabel='Transaction Hash'
-        value={data.transactionHash}
+        value={data.txHash}
       />
 
       <CertificateMetaRow
@@ -61,7 +67,7 @@ export const CertificateMeta = ({data}: CertificateMetaProps) => {
       <CertificateMetaRowWithNote
         label='온체인 기록 시각 :'
         subLabel='On-Chain Timestamp'
-        value={data.onChainTimeStamp}
+        value={data.onChainTimestamp}
         note='온체인 기록은 삭제·수정이 불가능한 영구 데이터입니다.'
       />
     </section>

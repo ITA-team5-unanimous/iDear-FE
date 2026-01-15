@@ -11,6 +11,8 @@ import {
   IdeaTagCreateResponseSchema,
   IdeaUpdateResponse,
   IdeaUpdateResponseSchema,
+  IdeaCertificateResponse,
+  IdeaCertificateResponseSchema,
 } from '@/schemas/idea';
 import {axiosInstance} from '@/services/config/axios';
 import {API_ENDPOINTS} from '@/services/constant/endpoint';
@@ -96,4 +98,13 @@ export const deleteIdea = async (ideaId: number) => {
   const {data} = await axiosInstance.delete(API_ENDPOINTS.idea.detail(ideaId));
 
   return data;
+};
+
+export const getIdeaCertificate = async (
+  ideaId: number
+): Promise<IdeaCertificateResponse> => {
+  const {data} = await axiosInstance.get(
+    API_ENDPOINTS.idea.certificate(ideaId)
+  );
+  return IdeaCertificateResponseSchema.parse(data);
 };

@@ -1,8 +1,8 @@
 import {CERTIFICATE_FOOTER_TEXT} from '@/constants/certificate-text';
-import {certificateType} from '@/schemas/certificate';
+import {IdeaCertificateType} from '@/schemas/idea';
 
 interface CertificateFooterProps {
-  data: certificateType;
+  data: IdeaCertificateType;
 }
 
 export const CertificateFooter = ({data}: CertificateFooterProps) => {
@@ -22,8 +22,8 @@ export const CertificateFooter = ({data}: CertificateFooterProps) => {
 
       <div className='mt-[10px] text-right text-[12px] font-medium'>
         <div>발급 기관 : iDear</div>
-        <div>발급 일시 : {data.certificateTime}</div>
-        <div>문서 번호 : {data.certificateId}</div>
+        <div>발급 일시 : {data.issuedAt}</div>
+        <div>문서 번호 : {data.documentNumber}</div>
       </div>
     </footer>
   );

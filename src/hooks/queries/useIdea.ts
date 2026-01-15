@@ -5,6 +5,7 @@ import {
   postIdeaVersionTag,
   patchIdea,
   deleteIdea,
+  getIdeaCertificate,
 } from '@/services/api/idea/ideaApi';
 import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query';
 
@@ -70,5 +71,13 @@ export const useDeleteIdea = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({queryKey: ['ideasList']});
     },
+  });
+};
+
+export const useIdeaCertificate = (ideaId: number) => {
+  return useQuery({
+    queryKey: ['idea-certificate', ideaId],
+    queryFn: () => getIdeaCertificate(ideaId),
+    enabled: false,
   });
 };

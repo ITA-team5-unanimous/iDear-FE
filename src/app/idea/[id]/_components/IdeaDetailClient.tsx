@@ -44,7 +44,9 @@ export const IdeaDetailClient = () => {
   return (
     <div className='relative flex flex-col gap-6 px-[164px] py-[54px]'>
       <IdeaDetailHeader contest={{id: contestId, title: contestTitle}} />
-      <IdeaDetailTab />
+      <IdeaDetailTab
+        isLatestVersionRegistered={ideaDetail.latestVersionRegistered}
+      />
 
       {currentTab === 'version' && (
         <div className='flex gap-6'>

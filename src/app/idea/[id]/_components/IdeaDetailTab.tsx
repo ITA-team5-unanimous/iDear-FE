@@ -8,18 +8,34 @@ import {GlobalAlertModal} from '@/components/common/modal/GlobalAlertModal';
 import {useState} from 'react';
 import {ModalWrapper} from '@/components/common/wrappers/ModalWrapper';
 import Download from '@/assets/idea/download.svg';
-import {useDeleteIdea} from '@/hooks/queries/useIdea';
+import {useDeleteIdea, useIdeaCertificate} from '@/hooks/queries/useIdea';
+import {CertificatePdf} from '@/components/certificate/CertificatePdf';
 
 type IdeaDetailTab = 'version' | 'timeline';
 
-export const IdeaDetailTab = () => {
+interface IdeaDetailTabProps {
+  isLatestVersionRegistered: boolean;
+}
+
+export const IdeaDetailTab = ({
+  isLatestVersionRegistered,
+}: IdeaDetailTabProps) => {
   const {id} = useParams();
   const searchParams = useSearchParams();
   const router = useRouter();
   const tabParam = searchParams.get('tab');
+
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
+  const [showCertificate, setShowCertificate] = useState<boolean>(false);
+  const [isDownloading, setIsDownloading] = useState<boolean>(false);
+
   const ideaId = Number(id);
   const {mutate: deleteIdea, isPending} = useDeleteIdea();
+  const {
+    data: certificateResponse,
+    refetch: fetchCertificate,
+    isFetching,
+  } = useIdeaCertificate(ideaId);
 
   const currentTab: IdeaDetailTab =
     tabParam === 'timeline' ? 'timeline' : 'version';
@@ -31,7 +47,25 @@ export const IdeaDetailTab = () => {
       router.push(`${ROUTES.IDEA}/${id}?tab=timeline`);
     }
   };
-  const handleDownloadCertificate = () => {};
+
+  const handleDownloadCertificate = async () => {
+    setIsDownloading(true);
+    try {
+      const result = await fetchCertificate();
+
+      if (!result.data) {
+        alert('증명서를 불러올 수 없습니다.');
+        setIsDownloading(false);
+        return;
+      }
+
+      setShowCertificate(true);
+    } catch (error) {
+      console.error('증명서 다운로드 실패:', error);
+      alert('증명서를 불러오는 중 오류가 발생했습니다.');
+      setIsDownloading(false);
+    }
+  };
 
   const handleDelete = () => {
     setIsDeleteModalOpen(true);
@@ -74,9 +108,18 @@ export const IdeaDetailTab = () => {
           onClick={handleDownloadCertificate}
           text='확인증 다운받기'
           icon={<Download />}
+          disabled={!isLatestVersionRegistered || isDownloading}
         />
       </div>
-
+      {showCertificate && certificateResponse && (
+        <CertificatePdf
+          data={certificateResponse.data}
+          onDownloaded={() => {
+            setShowCertificate(false);
+            setIsDownloading(false);
+          }}
+        />
+      )}
       {isDeleteModalOpen && (
         <ModalWrapper
           isOpen={isDeleteModalOpen}
