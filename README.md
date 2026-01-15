@@ -24,4 +24,3 @@
 <img width="2880" height="1620" alt="image" src="https://github.com/user-attachments/assets/03f6ffc3-54ba-4160-b942-1ce33ff80a34" />
 <img width="2880" height="1620" alt="image" src="https://github.com/user-attachments/assets/bf1e523b-dd44-4dfb-aaa1-eeb0028bb6ef" />
 
-## Tech Stack 
