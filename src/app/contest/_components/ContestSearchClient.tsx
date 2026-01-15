@@ -10,7 +10,7 @@ import {useInfiniteScroll} from '@/hooks/ui/useInfiniteScroll';
 
 export const ContestSearchClient = () => {
   const searchParams = useSearchParams();
-  const rawKeyword = searchParams.get('q') || '';
+  const rawKeyword = searchParams.get('keyword') || '';
 
   const {data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading} =
     useContestSearch({keyword: rawKeyword, sortBy: 'latest'});

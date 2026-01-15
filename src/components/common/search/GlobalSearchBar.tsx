@@ -4,7 +4,6 @@ import {useState} from 'react';
 import SearchIcon from '@/assets/search/search-icon.svg';
 import ClearIcon from '@/assets/search/clear-icon.svg';
 import {usePathname, useRouter} from 'next/navigation';
-import {ROUTES} from '@/constants/routes';
 
 interface GlobalSearchBarProps {
   placeholder: string;
@@ -24,17 +23,18 @@ export const GlobalSearchBar = ({
 
     const keyword = value.trim();
     if (!keyword) {
-      router.replace(ROUTES.CONTEST);
+      router.push(pathname);
       return;
     }
 
-    router.push(`${pathname}?q=${encodeURIComponent(keyword)}`);
+    router.push(`${pathname}?keyword=${encodeURIComponent(keyword)}`);
   };
 
   const handleClear = () => {
     setValue('');
     router.push(pathname);
   };
+
   return (
     <form
       onSubmit={handleSubmit}
