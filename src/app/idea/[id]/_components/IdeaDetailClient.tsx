@@ -5,6 +5,7 @@ import {IdeaDetailHeader} from '@/app/idea/[id]/_components/IdeaDetailHeader';
 import {IdeaDetailTab} from '@/app/idea/[id]/_components/IdeaDetailTab';
 import {useIdeaDetailStore} from '@/hooks/stores/useIdeaDetailStore';
 import {IdeaDetailMetaView} from '@/app/idea/[id]/_components/IdeaDetailMetaView';
+import {IdeaDetailMetaEdit} from '@/app/idea/[id]/_components/IdeaDetailMetaEdit';
 import {useParams, usePathname, useSearchParams} from 'next/navigation';
 import {IdeaTimeline} from '@/app/idea/[id]/_components/IdeaTimeline';
 import {useIdeaDetail} from '@/hooks/queries/useIdea';
@@ -34,21 +35,32 @@ export const IdeaDetailClient = () => {
     return <p>등록된 버전이 없습니다.</p>;
   }
 
+  const latestVersion = sortedVersions[0];
   const current =
     sortedVersions.find((v) => v.versionNumber === currentVersion) ??
-    sortedVersions[0];
+    latestVersion;
+  const isLatestVersion = current.versionNumber === latestVersion.versionNumber;
 
   return (
     <div className='relative flex flex-col gap-6 px-[164px] py-[54px]'>
       <IdeaDetailHeader contest={{id: contestId, title: contestTitle}} />
-      <IdeaDetailTab />
+      <IdeaDetailTab
+        isLatestVersionRegistered={ideaDetail.latestVersionRegistered}
+      />
 
       {currentTab === 'version' && (
         <div className='flex gap-6'>
           <div className='flex flex-col items-center gap-6'>
             <IdeaVersionHistory ideaId={ideaId} />
           </div>
-          <IdeaDetailMetaView version={current} isEditable={isEditable} />
+          {isEditable ? (
+            <IdeaDetailMetaEdit version={current} />
+          ) : (
+            <IdeaDetailMetaView
+              version={current}
+              isLatestVersion={isLatestVersion}
+            />
+          )}
         </div>
       )}
 

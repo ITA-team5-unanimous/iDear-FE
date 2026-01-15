@@ -14,6 +14,11 @@ export const API_ENDPOINTS = {
     users: `/users`,
     userName: `/users/name`,
     publicKey: `/users/public-key`,
+    profileImage: '/users/profile-image',
+    email: '/users/email',
+    emailVerification: '/users/email/verification',
+    emailVerify: '/users/email/verification/verify',
+    notificationSettings: '/users/notification-settings',
   },
   idea: {
     register: `/ideas`,
@@ -21,5 +26,11 @@ export const API_ENDPOINTS = {
     signatures: (ideaId: number) => `/ideas/${ideaId}/signatures`,
     detail: (ideaId: number) => `/ideas/${ideaId}`,
     tags: (versionId: number) => `/idea-versions/${versionId}/tags`,
+    edit: (ideaId: number) => `/ideas/${ideaId}`,
+    certificate: (ideaId: number) => `/ideas/${ideaId}/certificate`,
+  },
+  alert: {
+    read: (alertId: number) => `/alerts/${alertId}/read`,
+    unread: '/alerts/unread',
   },
 };

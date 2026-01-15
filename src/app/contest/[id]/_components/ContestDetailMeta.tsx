@@ -36,8 +36,8 @@ export const ContestDetailMeta = ({
       ) : (
         <DefaultImage className='h-[519px] w-[430px] rounded-sm' />
       )}
-      <section className='flex w-full flex-col gap-9'>
-        <div className='absolute top-6 right-9 flex flex-row items-center gap-6'>
+      <section className='flex w-full flex-col justify-center gap-9'>
+        <div className='absolute top-15 right-9 flex flex-row items-center gap-6'>
           <button onClick={onShare} aria-label='공유 버튼'>
             <Share />
           </button>
@@ -45,38 +45,28 @@ export const ContestDetailMeta = ({
             {contest.bookmarked ? <FilledLikeIcon /> : <LikeIcon />}
           </button>
         </div>
-
         <div className='flex flex-col gap-4'>
           <h2 className='text-2xl font-bold'>접수 기간</h2>
           <div className='flex flex-row items-center gap-[75px]'>
             <DayBadge date={contest.dday} />
             <h3 className='text-xl font-normal'>
-              {formatKoreanDate(contest.startDate)} ~{' '}
+              {formatKoreanDate(contest.startDate)} ~
               {formatKoreanDate(contest.deadline)}
             </h3>
           </div>
         </div>
-
         <div className='flex flex-col gap-4'>
-          <h2 className='text-2xl font-bold'>기관</h2>
+          <h2 className='text-2xl font-bold'>공모분야</h2>
+          <p className='text-xl font-normal'>{contest.category}</p>
+        </div>
+        <div className='flex flex-col gap-4'>
+          <h2 className='text-2xl font-bold'>기관/시상</h2>
           <div className='flex flex-row gap-[138px] text-xl font-normal'>
             <p>주최</p>
             <p>{contest.host}</p>
           </div>
-          <div className='flex flex-row gap-[138px] text-xl font-normal'>
-            <p>주관</p>
-            <p>{contest.host}</p>
-          </div>
-        </div>
-
-        <div className='flex flex-col gap-4'>
-          <h2 className='text-2xl font-bold'>시상</h2>
-          <div className='flex flex-row gap-[90px] text-xl font-normal'>
-            <p>1등시상금</p>
-            <p>{contest.reward}</p>
-          </div>
-          <div className='flex flex-row gap-[103px] text-xl font-normal'>
-            <p>총시상금</p>
+          <div className='flex flex-row gap-[120px] text-xl font-normal'>
+            <p>시상규모</p>
             <p>{contest.reward}</p>
           </div>
         </div>

@@ -14,7 +14,6 @@ export const IdeaDetailHeader = ({contest}: IdeaDetailHeaderProps) => {
   const router = useRouter();
 
   const handleChevronRightClick = () => {
-    // TODO: 해당 아이디어의 공모전 상세 페이지로 이동
     router.push(`${ROUTES.CONTEST}/${contest.id}`);
   };
 
@@ -29,7 +28,8 @@ export const IdeaDetailHeader = ({contest}: IdeaDetailHeaderProps) => {
         <button
           type='button'
           onClick={handleChevronRightClick}
-          aria-label='공모전 상세 페이지로 이동'>
+          aria-label='공모전 상세 페이지로 이동'
+          className='p-4'>
           <ChevronRight />
         </button>
       </div>

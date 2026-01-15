@@ -21,9 +21,9 @@ type Story = StoryObj<typeof IdeaItem>;
 export const Default: Story = {
   args: {
     ideaId: 1,
-    title:
+    contestTitle:
       '2025년 이스포츠 대학리그 결선진출권(수도강원권) 대표 참가 대학 모집',
-    host: '문화체육관광부',
+    ideaTitle: 'AI 기반 맞춤형 학습 플랫폼',
     dday: 12,
     requestedAt: '2025-11-05T10:30:00',
   },

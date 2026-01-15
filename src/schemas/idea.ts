@@ -6,6 +6,7 @@ import {IdeaItem} from '@/app/idea/_components/IdeaItem';
  * 아이디어 api 스키마
  */
 export const IdeaImageSchema = z.object({
+  ideaImageId: z.number(),
   fileName: z.string(),
   filePath: z.string(),
 });
@@ -38,15 +39,15 @@ export const IdeaVersionTagSchema = z.object({
 });
 
 export const IdeaDetailFileSchema = z.object({
+  ideaFileId: z.number(),
   fileName: z.string(),
   filePath: z.string(),
-  status: z.string(),
-  txHash: z.string().nullable(),
 });
 
 export const IdeaVersionDetailSchema = z.object({
   ideaVersionId: z.number(),
   versionNumber: z.number(),
+  title: z.string(),
   shortDescription: z.string(),
   description: z.string(),
   githubUrl: z.string().nullable(),
@@ -59,10 +60,10 @@ export const IdeaVersionDetailSchema = z.object({
 
 export const IdeaDetailDataSchema = z.object({
   ideaId: z.number(),
-  title: z.string(),
   contestId: z.number(),
   contestTitle: z.string(),
   requestedAt: z.string(),
+  latestVersionRegistered: z.boolean(),
   versions: z.array(IdeaVersionDetailSchema),
 });
 
@@ -76,20 +77,63 @@ export const IdeaItemSchema = z.object({
   ideaId: z.number(),
   ideaVersionId: z.number(),
   versionNumber: z.number(),
-  title: z.string(),
-  host: z.string(),
-  dday: z.number(),
-  contestImageUrl: z.string(),
-  shortDescription: z.string(),
+  contestTitle: z.string(),
+  ideaTitle: z.string(),
+  host: z.string().nullable(),
+  dday: z.number().nullable(),
+  contestImageUrl: z.string().nullable(),
   requestedAt: z.string(),
-  githubUrl: z.string().nullable(),
-  figmaUrl: z.string().nullable(),
   images: z.array(IdeaImageSchema),
 });
 
-export const IdeaListResponseSchema = apiResponseSchema(
-  z.array(IdeaItemSchema)
-);
+export const IdeaPageDataSchema = z.object({
+  content: z.array(IdeaItemSchema),
+  totalElements: z.number(),
+  totalPages: z.number(),
+  number: z.number(),
+  size: z.number(),
+  first: z.boolean(),
+  last: z.boolean(),
+  numberOfElements: z.number(),
+  empty: z.boolean(),
+});
+
+export const IdeaUpdateRequestSchema = z.object({
+  deleteFileIds: z.array(z.number()).optional(),
+  deleteImageIds: z.array(z.number()).optional(),
+  title: z.string(),
+  shortDescription: z.string(),
+  description: z.string().min(1),
+  githubUrl: z.string().nullable().optional(),
+  figmaUrl: z.string().nullable().optional(),
+});
+
+export const IdeaUpdateResponseDataSchema = z.object({
+  ideaId: z.number(),
+  versionNumber: z.number(),
+  updatedAt: z.string(),
+  files: z.array(IdeaFileSchema),
+});
+
+export const IdeaCertificateSchema = z.object({
+  submitter: z.string(),
+  ideaTitle: z.string(),
+  submissionDate: z.string(),
+  documentHash: z.string(),
+  network: z.string(),
+  contractAddress: z.string(),
+  commit: z.string(),
+  txHash: z.string(),
+  blockNumber: z.number(),
+  onChainTimestamp: z.string(),
+  issuedAt: z.string(),
+  documentNumber: z.string(),
+});
+
+/**
+ * 아이디어 API 응답 스키마
+ */
+export const IdeaListResponseSchema = apiResponseSchema(IdeaPageDataSchema);
 export const IdeaRegisterResponseSchema = apiResponseSchema(
   IdeaRegisterDataSchema
 );
@@ -97,20 +141,33 @@ export const IdeaSignatureResponseSchema = apiResponseSchema(
   IdeaSignatureDataSchema
 );
 export const IdeaDetailResponseSchema = apiResponseSchema(IdeaDetailDataSchema);
+export const IdeaUpdateResponseSchema = apiResponseSchema(
+  IdeaUpdateResponseDataSchema
+);
 export const IdeaTagCreateResponseSchema =
   apiResponseSchema(IdeaVersionTagSchema);
+export const IdeaCertificateResponseSchema = apiResponseSchema(
+  IdeaCertificateSchema
+);
 
+/**
+ * 타입 추출
+ */
+export type IdeaListResponse = z.infer<typeof IdeaListResponseSchema>;
 export type IdeaFile = z.infer<typeof IdeaFileSchema>;
 export type IdeaRegisterResponse = z.infer<typeof IdeaRegisterResponseSchema>;
 export type IdeaSignatureResponse = z.infer<typeof IdeaSignatureResponseSchema>;
 export type IdeaItem = z.infer<typeof IdeaItemSchema>;
-export type IdeaListResponse = z.infer<typeof IdeaListResponseSchema>;
 export type IdeaDetail = z.infer<typeof IdeaDetailDataSchema>;
 export type IdeaVersionDetail = z.infer<typeof IdeaVersionDetailSchema>;
 export type IdeaDetailResponse = z.infer<typeof IdeaDetailResponseSchema>;
 export type IdeaVersionTag = z.infer<typeof IdeaVersionTagSchema>;
 export type IdeaTagCreateResponse = z.infer<typeof IdeaTagCreateResponseSchema>;
-
+export type IdeaUpdateResponse = z.infer<typeof IdeaUpdateResponseSchema>;
+export type IdeaCertificateType = z.infer<typeof IdeaCertificateSchema>;
+export type IdeaCertificateResponse = z.infer<
+  typeof IdeaCertificateResponseSchema
+>;
 /**
  * 첨부파일 관련 스키마
  */

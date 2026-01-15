@@ -16,7 +16,7 @@ export default function GlobalButton({
   icon,
   variant = 'primary',
   type = 'button',
-  disabled = false,
+  disabled,
 }: GlobalButtonProps) {
   return (
     <button
@@ -25,9 +25,13 @@ export default function GlobalButton({
       type={type}
       disabled={disabled}
       className={clsx(
-        'flex min-w-[210px] flex-row items-center justify-center gap-[10px] rounded-sm pt-3 pr-6 pb-3 pl-6 text-center text-xl font-bold text-white',
-        variant === 'primary' && 'bg-primary',
-        variant === 'gray' && 'bg-gray'
+        'flex min-w-[210px] items-center justify-center gap-[10px] rounded-sm px-6 py-3 text-xl font-bold transition-colors',
+        disabled
+          ? 'bg-gray cursor-not-allowed opacity-50'
+          : variant === 'primary'
+            ? 'bg-primary hover:bg-primary/90'
+            : 'bg-gray hover:bg-gray/90',
+        'text-white'
       )}>
       {text}
       {icon && <span>{icon}</span>}

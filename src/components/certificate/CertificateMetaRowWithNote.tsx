@@ -1,4 +1,4 @@
-import {CertificateMetaRow} from '@/app/certificate/_pdf/CertificateMetaRow';
+import {CertificateMetaRow} from '@/components/certificate/CertificateMetaRow';
 
 interface CertificateMetaRowWithNoteProps {
   label: string;

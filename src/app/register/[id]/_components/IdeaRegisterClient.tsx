@@ -5,9 +5,9 @@ import {useParams, useRouter} from 'next/navigation';
 import GlobalButton from '@/components/buttons/GlobalButton';
 import {BackButton} from '@/components/buttons/BackButton';
 import {IdeaFormInput} from '@/app/register/[id]/_components/IdeaFormInput';
-import {ImageUploadSection} from '@/app/register/[id]/_components/file/ImageUploadSection';
-import {FileUploadSection} from '@/app/register/[id]/_components/file/FileUploadSection';
-import {UrlUploadSection} from '@/app/register/[id]/_components/file/UrlUploadSection';
+import {ImageUploadSection} from '@/components/common/file/ImageUploadSection';
+import {FileUploadSection} from '@/components/common/file/FileUploadSection';
+import {UrlUploadSection} from '@/components/common/file/UrlUploadSection';
 import {ModalWrapper} from '@/components/common/wrappers/ModalWrapper';
 import {IdeaAgreementModal} from '@/components/common/modal/IdeaAgreementModal';
 import {RegisterCompleteModal} from '@/components/common/modal/RegisterCompleteModal';
@@ -16,6 +16,8 @@ import {FileBoxType} from '@/schemas/support';
 import {useIdeaRegister} from '@/hooks/queries/useIdea';
 import {signIdeaFiles} from '@/services/crypto/signIdeaFiles';
 import {ROUTES} from '@/constants/routes';
+
+const MAX_IMAGE_COUNT = 4;
 
 export const IdeaRegisterClient = () => {
   const {id} = useParams();
@@ -100,16 +102,8 @@ export const IdeaRegisterClient = () => {
 
   const handleClickSave = () => {
     if (!id) return {};
-    if (!ideaTitle.trim()) {
-      alert('아이디어 제목을 입력해주세요.');
-      return;
-    }
-    if (!ideaDescription.trim()) {
-      alert('아이디어 설명을 입력해주세요.');
-      return;
-    }
-    if (!file) {
-      alert('파일을 첨부해주세요.');
+    if (!ideaTitle.trim() || !ideaDescription.trim() || !file) {
+      alert('아이디어 제목, 아이디어 설명, 첨부할 파일을 필수로 입력해주세요.');
       return;
     }
 
@@ -152,16 +146,25 @@ export const IdeaRegisterClient = () => {
           />
         </div>
 
-        <ImageUploadSection images={images} setImages={setImages} />
+        <div className='flex flex-col gap-6'>
+          <p className='text-2xl font-bold'>
+            이미지 파일(최대 {MAX_IMAGE_COUNT}장)
+          </p>
+          <ImageUploadSection images={images} setImages={setImages} />
+        </div>
 
         <div className='flex flex-col gap-6'>
           <p className='text-2xl font-bold'>파일 업로드</p>
           <FileUploadSection file={file} setFile={setFile} />
           <UrlUploadSection
-            githubUrl={githubUrl}
-            setGithubUrl={setGithubUrl}
-            figmaUrl={figmaUrl}
-            setFigmaUrl={setFigmaUrl}
+            type='github'
+            url={githubUrl}
+            setUrl={(url) => setGithubUrl(url ?? undefined)}
+          />
+          <UrlUploadSection
+            type='figma'
+            url={figmaUrl}
+            setUrl={(url) => setFigmaUrl(url ?? undefined)}
           />
         </div>
 

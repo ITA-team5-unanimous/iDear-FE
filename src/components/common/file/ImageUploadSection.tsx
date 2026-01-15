@@ -2,8 +2,8 @@
 
 import {useRef} from 'react';
 import {v4 as uuidv4} from 'uuid';
-import {FileBox} from '@/app/register/[id]/_components/file/FileBox';
 import {FileBoxType} from '@/schemas/support';
+import {FileBox} from '@/components/common/file/FileBox';
 
 const MAX_IMAGE_COUNT = 4;
 
@@ -46,10 +46,6 @@ export const ImageUploadSection = ({
 
   return (
     <div className={'flex flex-col gap-6'}>
-      <p className='text-2xl font-bold'>
-        이미지 파일(최대 {MAX_IMAGE_COUNT}장)
-      </p>
-
       {images.map((box) => (
         <FileBox key={box.id} icon='image' file={box.files[0]} />
       ))}

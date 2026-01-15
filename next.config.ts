@@ -3,6 +3,13 @@ import type {NextConfig} from 'next';
 const nextConfig: NextConfig = {
   images: {
     domains: ['api.linkareer.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'idear-file.s3.ap-northeast-2.amazonaws.com',
+        pathname: '/**',
+      },
+    ],
   },
   webpack: (config) => {
     // @ts-expect-error ignore

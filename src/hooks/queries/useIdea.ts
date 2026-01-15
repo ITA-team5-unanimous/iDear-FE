@@ -3,6 +3,9 @@ import {
   getIdeas,
   getIdeaDetail,
   postIdeaVersionTag,
+  patchIdea,
+  deleteIdea,
+  getIdeaCertificate,
 } from '@/services/api/idea/ideaApi';
 import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query';
 
@@ -17,10 +20,10 @@ export const useIdeaRegister = () => {
   });
 };
 
-export const useIdeaList = () => {
+export const useIdeaList = (page: number, keyword?: string) => {
   return useQuery({
-    queryKey: ['ideasList'],
-    queryFn: getIdeas,
+    queryKey: ['ideasList', page, keyword],
+    queryFn: () => getIdeas(page, keyword),
     select: (response) => response.data,
     staleTime: 1000 * 60 * 5,
   });
@@ -45,5 +48,36 @@ export const useAddIdeaTag = (ideaId: number) => {
     onSuccess: () => {
       queryClient.invalidateQueries({queryKey: ['ideaDetail', ideaId]});
     },
+  });
+};
+
+export const useIdeaUpdate = (ideaId: number) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (formData: FormData) => patchIdea(ideaId, formData),
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: ['ideaDetail', ideaId]});
+      queryClient.invalidateQueries({queryKey: ['ideasList']});
+    },
+  });
+};
+
+export const useDeleteIdea = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (ideaId: number) => deleteIdea(ideaId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: ['ideasList']});
+    },
+  });
+};
+
+export const useIdeaCertificate = (ideaId: number) => {
+  return useQuery({
+    queryKey: ['idea-certificate', ideaId],
+    queryFn: () => getIdeaCertificate(ideaId),
+    enabled: false,
   });
 };
