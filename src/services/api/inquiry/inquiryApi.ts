@@ -40,3 +40,30 @@ export const getInquiryDetail = async (
 
   return InquiryDetailResponseSchema.parse(data);
 };
+
+export const patchInquiry = async (
+  inquiryId: number,
+  formData: FormData
+): Promise<InquiryCreateResponse> => {
+  const {data} = await axiosInstance.patch(
+    API_ENDPOINTS.inquiry.detail(inquiryId),
+    formData,
+    {
+      headers: {
+        'Content-Type': undefined,
+      },
+    }
+  );
+
+  return InquiryCreateResponseSchema.parse(data);
+};
+
+export const deleteInquiry = async (
+  inquiryId: number
+): Promise<InquiryCreateResponse> => {
+  const {data} = await axiosInstance.delete(
+    API_ENDPOINTS.inquiry.detail(inquiryId)
+  );
+
+  return InquiryCreateResponseSchema.parse(data);
+};
