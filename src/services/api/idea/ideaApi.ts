@@ -48,11 +48,15 @@ export const postIdeaSignatures = async (
   return IdeaSignatureResponseSchema.parse(data);
 };
 
-export const getIdeas = async (page: number): Promise<IdeaListResponse> => {
+export const getIdeas = async (
+  page: number,
+  keyword?: string
+): Promise<IdeaListResponse> => {
   const {data} = await axiosInstance.get(API_ENDPOINTS.idea.getIdeas, {
     params: {
       page,
       size: 8,
+      ...(keyword ? {keyword} : {}),
     },
   });
   return IdeaListResponseSchema.parse(data);
