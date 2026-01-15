@@ -1,25 +1,37 @@
 'use client';
 
-import {
-  InquiryForm,
-  InquiryFormData,
-} from '@/app/support/inquiry/[id]/_components/InquiryForm';
 import {useRouter, useSearchParams} from 'next/navigation';
 import {useState} from 'react';
 import {ROUTES} from '@/constants/routes';
+import {v4 as uuidv4} from 'uuid';
 import {BackButton} from '@/components/buttons/BackButton';
 import {InquiryCompleteModal} from '@/components/common/modal/InquiryCompleteModal';
 import {ModalWrapper} from '@/components/common/wrappers/ModalWrapper';
-import {createInitialFormData} from '@/hooks/inquiry/inquiryFormUtils';
 import {useInquiryCreate} from '@/hooks/queries/useInquiry';
+import {
+  InquiryForm,
+  InquiryFormData,
+} from '@/app/support/inquiry/new/_components/InquiryForm';
 
 export const InquiryNewClient = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
-  const initialData = createInitialFormData(null);
   const searchParams = useSearchParams();
   const category = searchParams.get('category');
   const {mutate: createInquiry} = useInquiryCreate();
+
+  const initialData: InquiryFormData = {
+    browser: '',
+    device: '',
+    problemDescription: '',
+    occurrenceTime: '',
+    fileBoxes: [
+      {
+        id: uuidv4(),
+        files: [],
+      },
+    ],
+  };
 
   const handleSubmit = (data: InquiryFormData) => {
     const formData = new FormData();
@@ -44,7 +56,6 @@ export const InquiryNewClient = () => {
       });
     });
 
-    createInquiry(formData);
     createInquiry(formData, {
       onSuccess: () => setIsModalOpen(true),
       onError: (error) => {
@@ -57,10 +68,6 @@ export const InquiryNewClient = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     router.push(ROUTES.SUPPORT_INQUIRY);
-  };
-
-  const handleCancelEdit = () => {
-    router.back();
   };
 
   return (
@@ -76,12 +83,7 @@ export const InquiryNewClient = () => {
         <div className='border-gray flex flex-col gap-12 rounded-[8px] border p-12'>
           <strong className='text-[32px] font-bold'>문의사항</strong>
 
-          <InquiryForm
-            initialData={initialData}
-            isEditMode={true}
-            onSubmit={handleSubmit}
-            onCancelEdit={handleCancelEdit}
-          />
+          <InquiryForm initialData={initialData} onSubmit={handleSubmit} />
         </div>
       </section>
 
