@@ -1,20 +1,33 @@
 'use client';
 
-import {certificateType} from '@/schemas/certificate';
 import WaterMark from '@/assets/certificate/watermark.svg';
 import SmallLogo from '@/assets/logo/small-logo.svg';
-import {CertificateHeader} from '@/app/certificate/_pdf/CertificateHeader';
-import {CertificateMeta} from '@/app/certificate/_pdf/CertificateMeta';
-import {CertificateFooter} from '@/app/certificate/_pdf/CertificateFooter';
-import {downloadCertificatePdf} from '@/app/certificate/_pdf/downloadCertificatePdf';
+import {CertificateHeader} from '@/components/certificate/CertificateHeader';
+import {CertificateMeta} from '@/components/certificate/CertificateMeta';
+import {CertificateFooter} from '@/components/certificate/CertificateFooter';
+import {downloadCertificatePdf} from '@/utils/downloadCertificatePdf';
+import {IdeaCertificateType} from '@/schemas/idea';
+import {useEffect} from 'react';
 
 interface CertificatePdfProps {
-  data: certificateType;
+  data: IdeaCertificateType;
+  onDownloaded?: () => void;
 }
 
-export const CertificatePdf = ({data}: CertificatePdfProps) => {
+export const CertificatePdf = ({data, onDownloaded}: CertificatePdfProps) => {
+  useEffect(() => {
+    // 렌더링 직후 바로 다운로드
+    downloadCertificatePdf();
+    onDownloaded?.();
+  }, []);
+
   return (
-    <>
+    <div
+      style={{
+        position: 'fixed',
+        top: -9999,
+        left: -9999,
+      }}>
       <div
         id='pdf-target'
         className='relative flex min-h-[842px] w-[595px] flex-col gap-6 bg-white p-12 text-black'
@@ -35,11 +48,6 @@ export const CertificatePdf = ({data}: CertificatePdfProps) => {
           <SmallLogo className='w-full' />
         </div>
       </div>
-      <button
-        onClick={downloadCertificatePdf}
-        className='rounded bg-black px-4 py-2 text-white'>
-        PDF 다운로드(테스트용)
-      </button>
-    </>
+    </div>
   );
 };
