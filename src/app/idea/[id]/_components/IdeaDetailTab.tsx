@@ -50,16 +50,21 @@ export const IdeaDetailTab = ({
 
   const handleDownloadCertificate = async () => {
     setIsDownloading(true);
+    try {
+      const result = await fetchCertificate();
 
-    const result = await fetchCertificate();
+      if (!result.data) {
+        alert('증명서를 불러올 수 없습니다.');
+        setIsDownloading(false);
+        return;
+      }
 
-    if (!result.data) {
-      alert('증명서를 불러올 수 없습니다.');
+      setShowCertificate(true);
+    } catch (error) {
+      console.error('증명서 다운로드 실패:', error);
+      alert('증명서를 불러오는 중 오류가 발생했습니다.');
       setIsDownloading(false);
-      return;
     }
-
-    setShowCertificate(true);
   };
 
   const handleDelete = () => {
