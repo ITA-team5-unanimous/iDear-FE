@@ -103,7 +103,7 @@ export const IdeaDetailTab = ({
           onClick={handleDownloadCertificate}
           text='확인증 다운받기'
           icon={<Download />}
-          disabled={!isLatestVersionRegistered}
+          disabled={!isLatestVersionRegistered || isDownloading}
         />
       </div>
       {showCertificate && certificateResponse && (
