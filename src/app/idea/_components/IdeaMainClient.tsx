@@ -17,9 +17,12 @@ export const IdeaMainClient = () => {
   const keyword = searchParams.get('keyword') ?? undefined;
 
   const {data, isLoading} = useIdeaList(currentPage - 1, keyword);
-
   const ideas = data?.content ?? [];
   const totalItems = data?.totalElements ?? 0;
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className='flex flex-col py-9'>
