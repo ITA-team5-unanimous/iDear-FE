@@ -80,7 +80,6 @@ export default function InquiryDetailClient({
     const params = new URLSearchParams(searchParams.toString());
     params.set('edit', 'true');
     router.push(`?${params.toString()}`);
-    resetState();
   };
 
   const handleDelete = () => {
@@ -163,7 +162,8 @@ export default function InquiryDetailClient({
   };
 
   const handleAddBox = () => {
-    if (fileBoxes.length >= 4) return;
+    const totalImages = imageUrls.length + fileBoxes.length;
+    if (totalImages >= 4) return;
     setFileBoxes((prev) => [...prev, {id: uuidv4(), files: []}]);
   };
 
@@ -247,35 +247,31 @@ export default function InquiryDetailClient({
         <div className='flex flex-col gap-6'>
           <p className='text-2xl font-bold'>에러 화면 캡처(최대 4장)</p>
           <div className='flex flex-wrap items-center gap-10'>
-            {!isEditMode && (
-              <div className='flex flex-wrap gap-10'>
-                {imageUrls.map((url, idx) => (
-                  <div
-                    key={url}
-                    className='border-primary h-[317px] w-[564px] overflow-hidden rounded-[8px] border'>
-                    <Image
-                      src={url}
-                      alt={`inquiry-simage-${idx}`}
-                      className='h-full w-full object-cover'
-                      width={282}
-                      height={158}
-                    />
-                  </div>
-                ))}
+            {imageUrls.map((url, idx) => (
+              <div
+                key={url}
+                className='border-primary h-[317px] w-[564px] overflow-hidden rounded-[8px] border'>
+                <Image
+                  src={url}
+                  alt={`inquiry-simage-${idx}`}
+                  className='h-full w-full object-cover'
+                  width={282}
+                  height={158}
+                />
               </div>
-            )}
+            ))}
 
-            {isEditMode && (
-              <div className='flex flex-wrap items-center gap-10'>
-                {fileBoxes.map((box) => (
-                  <ImageFileBox
-                    key={box.id}
-                    box={box}
-                    onFilesChange={handleFilesChange}
-                  />
-                ))}
-                {fileBoxes.length < 4 && <PlusButton onClick={handleAddBox} />}
-              </div>
+            {isEditMode &&
+              imageUrls.length < 4 &&
+              fileBoxes.map((box) => (
+                <ImageFileBox
+                  key={box.id}
+                  box={box}
+                  onFilesChange={handleFilesChange}
+                />
+              ))}
+            {isEditMode && imageUrls.length + fileBoxes.length < 4 && (
+              <PlusButton onClick={handleAddBox} />
             )}
           </div>
         </div>

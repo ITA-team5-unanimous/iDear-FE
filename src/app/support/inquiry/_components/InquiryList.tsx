@@ -4,15 +4,17 @@ import {getSupportCategoryTitle} from '@/utils/inquiry/getSupportCategoryTitle';
 
 interface InquiryListProps {
   inquiries: InquiryForm[];
+  startIndex?: number;
 }
 
-export const InquiryList = ({inquiries}: InquiryListProps) => {
+export const InquiryList = ({inquiries, startIndex = 0}: InquiryListProps) => {
   return (
     <ul className='flex flex-col items-center'>
-      {inquiries.map((inquiry) => (
+      {inquiries.map((inquiry, index) => (
         <InquiryItem
           key={inquiry.id}
-          id={inquiry.id}
+          inquiryId={inquiry.id}
+          displayId={startIndex + index + 1}
           category={getSupportCategoryTitle(inquiry.category)}
           description={inquiry.problemDescription}
           status={inquiry.status}
