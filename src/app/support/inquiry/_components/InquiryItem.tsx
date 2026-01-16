@@ -7,14 +7,16 @@ import {InquiryStatus} from '@/schemas/inquiry';
 import {INQUIRY_STATUS} from '@/constants/inquiry';
 
 interface InquiryItemProps {
-  id: number;
+  displayId: number;
+  inquiryId: number;
   category: string;
   description: string;
   status: InquiryStatus;
 }
 
 export const InquiryItem = ({
-  id,
+  displayId,
+  inquiryId,
   category,
   description,
   status,
@@ -22,7 +24,7 @@ export const InquiryItem = ({
   const router = useRouter();
 
   const handleClickInquiryList = () => {
-    router.push(`${ROUTES.SUPPORT_INQUIRY}/${id}`);
+    router.push(`${ROUTES.SUPPORT_INQUIRY}/${inquiryId}`);
   };
 
   return (
@@ -36,7 +38,7 @@ export const InquiryItem = ({
           handleClickInquiryList();
         }
       }}>
-      <h1 className='text-primary m-2.5 text-2xl font-bold'>{id}</h1>
+      <h1 className='text-primary m-2.5 text-2xl font-bold'>{displayId}</h1>
       <h2 className='w-[186px] text-center text-xl font-medium'>{category}</h2>
       <p className='line-clamp-1 w-[693px] text-2xl font-bold'>{description}</p>
       <div className='flex items-center gap-0'>
