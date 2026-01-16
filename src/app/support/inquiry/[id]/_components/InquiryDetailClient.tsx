@@ -20,6 +20,7 @@ import {v4 as uuidv4} from 'uuid';
 import {ImageFileBox} from '@/components/common/file/ImageFileBox';
 import {Spinner} from '@/components/common/ui/Spinner';
 import {ROUTES} from '@/constants/routes';
+import {isValidDateTime} from '@/utils/inquiry/dateValidators';
 
 interface InquiryDetailClientProps {
   inquiryId: number;
@@ -103,6 +104,23 @@ export default function InquiryDetailClient({
   };
 
   const handleClickSave = () => {
+    if (!occurrenceTime.trim()) {
+      alert('발생 시각은 필수 입력입니다.');
+      return;
+    }
+
+    if (!isValidDateTime(occurrenceTime)) {
+      alert(
+        '발생 시각이 올바른 형식이 아닙니다. YYYY-MM-DD HH:mm:ss 형식으로 입력해주세요.'
+      );
+      return;
+    }
+
+    if (!problemDescription.trim()) {
+      alert('문제 상황은 필수 입력입니다.');
+      return;
+    }
+
     const formData = new FormData();
     const formattedTime = occurrenceTime.replace(' ', 'T');
 
@@ -174,7 +192,7 @@ export default function InquiryDetailClient({
             type='text'
             value={occurrenceTime}
             onChange={(e) => setOccurrenceTime(e.target.value)}
-            readOnly
+            readOnly={!isEditMode}
             placeholder='YYYY-MM-DD HH:mm:ss'
             className='border-primary max-w-[512px] rounded-[8px] border px-6 py-2 outline-none'
           />
@@ -233,11 +251,11 @@ export default function InquiryDetailClient({
               <div className='flex flex-wrap gap-10'>
                 {imageUrls.map((url, idx) => (
                   <div
-                    key={idx}
+                    key={url}
                     className='border-primary h-[317px] w-[564px] overflow-hidden rounded-[8px] border'>
                     <Image
                       src={url}
-                      alt={`image-${idx}`}
+                      alt={`inquiry-simage-${idx}`}
                       className='h-full w-full object-cover'
                       width={282}
                       height={158}
