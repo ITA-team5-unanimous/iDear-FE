@@ -86,7 +86,7 @@ export const patchIdea = async (
   formData: FormData
 ): Promise<IdeaUpdateResponse> => {
   const {data} = await axiosInstance.patch(
-    API_ENDPOINTS.idea.edit(ideaId),
+    API_ENDPOINTS.idea.detail(ideaId),
     formData,
     {
       headers: {

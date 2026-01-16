@@ -6,13 +6,18 @@ import {useRouter} from 'next/navigation';
 interface SupportCardProps {
   title: string;
   contents: string[];
+  categoryKey: string;
 }
 
-export const SupportCard = ({title, contents}: SupportCardProps) => {
+export const SupportCard = ({
+  title,
+  contents,
+  categoryKey,
+}: SupportCardProps) => {
   const router = useRouter();
 
   const handleClickCard = () => {
-    router.push(`${ROUTES.SUPPORT_INQUIRY_NEW}`);
+    router.push(`${ROUTES.SUPPORT_INQUIRY_NEW}?category=${categoryKey}`);
   };
 
   return (

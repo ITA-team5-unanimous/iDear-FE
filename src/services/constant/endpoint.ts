@@ -33,4 +33,8 @@ export const API_ENDPOINTS = {
     read: (alertId: number) => `/alerts/${alertId}/read`,
     unread: '/alerts/unread',
   },
+  inquiry: {
+    inquiry: `/inquiry`,
+    detail: (inquiryId: number) => `/inquiry/${inquiryId}`,
+  },
 };

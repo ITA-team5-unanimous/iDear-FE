@@ -1,4 +1,3 @@
-import {mockInquiryData} from '@/mocks/data/mockInquiryData';
 import InquiryDetailClient from '@/app/support/inquiry/[id]/_components/InquiryDetailClient';
 
 type InquiryPageParamsPromise = Promise<{id: string}>;
@@ -17,13 +16,7 @@ export default async function InquiryDetailPage({
   const awaitedSearchParams = await searchParams;
   const isEditMode = awaitedSearchParams?.edit === 'true';
 
-  const inquiry = mockInquiryData.find(
-    (item) => item.id === Number(awaitedParams.id)
-  );
+  const inquiryId = Number(awaitedParams.id);
 
-  if (!inquiry) {
-    return <div>해당 문의를 찾을 수 없습니다.</div>;
-  }
-
-  return <InquiryDetailClient inquiry={inquiry} isEditMode={isEditMode} />;
+  return <InquiryDetailClient inquiryId={inquiryId} isEditMode={isEditMode} />;
 }
