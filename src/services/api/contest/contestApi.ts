@@ -23,7 +23,7 @@ export const getContestDetail = async (
 };
 
 export const getBookmarkedContestList = async ({
-  page = 0,
+  page,
   size = 20,
   sortBy = '',
 }: {
@@ -33,7 +33,8 @@ export const getBookmarkedContestList = async ({
 }) => {
   const {data} = await axiosInstance.get(API_ENDPOINTS.contest.bookmarked, {
     params: {
-      pageable: {page, size, sort: [sortBy]},
+      page,
+      size,
       sortBy,
     },
   });
@@ -53,7 +54,6 @@ export const postBookMarkedContest = async (contestId: number) => {
   );
   return data;
 };
-
 export const getContestList = async ({
   page = 0,
   size = 20,
@@ -65,10 +65,12 @@ export const getContestList = async ({
 }) => {
   const {data} = await axiosInstance.get(API_ENDPOINTS.contest.contests, {
     params: {
-      pageable: {page, size, sort: [sortBy]},
+      page,
+      size,
       sortBy,
     },
   });
+
   return ContestListResponseSchema.parse(data);
 };
 

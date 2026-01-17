@@ -22,11 +22,11 @@ export const useContestList = (
 ) => {
   return useInfiniteQuery({
     queryKey: ['contestList', mode, sortBy],
-    queryFn: async ({pageParam = 0}) => {
+    queryFn: async ({pageParam}) => {
       if (mode === 'bookmarked') {
         const response = await getBookmarkedContestList({
           page: pageParam,
-          size: 10,
+          size: 20,
           sortBy,
         });
         return response.data;
@@ -34,7 +34,7 @@ export const useContestList = (
 
       const response = await getContestList({
         page: pageParam,
-        size: 10,
+        size: 20,
         sortBy,
       });
       return response.data;
